@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Wooden Ammo Box -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Box -->
+    <rect x="18" y="24" width="28" height="18" rx="1" fill="#8B4513"/>
+    <!-- Wood grain -->
+    <line x1="18" y1="30" x2="46" y2="30" stroke="#654321" stroke-width="0.5"/>
+    <line x1="18" y1="36" x2="46" y2="36" stroke="#654321" stroke-width="0.5"/>
+    <!-- Metal reinforcement -->
+    <rect x="16" y="24" width="2" height="18" fill="#666"/>
+    <rect x="46" y="24" width="2" height="18" fill="#666"/>
+    <!-- Ammo marking -->
+    <text x="32" y="35" text-anchor="middle" font-size="10" fill="#FFD700" font-weight="bold">7.62</text>
+  </g>
+</svg>

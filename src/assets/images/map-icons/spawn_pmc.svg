@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- PMC Spawn - Blue Soldier -->
+  <g fill="#00BFFF" stroke="#000000" stroke-width="2">
+    <!-- Head -->
+    <circle cx="32" cy="18" r="6"/>
+    <!-- Body -->
+    <rect x="26" y="24" width="12" height="16" rx="2"/>
+    <!-- Arms -->
+    <rect x="20" y="26" width="6" height="2" transform="rotate(-20 23 27)"/>
+    <rect x="38" y="26" width="6" height="2" transform="rotate(20 41 27)"/>
+    <!-- Legs -->
+    <rect x="28" y="40" width="4" height="10"/>
+    <rect x="32" y="40" width="4" height="10"/>
+    <!-- Rifle -->
+    <rect x="38" y="30" width="12" height="2" fill="#333"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--  Cash Register -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Register body -->
+    <rect x="16" y="26" width="32" height="22" rx="2" fill="#4a4a4a"/>
+    <!-- Display -->
+    <rect x="20" y="28" width="24" height="8" rx="1" fill="#00FF00" opacity="0.3"/>
+    <!-- Drawer -->
+    <rect x="18" y="40" width="28" height="8" rx="1" fill="#666"/>
+    <!-- Dollar sign on display -->
+    <text x="32" y="35" text-anchor="middle" font-size="8" fill="#00FF00" font-weight="bold">$</text>
+    <!-- Keys -->
+    <rect x="20" y="38" width="3" height="2" fill="#333"/>
+    <rect x="26" y="38" width="3" height="2" fill="#333"/>
+    <rect x="32" y="38" width="3" height="2" fill="#333"/>
+    <rect x="38" y="38" width="3" height="2" fill="#333"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Medical Bag SMU-06 -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Bag body -->
+    <rect x="18" y="24" width="28" height="20" rx="3" fill="#FFFFFF"/>
+    <!-- Red cross -->
+    <g fill="#FF0000">
+      <rect x="28" y="28" width="8" height="12"/>
+      <rect x="24" y="32" width="16" height="4"/>
+    </g>
+    <!-- Handle -->
+    <path d="M 26,24 Q 32,18 38,24" fill="none" stroke="#666" stroke-width="2"/>
+    <!-- Strap buckles -->
+    <rect x="17" y="30" width="2" height="4" fill="#666"/>
+    <rect x="45" y="30" width="2" height="4" fill="#666"/>
+  </g>
+</svg>

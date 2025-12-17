@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Quest Item - Document/Folder -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Folder -->
+    <rect x="16" y="24" width="32" height="24" rx="2" fill="#D2B48C"/>
+    <!-- Folder tab -->
+    <path d="M 16,24 L 16,20 L 28,20 L 30,24" fill="#D2B48C"/>
+    <!-- Document inside -->
+    <rect x="20" y="28" width="24" height="16" rx="1" fill="#FFF"/>
+    <!-- Text lines -->
+    <line x1="22" y1="32" x2="42" y2="32" stroke="#333" stroke-width="1"/>
+    <line x1="22" y1="36" x2="42" y2="36" stroke="#333" stroke-width="1"/>
+    <line x1="22" y1="40" x2="36" y2="40" stroke="#333" stroke-width="1"/>
+  </g>
+</svg>

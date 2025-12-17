@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Quest Objective - Target Waypoint -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Outer circle -->
+    <circle cx="32" cy="32" r="18" fill="none" stroke="#FFD700" stroke-width="3"/>
+    <!-- Inner circles -->
+    <circle cx="32" cy="32" r="12" fill="none" stroke="#FFD700" stroke-width="2"/>
+    <circle cx="32" cy="32" r="6" fill="none" stroke="#FFD700" stroke-width="2"/>
+    <!-- Center star -->
+    <polygon points="32,28 34,32 38,32 35,35 36,39 32,36 28,39 29,35 26,32 30,32" fill="#FFD700"/>
+    <!-- Directional arrows -->
+    <polygon points="32,10 30,16 34,16" fill="#FFD700"/>
+    <polygon points="54,32 48,30 48,34" fill="#FFD700"/>
+  </g>
+</svg>

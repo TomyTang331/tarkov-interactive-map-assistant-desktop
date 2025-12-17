@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Generic Supply Crate (uses wooden crate) -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Crate -->
+    <rect x="16" y="22" width="32" height="24" rx="2" fill="#8B4513"/>
+    <!-- Planks -->
+    <line x1="16" y1="28" x2="48" y2="28" stroke="#654321"/>
+    <line x1="16" y1="34" x2="48" y2="34" stroke="#654321"/>
+    <line x1="16" y1="40" x2="48" y2="40" stroke="#654321"/>
+  </g>
+</svg>

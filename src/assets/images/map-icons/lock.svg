@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Padlock - Locked Door -->
+  <g stroke="#000" stroke-width="2">
+    <!-- Lock body -->
+    <rect x="22" y="30" width="20" height="18" rx="2" fill="#708090"/>
+    <!-- Shackle -->
+    <path d="M 26,30 L 26,22 Q 26,16 32,16 Q 38,16 38,22 L 38,30" fill="none" stroke="#708090" stroke-width="4"/>
+    <!-- Keyhole -->
+    <circle cx="32" cy="38" r="3" fill="#000"/>
+    <rect x="31" y="38" width="2" height="6" fill="#000"/>
+  </g>
+</svg>

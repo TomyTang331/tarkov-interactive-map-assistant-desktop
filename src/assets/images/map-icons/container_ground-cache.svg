@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Ground Cache - Buried Stash -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Ground level -->
+    <rect x="12" y="38" width="40" height="4" fill="#8B7355"/>
+    <!-- Cache lid (partially buried) -->
+    <ellipse cx="32" cy="38" rx="14" ry="6" fill="#654321"/>
+    <!-- Handle -->
+    <rect x="28" y="36" width="8" height="3" rx="1" fill="#333"/>
+    <!-- Dirt mounds -->
+    <ellipse cx="20" cy="40" rx="4" ry="2" fill="#8B7355"/>
+    <ellipse cx="44" cy="40" rx="4" ry="2" fill="#8B7355"/>
+  </g>
+</svg>

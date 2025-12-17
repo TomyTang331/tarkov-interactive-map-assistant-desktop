@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Drawer -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Drawer frame -->
+    <rect x="16" y="24" width="32" height="20" rx="2" fill="#8B4513"/>
+    <!-- Drawer front -->
+    <rect x="18" y="26" width="28" height="16" rx="1" fill="#A0522D"/>
+    <!-- Handle -->
+    <ellipse cx="32" cy="34" rx="6" ry="3" fill="#FFD700"/>
+    <circle cx="32" cy="34" r="2" fill="#333"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Dead Scav/Body - Body bag icon -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Body bag -->
+    <ellipse cx="32" cy="34" rx="16" ry="12" fill="#4a4a4a"/>
+    <!-- Zipper -->
+    <line x1="32" y1="24" x2="32" y2="44" stroke="#333" stroke-width="1.5"/>
+    <circle cx="32" cy="28" r="1" fill="#666"/>
+    <circle cx="32" cy="34" r="1" fill="#666"/>
+    <circle cx="32" cy="40" r="1" fill="#666"/>
+    <!-- Blood stain -->
+    <ellipse cx="24" cy="32" rx="4" ry="3" fill="#8B0000" opacity="0.6"/>
+  </g>
+</svg>

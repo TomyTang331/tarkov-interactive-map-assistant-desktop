@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Sniper Scav - Crosshair with Scope -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Outer scope circle -->
+    <circle cx="32" cy="32" r="20" fill="none" stroke="#FF8C00" stroke-width="3"/>
+    <!-- Inner crosshair -->
+    <line x1="32" y1="16" x2="32" y2="28" stroke="#FF8C00" stroke-width="2"/>
+    <line x1="32" y1="36" x2="32" y2="48" stroke="#FF8C00" stroke-width="2"/>
+    <line x1="16" y1="32" x2="28" y2="32" stroke="#FF8C00" stroke-width="2"/>
+    <line x1="36" y1="32" x2="48" y2="32" stroke="#FF8C00" stroke-width="2"/>
+    <!-- Center dot -->
+    <circle cx="32" cy="32" r="3" fill="#FF8C00"/>
+    <!-- Range marks -->
+    <circle cx="32" cy="32" r="10" fill="none" stroke="#FF8C00" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+</svg>

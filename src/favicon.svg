@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Escape from Tarkov Map Style Favicon -->
+  <defs>
+    <linearGradient id="mapBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d3436;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Dark background (like Tarkov maps) -->
+  <rect width="64" height="64" fill="url(#mapBg)"/>
+  
+  <!-- Map grid (subtle) -->
+  <g stroke="#3d4f52" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="16" x2="64" y2="16"/>
+    <line x1="0" y1="32" x2="64" y2="32"/>
+    <line x1="0" y1="48" x2="64" y2="48"/>
+    <line x1="16" y1="0" x2="16" y2="64"/>
+    <line x1="32" y1="0" x2="32" y2="64"/>
+    <line x1="48" y1="0" x2="48" y2="64"/>
+  </g>
+  
+  <!-- Stylized buildings (simplified Tarkov map layout) -->
+  <g fill="#4a5568" stroke="#000" stroke-width="1">
+    <rect x="8" y="8" width="12" height="14" rx="1"/>
+    <rect x="24" y="10" width="16" height="10" rx="1"/>
+    <rect x="44" y="8" width="10" height="12" rx="1"/>
+    <rect x="10" y="28" width="14" height="12" rx="1"/>
+    <rect x="30" y="32" width="20" height="16" rx="1"/>
+    <rect x="12" y="46" width="10" height="10" rx="1"/>
+  </g>
+  
+  <!-- Roads/paths (orange like Tarkov UI) -->
+  <g stroke="#FF8C00" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M 0,24 L 64,24"/>
+    <path d="M 28,0 L 28,64"/>
+  </g>
+  
+  <!-- PMC spawn (green marker) -->
+  <circle cx="14" cy="14" r="3" fill="#00FF00" stroke="#000" stroke-width="1"/>
+  
+  <!-- Scav spawn (orange marker) -->
+  <circle cx="50" cy="14" r="3" fill="#FF8C00" stroke="#000" stroke-width="1"/>
+  
+  <!-- Extract point (green) -->
+  <g transform="translate(14, 52)">
+    <circle r="4" fill="none" stroke="#00FF00" stroke-width="1.5"/>
+    <line x1="-2" y1="0" x2="2" y2="0" stroke="#00FF00" stroke-width="1.5"/>
+    <line x1="0" y1="-2" x2="0" y2="2" stroke="#00FF00" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Player location indicator (cyan) -->
+  <g transform="translate(32, 32)">
+    <circle r="5" fill="#00BFFF" opacity="0.8"/>
+    <circle r="2" fill="#FFF"/>
+  </g>
+  
+  <!-- Corner frame (tactical UI style) -->
+  <g stroke="#00FF00" stroke-width="1.5" fill="none">
+    <path d="M 2,2 L 2,10 M 2,2 L 10,2"/>
+    <path d="M 62,2 L 54,2 M 62,2 L 62,10"/>
+    <path d="M 2,62 L 10,62 M 2,62 L 2,54"/>
+    <path d="M 62,62 L 62,54 M 62,62 L 54,62"/>
+  </g>
+</svg>

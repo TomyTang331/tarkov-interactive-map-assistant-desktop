@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Medcase - Medical Case with Red Cross -->
+  <g stroke="#000000" stroke-width="2">
+    <!-- Case body -->
+    <rect x="16" y="22" width="32" height="24" rx="2" fill="#FFFFFF"/>
+    <!-- Red cross -->
+    <g fill="#FF0000">
+      <rect x="28" y="26" width="8" height="16"/>
+      <rect x="24" y="30" width="16" height="8"/>
+    </g>
+    <!-- Handle -->
+    <path d="M 26,22 Q 32,16 38,22" fill="none" stroke="#666" stroke-width="2"/>
+    <!-- Latches -->
+    <rect x="15" y="32" width="3" height="4" fill="#666"/>
+    <rect x="46" y="32" width="3" height="4" fill="#666"/>
+  </g>
+</svg>
