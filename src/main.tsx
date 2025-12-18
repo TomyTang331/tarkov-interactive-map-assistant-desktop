@@ -29,25 +29,23 @@ const root = document.getElementById('app');
 document.addEventListener('DOMContentLoaded', () => {
   root &&
     ReactDOM.createRoot(root).render(
-      <React.StrictMode>
-        <RecoilRoot>
-          <ErrorBoundary>
-            <BrowserRouter>
-              <Router />
-            </BrowserRouter>
-            <ToastContainer
-              position="bottom-right"
-              autoClose={5000}
-              newestOnTop
-              closeOnClick
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="dark"
-            />
-            <Message />
-          </ErrorBoundary>
-        </RecoilRoot>
-      </React.StrictMode>,
+      <RecoilRoot>
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            newestOnTop
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+          <Message />
+        </ErrorBoundary>
+      </RecoilRoot>,
     );
 });
