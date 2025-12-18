@@ -18,6 +18,7 @@ const Index = (props: LabelsProps & InteractiveMap.UtilProps) => {
           }
           return (
             <Text
+              key={`im-label-text-${label.text}-${label.position[0]}-${label.position[1]}`}
               id={`im-label-text-${label.text}-${label.position[0]}-${label.position[1]}`}
               x={real2imagePos.x(label.position[0])}
               y={real2imagePos.y(label.position[1])}

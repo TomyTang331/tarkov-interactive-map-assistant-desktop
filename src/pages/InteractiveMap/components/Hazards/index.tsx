@@ -61,6 +61,7 @@ const Index = (props: HazardsProps & InteractiveMap.UtilProps) => {
               `im-hazard-group-${hazard.name}-${hazard.position.x}-${hazard.position.z}`;
             return (
               <Group
+                key={`im-hazard-group-${hazard.name}-${hazard.position.x}-${hazard.position.z}`}
                 id={`im-hazard-group-${hazard.name}-${hazard.position.x}-${hazard.position.z}`}
                 onMouseOver={() => {
                   mouseHoverEvent.onMouseOver();

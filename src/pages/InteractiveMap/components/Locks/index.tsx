@@ -33,6 +33,7 @@ const Index = (props: LocksProps & InteractiveMap.UtilProps) => {
           if (show.includes('lock')) {
             return (
               <Group
+                key={`im-lock-group-${lock.lockType}-${lock.position.x}-${lock.position.z}`}
                 id={`im-lock-group-${lock.lockType}-${lock.position.x}-${lock.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({

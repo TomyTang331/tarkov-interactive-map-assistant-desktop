@@ -39,6 +39,7 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
           if (show.includes(lootType)) {
             return (
               <Group
+                key={`im-container-group-${lootType}-${lootContainer.position.x}-${lootContainer.position.z}`}
                 id={`im-container-group-${lootType}-${lootContainer.position.x}-${lootContainer.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({

@@ -55,6 +55,28 @@ const Index = (
         const canvasElement = document.querySelector('.im-stage canvas') as HTMLCanvasElement;
 
         if (canvasElement && 'captureStream' in canvasElement) {
+          // Force multiple redraws before capturing stream
+          const forceRedraw = () => {
+            if (typeof (window as any).forceStageRefresh === 'function') {
+              (window as any).forceStageRefresh();
+            }
+          };
+
+          // Use multiple requestAnimationFrame to ensure canvas is drawn
+          await new Promise<void>((resolve) => {
+            requestAnimationFrame(() => {
+              forceRedraw();
+              requestAnimationFrame(() => {
+                forceRedraw();
+                requestAnimationFrame(() => {
+                  forceRedraw();
+                  resolve();
+                });
+              });
+            });
+          });
+
+          // Now create stream after ensuring canvas is rendered
           const stream = canvasElement.captureStream(30);
           const video = document.createElement('video');
           video.srcObject = stream;
@@ -62,6 +84,11 @@ const Index = (
           video.playsInline = true;
 
           await video.play();
+
+          // One more redraw after stream is playing
+          forceRedraw();
+          await new Promise((resolve) => setTimeout(resolve, 100));
+
           await video.requestPictureInPicture();
           setPipActive(true);
 

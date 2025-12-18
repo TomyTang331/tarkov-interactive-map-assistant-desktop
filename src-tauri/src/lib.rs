@@ -130,7 +130,7 @@ pub fn run() {
                 })
                 .build(app)?;
 
-            // Hide window on close instead of exit
+            // Hide window on close instead of exit and block refresh shortcuts
             if let Some(window) = app.get_webview_window("main") {
                 let window_clone = window.clone();
                 window.on_window_event(move |event| {
@@ -139,6 +139,41 @@ pub fn run() {
                         let _ = window_clone.hide();
                     }
                 });
+
+                // Block all refresh keyboard shortcuts using JavaScript
+                let _ = window.eval(
+                    r#"
+                    window.addEventListener('keydown', function(e) {
+                        // Block F5 (refresh)
+                        if (e.key === 'F5') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+
+                        // Block Ctrl+F5 (hard refresh - already blocked by F5 check but explicit)
+                        if (e.ctrlKey && e.key === 'F5') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+
+                        // Block Shift+Ctrl+R (reload with cache override)
+                        if (e.shiftKey && e.ctrlKey && e.key === 'R') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                        
+                        // Block Ctrl+R (normal reload)
+                        if (e.ctrlKey && !e.shiftKey && e.key === 'r') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                    }, true);
+                    "#,
+                );
             }
 
             Ok(())

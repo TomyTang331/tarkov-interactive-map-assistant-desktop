@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.1
+**Version**: 1.1.2
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -247,6 +247,18 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 - **Fix**: Removed `React.StrictMode` to prevent duplicate notifications on startup.
 - **Feat**: Implemented single instance application lock to prevent multiple instances.
 
+## 📋 Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
+
+### Version 1.1.2 (2025-12-18)
+
+- 🐛 Fixed all React console key prop warnings (11 components)
+- 🐛 Fixed Picture-in-Picture blank window issue
+- 🐛 Fixed canvas infinite loop warning
+- 🔒 Blocked all reload shortcuts (prevents accidental refresh)
+- ⚡ Performance improvements
+
 ### Version 1.1.0 (2025-12-17)
 
 - ✨ First desktop release
@@ -271,13 +283,6 @@ npm install --legacy-peer-deps
 This resolves peer dependency conflicts that may occur with some packages.
 
 ---
-
-**Issue**: Picture-in-Picture button unresponsive on first click
-
-**Solution**: Known initialization issue
-- ✅ Select a map from the dropdown menu once
-- ✅ PiP will work normally afterwards
-- 🔧 Will be fixed in future version
 
 ---
 

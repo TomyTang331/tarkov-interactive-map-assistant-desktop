@@ -38,6 +38,7 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
           if (show.includes(extract.faction)) {
             return (
               <Group
+                key={`im-extract-group-${extract.id}-${extract.position.x}-${extract.position.z}`}
                 id={`im-extract-group-${extract.id}-${extract.position.x}-${extract.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({

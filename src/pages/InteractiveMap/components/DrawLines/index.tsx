@@ -36,6 +36,7 @@ const Index = (props: DrawLinesProps & InteractiveMap.DrawProps & InteractiveMap
             if (show.includes('drawLine')) {
               return (
                 <Line
+                  key={`im-drawline-line-${drawLine.uuid}`}
                   id={`im-drawline-line-${drawLine.uuid}`}
                   points={drawLine.points}
                   stroke={drawLine.strokeColor}

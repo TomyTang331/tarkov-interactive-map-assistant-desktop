@@ -36,6 +36,7 @@ const Index = (props: StationaryWeaponsProps & InteractiveMap.UtilProps) => {
           if (show.includes('stationaryWeapon')) {
             return (
               <Group
+                key={`im-stationaryWeapon-group-${stationaryWeapon.stationaryWeapon.id}-${stationaryWeapon.position.x}-${stationaryWeapon.position.z}`}
                 id={`im-stationaryWeapon-group-${stationaryWeapon.stationaryWeapon.id}-${stationaryWeapon.position.x}-${stationaryWeapon.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({

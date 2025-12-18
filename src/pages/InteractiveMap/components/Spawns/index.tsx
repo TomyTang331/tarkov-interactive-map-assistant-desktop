@@ -63,7 +63,7 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
   if (baseMapStatus === 'loaded' && show.length > 0) {
     return (
       <Group>
-        {spawns.map((spawn) => {
+        {spawns.map((spawn, spawnIndex) => {
           const spawnHeight = spawn.position.y;
           let active = true;
           if (activeLayer) {
@@ -74,6 +74,7 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
           if (show.includes(getSpawnType(spawn.categories))) {
             return (
               <Group
+                key={`im-spawn-group-${spawn.zoneName}-${spawn.position.x}-${spawn.position.z}-${spawnIndex}`}
                 id={`im-spawn-group-${spawn.zoneName}-${spawn.position.x}-${spawn.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({
@@ -86,8 +87,8 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
                             ['cultist-priest'].includes(boss.normalizedName)
                           );
                         })
-                        .map((boss) => (
-                          <span>
+                        .map((boss, bossIdx) => (
+                          <span key={`boss-${boss.normalizedName}-${boss.spawnChance}-${bossIdx}`}>
                             {boss.name} ({boss.spawnChance * 100}%)
                           </span>
                         ))}

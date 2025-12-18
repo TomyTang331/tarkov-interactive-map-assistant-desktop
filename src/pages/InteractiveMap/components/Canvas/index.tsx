@@ -413,6 +413,26 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     callbackUtils?.(utils);
   }, [baseMapStatus, baseScale, mapScale, activeLayer, heightRange, image2realPos, real2imagePos]);
 
+  // Separate useEffect for forceStageRefresh to avoid infinite loop
+  useEffect(() => {
+    // Expose method to force stage refresh for PiP initialization
+    (window as any).forceStageRefresh = () => {
+      if (stageRef.current) {
+        // Force all layers to redraw
+        const layers = stageRef.current.getLayers();
+        layers.forEach((layer) => {
+          layer.draw();
+        });
+        // Then batch draw the stage
+        stageRef.current.batchDraw();
+      }
+    };
+
+    return () => {
+      delete (window as any).forceStageRefresh;
+    };
+  }, []); // Empty dependency array - only set up once
+
   useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
       const { target } = e;

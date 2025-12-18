@@ -103,6 +103,7 @@ const Index = (props: MarkerSelectProps) => {
           {['pmc', 'scav', 'shared'].map((faction) => {
             return (
               <img
+                key={`extract-${faction}`}
                 className={classNames({
                   active: extracts.includes(faction),
                 })}
@@ -119,7 +120,7 @@ const Index = (props: MarkerSelectProps) => {
       {['Valuable', 'Good', 'Common'].map((type) => {
         return (
           getLoot(type, lootContainers).length > 0 && (
-            <div className="im-quicktools-modal-marker-block">
+            <div key={`loot-type-${type}`} className="im-quicktools-modal-marker-block">
               <div className="im-quicktools-modal-marker-block-title">
                 <span>{type}</span>
               </div>
@@ -127,6 +128,7 @@ const Index = (props: MarkerSelectProps) => {
                 {getLoot(type, lootContainers).map((loot) => {
                   return (
                     <img
+                      key={`loot-${loot.key}`}
                       className={classNames({
                         active: lootKeys.includes(loot.key),
                       })}
@@ -148,6 +150,7 @@ const Index = (props: MarkerSelectProps) => {
           {['scav', 'sniper_scav', 'boss', 'pmc'].map((type) => {
             return (
               <img
+                key={`spawn - ${type}`}
                 className={classNames({
                   active: spawns.includes(type),
                 })}
@@ -166,6 +169,7 @@ const Index = (props: MarkerSelectProps) => {
           {['lock'].map((lock) => {
             return (
               <img
+                key={`lock - ${lock}`}
                 className={classNames({
                   active: locks.includes(lock),
                 })}
@@ -177,6 +181,7 @@ const Index = (props: MarkerSelectProps) => {
           {['hazard'].map((hazard) => {
             return (
               <img
+                key={`hazard - ${hazard}`}
                 className={classNames({
                   active: hazards.includes(hazard),
                 })}
@@ -188,6 +193,7 @@ const Index = (props: MarkerSelectProps) => {
           {['stationaryWeapon'].map((stationaryWeapon) => {
             return (
               <img
+                key={`stationaryWeapon - ${stationaryWeapon}`}
                 className={classNames({
                   active: stationaryWeapons.includes(stationaryWeapon),
                 })}

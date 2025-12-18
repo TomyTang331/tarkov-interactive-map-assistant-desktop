@@ -88,6 +88,7 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
             if (show.includes('playerLocation')) {
               return (
                 <Group
+                  key={`im-playerlocation-group-${location.uuid}`}
                   id={`im-playerlocation-group-${location.uuid}`}
                   {...mouseHoverEvent}
                   {...mouseClickEvent({
@@ -135,8 +136,8 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
                     y={real2imagePos.y(location.z) - 30 / mapScale}
                     scale={{ x: 0.03 / mapScale, y: 0.03 / mapScale }}
                   >
-                    {getIconPath('location-fill').map((p) => {
-                      return <Path fill="#00ff00" data={p} shadowColor="#000000" shadowBlur={50} />;
+                    {getIconPath('location-fill').map((p, idx) => {
+                      return <Path key={`path-${idx}`} fill="#00ff00" data={p} shadowColor="#000000" shadowBlur={50} />;
                     })}
                   </Group>
                   <Text
