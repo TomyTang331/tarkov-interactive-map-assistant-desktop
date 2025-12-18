@@ -65,8 +65,10 @@
 ### 安装依赖
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
+
+> **注意**: 需要使用 `--legacy-peer-deps` 标志来解决依赖冲突问题。
 
 ### 开发模式
 
@@ -239,6 +241,16 @@ path_exists(path: String) -> bool
 ---
 
 ## 🐛 故障排除
+
+**问题**: `npm install` 安装失败，提示依赖冲突错误
+
+**解答**: 使用 `--legacy-peer-deps` 标志
+```bash
+npm install --legacy-peer-deps
+```
+这可以解决某些包的对等依赖冲突问题。
+
+---
 
 **问题**: 画中画功能首次点击无响应
 

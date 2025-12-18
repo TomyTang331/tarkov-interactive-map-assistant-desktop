@@ -65,8 +65,10 @@ Make sure you have the following installed:
 ### Install Dependencies
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
+
+> **Note**: The `--legacy-peer-deps` flag is required to resolve peer dependency conflicts.
 
 ### Development Mode
 
@@ -239,6 +241,16 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 ---
 
 ## 🐛 Troubleshooting
+
+**Issue**: `npm install` fails with dependency conflict errors
+
+**Solution**: Use the `--legacy-peer-deps` flag
+```bash
+npm install --legacy-peer-deps
+```
+This resolves peer dependency conflicts that may occur with some packages.
+
+---
 
 **Issue**: Picture-in-Picture button unresponsive on first click
 
