@@ -82,11 +82,31 @@ npm run tauri dev
 
 Build production installer
 
+**Method 1: Build with TypeScript check (recommended)**
+
 ```bash
-npm run tauri build
+npm run build              # Build frontend
+npm run tauri build        # Build Tauri app and create installer
 ```
 
-Build output: `src-tauri/target/release/bundle/`
+**Method 2: Skip TypeScript check (if encountering type errors)**
+
+```bash
+npx vite build             # Build frontend (skip TypeScript)
+npm run tauri build        # Build Tauri app and create installer
+```
+
+**Build Output Location**:
+
+```
+src-tauri/target/release/bundle/
+├── nsis/
+│   └── *_x64-setup.exe     # NSIS installer
+└── msi/
+    └── *.msi                # Windows Installer package
+```
+
+> **Note**: The build process may take several minutes, especially for the first build.
 
 ---
 

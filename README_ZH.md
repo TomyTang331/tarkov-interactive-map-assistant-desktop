@@ -82,11 +82,31 @@ npm run tauri dev
 
 构建生产版本安装包
 
+**方法 1：带 TypeScript 检查构建（推荐）**
+
 ```bash
-npm run tauri build
+npm run build              # 构建前端
+npm run tauri build        # 构建 Tauri 应用并创建安装包
 ```
 
-构建产物位于: `src-tauri/target/release/bundle/`
+**方法 2：跳过 TypeScript 检查（如果遇到类型错误）**
+
+```bash
+npx vite build             # 构建前端（跳过 TypeScript）
+npm run tauri build        # 构建 Tauri 应用并创建安装包
+```
+
+**构建产物位置**：
+
+```
+src-tauri/target/release/bundle/
+├── nsis/
+│   └── *_x64-setup.exe     # NSIS 安装程序
+└── msi/
+    └── *.msi                # Windows Installer 安装包
+```
+
+> **注意**: 构建过程可能需要几分钟时间，首次构建尤其耗时。
 
 ---
 
