@@ -104,7 +104,7 @@ pub fn run() {
                     "quit" => {
                         // Explicitly close the window before exiting to avoid "Failed to unregister class" error
                         if let Some(window) = app.get_webview_window("main") {
-                            let _ = window.close();
+                            let _ = window.destroy();
                         }
                         app.exit(0);
                     }
