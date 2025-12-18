@@ -102,8 +102,11 @@ pub fn run() {
                         }
                     }
                     "quit" => {
-                        // Direct exit without cleanup to avoid WebView2 errors
-                        std::process::exit(0);
+                        // Explicitly close the window before exiting to avoid "Failed to unregister class" error
+                        if let Some(window) = app.get_webview_window("main") {
+                            let _ = window.close();
+                        }
+                        app.exit(0);
                     }
                     _ => {}
                 })
