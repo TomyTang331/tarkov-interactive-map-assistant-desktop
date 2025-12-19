@@ -1,7 +1,37 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 
+use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
+use tauri::{AppHandle, Emitter};
+
+#[derive(Clone, Serialize, Deserialize)]
+struct TogglePipEvent {
+    toggle: bool,
+}
+
+// Start global keyboard listener
+fn start_global_keyboard_listener(app_handle: AppHandle) {
+    std::thread::spawn(move || {
+        let callback = move |event: rdev::Event| {
+            if let rdev::EventType::KeyPress(key) = event.event_type {
+                // Only handle M key
+                if matches!(key, rdev::Key::KeyM) {
+                    // Send toggle PiP event to frontend
+                    if let Err(e) = app_handle.emit("toggle-pip", &TogglePipEvent { toggle: true })
+                    {
+                        eprintln!("Failed to emit toggle-pip event: {}", e);
+                    }
+                }
+            }
+        };
+
+        // Start listening, this will block the current thread
+        if let Err(error) = rdev::listen(callback) {
+            eprintln!("Error while listening to keyboard events: {:?}", error);
+        }
+    });
+}
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -175,6 +205,9 @@ pub fn run() {
                     "#,
                 );
             }
+
+            // Start global keyboard listener
+            start_global_keyboard_listener(app.handle().clone());
 
             Ok(())
         })

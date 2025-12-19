@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 
 import classNames from 'classnames';
 
+import { listen } from '@tauri-apps/api/event';
+
 import Icon from '@/components/Icon';
 
 import DrawSetting, { DrawSettingProps } from '../DrawSetting';
@@ -149,6 +151,16 @@ const Index = (
       window.removeEventListener('keydown', keydown);
     };
   }, []);
+
+  useEffect(() => {
+    const unlisten = listen('toggle-pip', () => {
+      handleTogglePiP();
+    });
+
+    return () => {
+      unlisten.then((fn) => fn());
+    };
+  }, [pipActive]);
 
   return (
     <div className="im-quicktools">

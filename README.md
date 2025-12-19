@@ -28,6 +28,7 @@ Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop 
 - ⚡ **High Performance** - Rust backend for native performance
 - 🔒 **Offline Usage** - Works without internet connection
 - 📌 **System Tray** - Minimize to tray, show/hide with menu or click
+- ⌨️ **Global Hotkey** - Press **M key** to toggle Picture-in-Picture mode even when window is unfocused
 
 ---
 
@@ -45,6 +46,7 @@ Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop 
 - **Rust** - Native performance
 - **Tauri** 2.0 - Desktop framework
 - **WebView2** - Windows rendering engine
+- **rdev** 0.5 - Global keyboard event listener
 
 ### UI Components
 - Ant Design Icons
@@ -205,17 +207,15 @@ path_exists(path: String) -> bool
   - Close button hides to tray
 - ✅ File System Access API
 - ✅ Single Instance Lock (Prevents multiple instances)
+- ✅ Global Keyboard Listener (M key toggles Picture-in-Picture)
 
 ### Known Issues
-- ⚠️ **Picture-in-Picture Trigger** - Requires selecting a map from dropdown first
-  - First click might be unresponsive
-  - Needs one update trigger via map selector to work properly
+- None
   
 ### Planned
 - ⏸️ Game Process Monitoring
 - ⏸️ Auto-start Option
 - ⏸️ Multi-language Support
-- 🔧 Fix PiP initialization issue
 
 ---
 
@@ -250,6 +250,13 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 ## 📋 Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
+
+### Version 1.1.4 (2025-12-19)
+
+- ✨ **New Feature**: Global keyboard hotkey support
+  - Press **M key** anytime to toggle Picture-in-Picture mode, even when the application window is unfocused
+  - Implemented using `rdev` library for system-wide keyboard event listening
+  - Provides seamless control while playing the game in fullscreen
 
 ### Version 1.1.3 (2025-12-19)
 
