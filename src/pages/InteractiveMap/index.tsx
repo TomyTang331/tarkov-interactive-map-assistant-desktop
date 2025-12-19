@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 
 import { useInterval, useLocalStorageState } from 'ahooks';
 import classNames from 'classnames';
-import numbro from 'numbro';
 import { useRecoilState } from 'recoil';
 import { message } from 'tilty-ui';
 import { UAParser } from 'ua-parser-js';
@@ -45,13 +44,9 @@ const Index = () => {
   const [directoryHandler, setDirectoryHandler] = useState<FileSystemDirectoryHandle>();
   const [tarkovGamePathHandler, setTarkovGamePathHandler] = useState<FileSystemDirectoryHandle>();
   const [applicationLogsHandler, setApplicationLogsHandler] = useState<FileSystemFileHandle>();
-  const [notificationsLogsHandler, setNotificationsLogsHandler] = useState<FileSystemFileHandle>();
   const applicationPathNameCache = useRef<string>();
-  const notificationsPathNameCache = useRef<string>();
   const applicationModifiedGmt = useRef(0);
-  const notificationsModifiedGmt = useRef(0);
   const applicationCacheLineNo = useRef(0);
-  const notificationsCacheLineNo = useRef(0);
 
   const [raidInfo, setRaidInfo] = useState<InteractiveMap.RaidLogProps>();
 
@@ -135,18 +130,9 @@ const Index = () => {
             toast.info(`开始监听日志文件: ${_applicationLogsHandler.name}`);
           }
         }
-        const _notificationsLogsHandler = await resolveLogFile(logPathHandle, 'notifications');
-        if (_notificationsLogsHandler) {
-          if (notificationsPathNameCache.current !== _notificationsLogsHandler.name) {
-            notificationsPathNameCache.current = _notificationsLogsHandler.name;
-            setNotificationsLogsHandler(_notificationsLogsHandler);
-            toast.info(`开始监听日志文件: ${_notificationsLogsHandler.name}`);
-          }
-        }
       }
     } else {
       setApplicationLogsHandler(undefined);
-      setNotificationsLogsHandler(undefined);
     }
   };
 
@@ -212,38 +198,6 @@ const Index = () => {
     }
   };
 
-  const parseFleaMarketInfo = (logs: any[]) => {
-    logs.forEach((log) => {
-      const { message: _message } = log || {};
-      const { type, items, systemData } = _message || {};
-      if (type === 4) {
-        const { itemCount, soldItem, buyerNickname } = systemData || {};
-        const { data: _data } = items || {};
-        if (soldItem) {
-          emitWithAck('/tarkov/v2/iMGetItemDetail', { id: soldItem, lang }).then(({ data }) => {
-            const receivedItems: string[] = [];
-            _data.forEach((d: any) => {
-              const { _tpl, upd } = d || {};
-              let unit = '卢布';
-              if (_tpl === '5449016a4bdc2d6f028b456f') unit = '卢布';
-              if (_tpl === '5696686a4bdc2da3298b456a') unit = '美元';
-              if (_tpl === '569668774bdc2da2298b4568') unit = '欧元';
-              receivedItems.push(
-                `${numbro(upd?.StackObjectsCount || 0).format({
-                  thousandSeparated: true,
-                })}${unit}`,
-              );
-            });
-            toast.success(
-              `${buyerNickname}花费${receivedItems.join('和')}购买了你${itemCount}个${data.name}`,
-              { autoClose: 15000 },
-            );
-          });
-        }
-      }
-    });
-  };
-
   const resolveApplicationLogs = async (initial = false) => {
     const { getLogFileMeta, parseLogFile, parseLine, parseProfileLine, parseRaidLine } =
       tarkovGamePathResolve;
@@ -277,28 +231,6 @@ const Index = () => {
     }
   };
 
-  const resolveNotificationsLogs = async (initial = false) => {
-    const { getLogFileMeta, parseLogFile, parseLine, parseMessageLine } = tarkovGamePathResolve;
-    if (initial) {
-      notificationsModifiedGmt.current = 0;
-      notificationsCacheLineNo.current = 0;
-    }
-    if (notificationsLogsHandler) {
-      const metadata = await getLogFileMeta(notificationsLogsHandler);
-      if (metadata.lastModified > notificationsModifiedGmt.current) {
-        notificationsModifiedGmt.current = metadata.lastModified;
-        const logFile = await parseLogFile(notificationsLogsHandler);
-        const logs = parseLine(logFile);
-        const newLogs = logs.splice(notificationsCacheLineNo.current);
-        notificationsCacheLineNo.current += newLogs.length;
-        const messageLogs = newLogs.map((log) => parseMessageLine(log)).filter((v) => v);
-        if (messageLogs.length > 0 && !initial) {
-          console.log('Received new message logs:', messageLogs);
-          parseFleaMarketInfo(messageLogs);
-        }
-      }
-    }
-  };
 
   const diffDirectories = (files: string[]) => {
     const diff = files.filter((file) => !directoryFilesCache.current?.includes(file));
@@ -484,26 +416,12 @@ const Index = () => {
     }
   }, [applicationLogsHandler]);
 
-  useEffect(() => {
-    if (notificationsLogsHandler) {
-      console.log(`File Watcher: ${notificationsLogsHandler.name}`);
-      resolveNotificationsLogs(true);
-    }
-  }, [notificationsLogsHandler]);
-
-  useEffect(() => {
-    toast.info(t('toast.alert'), { autoClose: 10000 });
-  }, []);
-
   useInterval(() => {
     if (directoryHandler) {
       resolveDirectories();
     }
     if (applicationLogsHandler) {
       resolveApplicationLogs();
-    }
-    if (notificationsLogsHandler) {
-      resolveNotificationsLogs();
     }
   }, 1000);
 
@@ -572,7 +490,6 @@ const Index = () => {
             <div className="im-header-right">
               <div className="im-header-right-1">
                 <QuickTools
-                  activeMapId={activeMapId}
                   extracts={extracts}
                   locks={locks}
                   lootKeys={lootKeys}

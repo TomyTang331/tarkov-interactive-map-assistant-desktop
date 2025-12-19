@@ -257,7 +257,11 @@ See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
   - Uncommented the `onPlayerLocationChange` callback in PlayerLocation component
   - Optimized zoom logic in Canvas component
   - When enabled, map now properly zooms to 3x base scale and centers on player location
-- 🧹 Code cleanup and optimization
+- 🧹 **Optimization**: Significant code cleanup and refactoring
+  - Removed unused `AdditionFunc` component and redundant social links
+  - Removed deprecated `parseFleaMarketInfo` logic and dead code
+  - Optimized File System Access API type definitions
+  - Fixed various ESLint warnings and improved code quality
 
 ### Version 1.1.2 (2025-12-18)
 

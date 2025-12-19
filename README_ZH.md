@@ -246,7 +246,11 @@ path_exists(path: String) -> bool
   - 取消注释 PlayerLocation 组件中的 `onPlayerLocationChange` 回调
   - 优化 Canvas 组件中的缩放逻辑
   - 启用后，地图现在可以正确放大到 3 倍基础缩放并居中到玩家位置
-- 🧹 代码清理和优化
+- 🧹 **优化**: 代码深度清理与重构
+  - 移除了未使用的 `AdditionFunc` 组件及冗余社交链接
+  - 移除了废弃的 `parseFleaMarketInfo` 逻辑及死代码
+  - 优化了文件系统访问 API 的类型定义
+  - 修复了多处 ESLint 警告，提升代码质量
 
 ### Version 1.1.2 (2025-12-18)
 
