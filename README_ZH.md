@@ -10,7 +10,7 @@
 
 逃离塔科夫实时交互式地图助手桌面版，基于 Tauri + React 开发，提供原生桌面体验。帮助玩家更好地探索和导航游戏世界。
 
-**版本**: 1.1.2
+**版本**: 1.1.3
 **作者**: Tomy
 **原项目**: 基于 [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -239,6 +239,14 @@ path_exists(path: String) -> bool
 ## 📊 更新日志
 
 查看 [CHANGELOG.md](./CHANGELOG.md) 了解详细的版本发布历史。
+
+### Version 1.1.3 (2025-12-19)
+
+- 🐛 **修复**: 标点缩放功能现已正常工作
+  - 取消注释 PlayerLocation 组件中的 `onPlayerLocationChange` 回调
+  - 优化 Canvas 组件中的缩放逻辑
+  - 启用后，地图现在可以正确放大到 3 倍基础缩放并居中到玩家位置
+- 🧹 代码清理和优化
 
 ### Version 1.1.2 (2025-12-18)
 

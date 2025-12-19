@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.2
+**Version**: 1.1.3
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -250,6 +250,14 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 ## 📋 Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
+
+### Version 1.1.3 (2025-12-19)
+
+- 🐛 **Fixed**: Marker zoom functionality (标点缩放) now works correctly
+  - Uncommented the `onPlayerLocationChange` callback in PlayerLocation component
+  - Optimized zoom logic in Canvas component
+  - When enabled, map now properly zooms to 3x base scale and centers on player location
+- 🧹 Code cleanup and optimization
 
 ### Version 1.1.2 (2025-12-18)
 

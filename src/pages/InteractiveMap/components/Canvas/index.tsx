@@ -150,13 +150,13 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         const scaleX = stageRef.current.width() / baseMap.width;
         const scaleY = stageRef.current.height() / baseMap.height;
         const _baseScale = scaleX < scaleY ? scaleX : scaleY;
-        setMapScale(_baseScale * 3);
+        const newScale = _baseScale * 3; // magnification
+        setMapScale(newScale);
         setMapPosition({
-          x: stageRef.current.width() / 2 - real2imagePos.x(x) * _baseScale * 3,
-          y: stageRef.current.height() / 2 - real2imagePos.y(z) * _baseScale * 3,
+          x: stageRef.current.width() / 2 - real2imagePos.x(x) * newScale,
+          y: stageRef.current.height() / 2 - real2imagePos.y(z) * newScale,
         });
       } else {
-        setMapScale(mapScale);
         setMapPosition({
           x: stageRef.current.width() / 2 - real2imagePos.x(x) * mapScale,
           y: stageRef.current.height() / 2 - real2imagePos.y(z) * mapScale,
