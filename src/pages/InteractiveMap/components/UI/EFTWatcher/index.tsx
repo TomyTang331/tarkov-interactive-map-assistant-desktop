@@ -9,7 +9,7 @@ import langState from '@/store/lang';
 import './style.less';
 
 interface EFTWatcherProps {
-  directoryHandler?: FileSystemDirectoryHandle;
+  directoryHandler?: string;
   tarkovGamePathHandler?: FileSystemDirectoryHandle;
   onClickEftWatcherPath: () => void;
   onClickTarkovGamePath: () => void;

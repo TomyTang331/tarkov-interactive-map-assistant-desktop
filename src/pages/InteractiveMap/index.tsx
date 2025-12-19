@@ -41,7 +41,7 @@ const Index = () => {
   const [simpleUIMode, setSimpleUIMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const [directoryHandler, setDirectoryHandler] = useState<FileSystemDirectoryHandle>();
+  const [directoryHandler, setDirectoryHandler] = useState<string>(); // 改为存储路径字符串
   const [tarkovGamePathHandler, setTarkovGamePathHandler] = useState<FileSystemDirectoryHandle>();
   const [applicationLogsHandler, setApplicationLogsHandler] = useState<FileSystemFileHandle>();
   const applicationPathNameCache = useRef<string>();
@@ -102,16 +102,19 @@ const Index = () => {
       directoryFilesCache.current = [];
     }
     if (directoryHandler) {
-      initial && toast.info(`开始监听截图目录: ${directoryHandler.name}`);
-      const entries = await (directoryHandler as any).entries();
-      const files = [];
-      for await (const [key] of entries) {
-        files.push(key);
-      }
-      const diff = diffDirectories(files);
-      if (diff.length > 0 && !initial) {
-        const filename = diff[diff.length - 1];
-        (window as any).interactUpdateLocation(filename);
+      const { invoke } = await import('@tauri-apps/api/core');
+      const folderName = directoryHandler.split('\\').pop() || directoryHandler;
+      initial && toast.info(`开始监听截图目录: ${folderName}`);
+
+      try {
+        const files = await invoke<string[]>('read_directory', { path: directoryHandler });
+        const diff = diffDirectories(files);
+        if (diff.length > 0 && !initial) {
+          const filename = diff[diff.length - 1];
+          (window as any).interactUpdateLocation(filename);
+        }
+      } catch (err) {
+        console.error('Failed to read directory:', err);
       }
     }
   };
@@ -279,17 +282,26 @@ const Index = () => {
   };
 
   const handleClickEftWatcherPath = async () => {
-    if (window.showDirectoryPicker) {
-      try {
-        const handler = await window.showDirectoryPicker();
-        if (handler) {
-          setDirectoryHandler(handler);
-        }
-      } catch (err) {
+    try {
+      const { open } = await import('@tauri-apps/plugin-dialog');
+      const { invoke } = await import('@tauri-apps/api/core');
+      const { documentDir } = await import('@tauri-apps/api/path');
+
+      const defaultPath = await documentDir();
+      const selectedPath = await open({
+        directory: true,
+        multiple: false,
+        defaultPath,
+      });
+
+      if (selectedPath && typeof selectedPath === 'string') {
+        await invoke('set_screenshot_path', { path: selectedPath }).catch(() => { });
+        setDirectoryHandler(selectedPath);
+      } else {
         setDirectoryHandler(undefined);
       }
-    } else {
-      message.show({ content: t('eftwatcher.unsupportMsg') });
+    } catch (err) {
+      setDirectoryHandler(undefined);
     }
   };
 

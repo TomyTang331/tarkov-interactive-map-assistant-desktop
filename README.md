@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.3
+**Version**: 1.1.5
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -250,6 +250,14 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 ## 📋 Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
+
+### Version 1.1.5 (2025-12-19)
+
+- ✨ **New Feature**: Automatic PNG cleanup on exit
+  - Selected screenshot directory's PNG files are automatically deleted when the application exits
+  - Triggered when quitting via system tray "Quit" menu
+  - Silent operation with no user prompts
+  - Helps keep screenshot folder clean automatically
 
 ### Version 1.1.4 (2025-12-19)
 

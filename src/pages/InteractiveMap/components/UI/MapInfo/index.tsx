@@ -13,7 +13,7 @@ import './style.less';
 interface MapInfoProps {
   mapData: InteractiveMap.Data;
   raidInfo?: InteractiveMap.RaidLogProps;
-  directoryHandler?: FileSystemDirectoryHandle;
+  directoryHandler?: string;
   tarkovGamePathHandler?: FileSystemDirectoryHandle;
   show: boolean;
 }

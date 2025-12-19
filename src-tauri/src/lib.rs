@@ -2,12 +2,18 @@
 
 use serde::{Deserialize, Serialize};
 use std::fs;
-use std::path::PathBuf;
-use tauri::{AppHandle, Emitter};
+use std::path::{Path, PathBuf};
+use std::sync::Mutex;
+use tauri::{AppHandle, Emitter, Manager};
 
 #[derive(Clone, Serialize, Deserialize)]
 struct TogglePipEvent {
     toggle: bool,
+}
+
+// State to hold the screenshot directory path
+struct AppState {
+    screenshot_path: Mutex<String>,
 }
 
 // Start global keyboard listener
@@ -74,15 +80,65 @@ fn minimize_window(window: tauri::Window) -> Result<(), String> {
     window.minimize().map_err(|e| e.to_string())
 }
 
+// Set screenshot directory path
+#[tauri::command]
+fn set_screenshot_path(state: tauri::State<AppState>, path: String) -> Result<String, String> {
+    let mut screenshot_path = state.screenshot_path.lock().unwrap();
+    *screenshot_path = path.clone();
+    Ok(format!("Screenshot path set to: {}", path))
+}
+
+// Get current screenshot directory path
+#[tauri::command]
+fn get_screenshot_path(state: tauri::State<AppState>) -> String {
+    let screenshot_path = state.screenshot_path.lock().unwrap();
+    screenshot_path.clone()
+}
+
+// Function to delete all PNG files in the screenshot directory
+fn cleanup_screenshot_pngs(screenshot_path: &str) {
+    if screenshot_path.is_empty() {
+        return;
+    }
+
+    let path = Path::new(screenshot_path);
+    if !path.exists() || !path.is_dir() {
+        return;
+    }
+
+    match fs::read_dir(path) {
+        Ok(entries) => {
+            for entry in entries {
+                if let Ok(entry) = entry {
+                    let file_path = entry.path();
+                    if file_path.is_file() {
+                        if let Some(extension) = file_path.extension() {
+                            if extension.to_str().unwrap_or("").to_lowercase() == "png" {
+                                let _ = fs::remove_file(&file_path);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Err(_) => {}
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     use tauri::{
         menu::{MenuBuilder, MenuItemBuilder},
         tray::{MouseButton, TrayIconBuilder, TrayIconEvent},
-        Manager,
+    };
+
+    // Initialize app state
+    let app_state = AppState {
+        screenshot_path: Mutex::new(String::new()),
     };
 
     tauri::Builder::default()
+        .manage(app_state)
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
             // When a second instance is launched, focus the existing window
             let _ = app
@@ -132,6 +188,12 @@ pub fn run() {
                         }
                     }
                     "quit" => {
+                        // Cleanup PNG files before exiting
+                        if let Some(state) = app.try_state::<AppState>() {
+                            let screenshot_path = state.screenshot_path.lock().unwrap();
+                            cleanup_screenshot_pngs(&screenshot_path);
+                        }
+
                         // Explicitly close the window before exiting to avoid "Failed to unregister class" error
                         if let Some(window) = app.get_webview_window("main") {
                             let _ = window.destroy();
@@ -216,7 +278,9 @@ pub fn run() {
             read_text_file,
             read_directory,
             path_exists,
-            minimize_window
+            minimize_window,
+            set_screenshot_path,
+            get_screenshot_path
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -10,7 +10,7 @@
 
 逃离塔科夫实时交互式地图助手桌面版，基于 Tauri + React 开发，提供原生桌面体验。帮助玩家更好地探索和导航游戏世界。
 
-**版本**: 1.1.3
+**版本**: 1.1.5
 **作者**: Tomy
 **原项目**: 基于 [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -242,6 +242,14 @@ path_exists(path: String) -> bool
 ## 📊 更新日志
 
 查看 [CHANGELOG.md](./CHANGELOG.md) 了解详细的版本发布历史。
+
+### Version 1.1.5 (2025-12-19)
+
+- ✨ **新功能**: 程序退出时自动清理 PNG 文件
+  - 选择截图目录后，程序退出时会自动删除该目录下的所有 PNG 文件
+  - 通过系统托盘 "Quit" 菜单退出时触发
+  - 静默执行，无任何提示
+  - 帮助自动保持截图文件夹整洁
 
 ### Version 1.1.4 (2025-12-19)
 

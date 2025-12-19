@@ -6,7 +6,7 @@ import langState from '@/store/lang';
 import './style.less';
 
 export interface SettingProps {
-  directoryHandler?: FileSystemDirectoryHandle;
+  directoryHandler?: string;
   tarkovGamePathHandler?: FileSystemDirectoryHandle;
   locationScale: boolean;
   onClickEftWatcherPath: () => void;
@@ -53,7 +53,7 @@ const Index = (props: SettingProps) => {
             onClick={handleClickEftWatcherPath}
           >
             {directoryHandler
-              ? `${t('setting.realtimeMarker')} ${directoryHandler?.name}`
+              ? `${t('setting.realtimeMarker')} ${directoryHandler.split('\\').pop() || directoryHandler}`
               : t('setting.enableMarker')}
           </button>
         )}
