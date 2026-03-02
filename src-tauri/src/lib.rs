@@ -4,11 +4,18 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::Mutex;
+use std::thread;
+use std::time::Duration;
 use tauri::{AppHandle, Emitter, Manager};
 
 #[derive(Clone, Serialize, Deserialize)]
 struct TogglePipEvent {
     toggle: bool,
+}
+
+#[derive(Clone, Serialize)]
+struct ScreenshotCreatedEvent {
+    filename: String,
 }
 
 // State to hold the screenshot directory path
@@ -270,6 +277,47 @@ pub fn run() {
 
             // Start global keyboard listener
             start_global_keyboard_listener(app.handle().clone());
+
+            // Start screenshot directory watcher in a background thread
+            let app_handle = app.handle().clone();
+            thread::spawn(move || {
+                use std::collections::HashSet;
+
+                let mut known_files: HashSet<String> = HashSet::new();
+                loop {
+                    let path = {
+                        // obtain AppState on each iteration to avoid lifetime issues
+                        let state = app_handle.state::<AppState>();
+                        let p = state.screenshot_path.lock().unwrap();
+                        p.clone()
+                    };
+
+                    if !path.is_empty() {
+                        if let Ok(entries) = fs::read_dir(&path) {
+                            let mut current_files: HashSet<String> = HashSet::new();
+                            for entry in entries {
+                                if let Ok(entry) = entry {
+                                    if let Some(name) = entry.file_name().to_str() {
+                                        let name_str = name.to_string();
+                                        if !known_files.contains(&name_str) {
+                                            let _ = app_handle.emit(
+                                                "screenshot-created",
+                                                &ScreenshotCreatedEvent {
+                                                    filename: name_str.clone(),
+                                                },
+                                            );
+                                        }
+                                        current_files.insert(name_str);
+                                    }
+                                }
+                            }
+                            known_files = current_files;
+                        }
+                    }
+
+                    thread::sleep(Duration::from_millis(1000));
+                }
+            });
 
             Ok(())
         })

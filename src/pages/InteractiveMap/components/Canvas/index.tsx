@@ -78,6 +78,9 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const [rulerPosition, setRulerPosition] = useState<InteractiveMap.Position2D[]>();
 
   const stageRef = useRef<StageType>(null);
+  // 使用 ref 累积临时绘制点，并通过 rAF 合并更新，减小高频 setState 开销
+  const drawTempPointsRef = useRef<number[]>([]);
+  const drawTempPointsRafRef = useRef<number | null>(null);
   const operationType = useRef<InteractiveMap.OperationType>(-1);
   const operationContext = useRef(false);
   const operationInitialStage = useRef<InteractiveMap.Position2D>();
@@ -187,7 +190,9 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
       // 初始化
       if (e.evt.button === 2) operationContext.current = true;
       if (strokeType === 'draw' || strokeType === 'eraser') {
-        setDrawTempPoints([operationInitialVal.current[0].x, operationInitialVal.current[0].y]);
+        const startPoints = [operationInitialVal.current[0].x, operationInitialVal.current[0].y];
+        drawTempPointsRef.current = startPoints;
+        setDrawTempPoints(startPoints);
       } else if (strokeType === 'ruler' && e.evt.button === 0) {
         setRulerPosition(undefined);
       }
@@ -244,7 +249,13 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
               (final.pageY - operationInitialVal.current[0].pageY),
           });
         } else if (strokeType === 'draw' || strokeType === 'eraser') {
-          setDrawTempPoints([...drawTempPoints, final.x, final.y]);
+          drawTempPointsRef.current = [...drawTempPointsRef.current, final.x, final.y];
+          if (drawTempPointsRafRef.current == null) {
+            drawTempPointsRafRef.current = requestAnimationFrame(() => {
+              drawTempPointsRafRef.current = null;
+              setDrawTempPoints(drawTempPointsRef.current);
+            });
+          }
         } else if (strokeType === 'ruler') {
           setRulerPosition([operationInitialVal.current[0], final]);
         }
@@ -315,17 +326,20 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   const handleMouseUp = (e: KonvaEventObject<MouseEvent>) => {
     if (operationContext.current) showContextMenu({ x: e.evt.clientX, y: e.evt.clientY });
-    if ((strokeType === 'draw' || strokeType === 'eraser') && drawTempPoints.length > 0) {
+    if (
+      (strokeType === 'draw' || strokeType === 'eraser') &&
+      drawTempPointsRef.current.length > 0
+    ) {
       const _strokeWidth = strokeType === 'draw' ? strokeWidth : eraserWidth;
       const data = {
         tool: strokeType,
         mapId: mapData.id,
-        points: drawTempPoints,
+        points: drawTempPointsRef.current,
         strokeColor,
         strokeWidth: _strokeWidth,
         shadowWidth: _strokeWidth,
       };
-      setDrawLines([...drawLines, data as any]);
+      setDrawLines((prev) => [...prev, data as any]);
     }
     // 初始化
     operationInitialStage.current = undefined;
@@ -333,6 +347,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     operationInitialVal.current = [{ x: 0, y: 0, pageX: 0, pageY: 0 }];
     operationType.current = -1;
     operationContext.current = false;
+    drawTempPointsRef.current = [];
     setDrawTempPoints([]);
     // 初始化
   };
@@ -469,28 +484,34 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     return () => {
       window.removeEventListener('keydown', keydown);
       window.removeEventListener('keyup', keyup);
+      if (drawTempPointsRafRef.current != null) {
+        cancelAnimationFrame(drawTempPointsRafRef.current);
+      }
     };
-  }, [mapMoveStatus]);
+  }, []);
 
-  useInterval(() => {
-    const _mapPosition = { ...mapPosition };
-    const step = 20;
-    if (mapMoveStatus?.has('w')) {
-      _mapPosition.y -= step;
-    }
-    if (mapMoveStatus?.has('a')) {
-      _mapPosition.x -= step;
-    }
-    if (mapMoveStatus?.has('s')) {
-      _mapPosition.y += step;
-    }
-    if (mapMoveStatus?.has('d')) {
-      _mapPosition.x += step;
-    }
-    if (mapMoveStatus && mapMoveStatus.size > 0) {
-      setMapPosition(_mapPosition);
-    }
-  }, 1000 / 60);
+  useInterval(
+    () => {
+      const _mapPosition = { ...mapPosition };
+      const step = 20;
+      if (mapMoveStatus?.has('w')) {
+        _mapPosition.y -= step;
+      }
+      if (mapMoveStatus?.has('a')) {
+        _mapPosition.x -= step;
+      }
+      if (mapMoveStatus?.has('s')) {
+        _mapPosition.y += step;
+      }
+      if (mapMoveStatus?.has('d')) {
+        _mapPosition.x += step;
+      }
+      if (mapMoveStatus && mapMoveStatus.size > 0) {
+        setMapPosition(_mapPosition);
+      }
+    },
+    mapMoveStatus && mapMoveStatus.size > 0 ? 1000 / 60 : undefined,
+  );
 
   return (
     <Stage

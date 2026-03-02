@@ -153,14 +153,14 @@ const Index = (
   }, []);
 
   useEffect(() => {
-    const unlisten = listen('toggle-pip', () => {
+    const unlistenPromise = listen('toggle-pip', () => {
       handleTogglePiP();
     });
 
     return () => {
-      unlisten.then((fn) => fn());
+      unlistenPromise.then((fn) => fn());
     };
-  }, [pipActive]);
+  }, []);
 
   return (
     <div className="im-quicktools">

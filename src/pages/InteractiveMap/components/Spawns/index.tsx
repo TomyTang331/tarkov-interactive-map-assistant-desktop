@@ -63,7 +63,7 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
   if (baseMapStatus === 'loaded' && show.length > 0) {
     return (
       <Group>
-        {spawns.map((spawn, spawnIndex) => {
+        {spawns.map((spawn) => {
           const spawnHeight = spawn.position.y;
           let active = true;
           if (activeLayer) {
@@ -71,10 +71,14 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
               active = false;
             }
           }
+          const spawnType = getSpawnType(
+            spawn.categories,
+            bosses[spawn.zoneName]?.map((boss) => boss.normalizedName),
+          );
           if (show.includes(getSpawnType(spawn.categories))) {
             return (
               <Group
-                key={`im-spawn-group-${spawn.zoneName}-${spawn.position.x}-${spawn.position.z}-${spawnIndex}`}
+                key={`im-spawn-group-${spawn.zoneName}-${spawn.position.x}-${spawn.position.z}`}
                 id={`im-spawn-group-${spawn.zoneName}-${spawn.position.x}-${spawn.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({
@@ -87,8 +91,10 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
                             ['cultist-priest'].includes(boss.normalizedName)
                           );
                         })
-                        .map((boss, bossIdx) => (
-                          <span key={`boss-${boss.normalizedName}-${boss.spawnChance}-${bossIdx}`}>
+                        .map((boss) => (
+                          <span
+                            key={`boss-${boss.normalizedName}-${boss.spawnChance}-${boss.subSpawnChance}`}
+                          >
                             {boss.name} ({boss.spawnChance * 100}%)
                           </span>
                         ))}
@@ -112,12 +118,7 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
                   y={real2imagePos.y(spawn.position.z) - 20 / mapScale}
                   width={24 / mapScale}
                   height={24 / mapScale}
-                  imageSrc={getIconCDN(
-                    `spawn_${getSpawnType(
-                      spawn.categories,
-                      bosses[spawn.zoneName]?.map((boss) => boss.normalizedName),
-                    )}`,
-                  )}
+                  imageSrc={getIconCDN(`spawn_${spawnType}`)}
                 />
               </Group>
             );
@@ -133,3 +134,4 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
 };
 
 export default Index;
+

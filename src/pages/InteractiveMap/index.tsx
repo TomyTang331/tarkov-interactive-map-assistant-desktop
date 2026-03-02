@@ -93,31 +93,13 @@ const Index = () => {
 
   const [lang] = useRecoilState(langState);
 
-  const directoryFilesCache = useRef<string[]>([]);
-
   const { t } = useI18N(lang);
 
-  const resolveDirectories = async (initial = false) => {
-    if (initial) {
-      directoryFilesCache.current = [];
-    }
-    if (directoryHandler) {
-      const { invoke } = await import('@tauri-apps/api/core');
-      const folderName = directoryHandler.split('\\').pop() || directoryHandler;
-      initial && toast.info(`开始监听截图目录: ${folderName}`);
-
-      try {
-        const files = await invoke<string[]>('read_directory', { path: directoryHandler });
-        const diff = diffDirectories(files);
-        if (diff.length > 0 && !initial) {
-          const filename = diff[diff.length - 1];
-          (window as any).interactUpdateLocation(filename);
-        }
-      } catch (err) {
-        console.error('Failed to read directory:', err);
-      }
-    }
-  };
+  // 使用 requestAnimationFrame 合并高频坐标更新，减少整页重渲染
+  const cursorPositionNextRef = useRef<InteractiveMap.Position2D | null>(null);
+  const cursorPositionRafRef = useRef<number | null>(null);
+  const rulerPositionNextRef = useRef<InteractiveMap.Position2D[] | undefined | null>(null);
+  const rulerPositionRafRef = useRef<number | null>(null);
 
   const resolveTarkovGamePath = async () => {
     const { resolveGameRootPath, resolveLogPath, resolveLogFile } = tarkovGamePathResolve;
@@ -235,18 +217,26 @@ const Index = () => {
   };
 
 
-  const diffDirectories = (files: string[]) => {
-    const diff = files.filter((file) => !directoryFilesCache.current?.includes(file));
-    directoryFilesCache.current = files;
-    return diff;
-  };
-
   const handleCursorPositionChange = (_cursorPosition: InteractiveMap.Position2D) => {
-    setCursorPosition(_cursorPosition);
+    cursorPositionNextRef.current = _cursorPosition;
+    if (cursorPositionRafRef.current == null) {
+      cursorPositionRafRef.current = requestAnimationFrame(() => {
+        cursorPositionRafRef.current = null;
+        if (cursorPositionNextRef.current) {
+          setCursorPosition(cursorPositionNextRef.current);
+        }
+      });
+    }
   };
 
   const handleRulerPositionChange = (_rulerPosition: InteractiveMap.Position2D[] | undefined) => {
-    setRulerPosition(_rulerPosition);
+    rulerPositionNextRef.current = _rulerPosition;
+    if (rulerPositionRafRef.current == null) {
+      rulerPositionRafRef.current = requestAnimationFrame(() => {
+        rulerPositionRafRef.current = null;
+        setRulerPosition(rulerPositionNextRef.current || undefined);
+      });
+    }
   };
 
   const handleCallbackUtils = (_utils: InteractiveMap.UtilProps) => {
@@ -295,8 +285,10 @@ const Index = () => {
       });
 
       if (selectedPath && typeof selectedPath === 'string') {
-        await invoke('set_screenshot_path', { path: selectedPath }).catch(() => { });
+        await invoke('set_screenshot_path', { path: selectedPath }).catch(() => {});
         setDirectoryHandler(selectedPath);
+        const folderName = selectedPath.split('\\').pop() || selectedPath;
+        toast.info(`开始监听截图目录: ${folderName}`);
       } else {
         setDirectoryHandler(undefined);
       }
@@ -382,7 +374,7 @@ const Index = () => {
         setQuickSearchShow(true);
       } else if (e.ctrlKey && e.key === 'g') {
         e.preventDefault();
-        setSimpleUIMode(!simpleUIMode);
+        setSimpleUIMode((prev) => !prev);
       }
     };
     const resize = () => {
@@ -407,12 +399,39 @@ const Index = () => {
       window.removeEventListener('keydown', keydown);
       window.removeEventListener('resize', resize);
       window.removeEventListener('beforeunload', unload);
+      if (cursorPositionRafRef.current != null) {
+        cancelAnimationFrame(cursorPositionRafRef.current);
+      }
+      if (rulerPositionRafRef.current != null) {
+        cancelAnimationFrame(rulerPositionRafRef.current);
+      }
     };
-  }, [simpleUIMode]);
+  }, []);
 
   useEffect(() => {
-    resolveDirectories(true);
-  }, [directoryHandler]);
+    // 监听 Tauri 后端发送的截图新建事件，避免在前端轮询目录
+    let unlistenPromise: Promise<() => void> | null = null;
+
+    (async () => {
+      try {
+        const { listen } = await import('@tauri-apps/api/event');
+        unlistenPromise = listen<{ filename: string }>('screenshot-created', (event) => {
+          const { filename } = event.payload;
+          if ((window as any).interactUpdateLocation) {
+            (window as any).interactUpdateLocation(filename);
+          }
+        });
+      } catch (err) {
+        console.error('Failed to listen screenshot-created event:', err);
+      }
+    })();
+
+    return () => {
+      if (unlistenPromise) {
+        unlistenPromise.then((unlisten) => unlisten());
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (tarkovGamePathHandler) {
@@ -429,13 +448,10 @@ const Index = () => {
   }, [applicationLogsHandler]);
 
   useInterval(() => {
-    if (directoryHandler) {
-      resolveDirectories();
-    }
     if (applicationLogsHandler) {
       resolveApplicationLogs();
     }
-  }, 1000);
+  }, 2000);
 
   useInterval(() => {
     if (tarkovGamePathHandler) {
