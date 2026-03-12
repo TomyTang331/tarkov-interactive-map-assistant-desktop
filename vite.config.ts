@@ -34,12 +34,23 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, './dist'),
     emptyOutDir: true,
+    target: 'esnext',
+    minify: 'esbuild',
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
-        assetFileNames: '[name].css',
+        entryFileNames: '[name]-[hash].js',
+        chunkFileNames: '[name]-[hash].js',
+        assetFileNames: '[name]-[hash][extname]',
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-konva': ['konva', 'react-konva'],
+          'vendor-ui': ['react-toastify', 'recoil'],
+        },
       },
     },
+  },
+  esbuild: {
+    drop: ['console', 'debugger'],
   },
   server: {
     host: '0.0.0.0',

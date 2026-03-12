@@ -1,0 +1,9587 @@
+{
+  "key": "ground-zero",
+  "altMaps": [
+    "ground-zero-21"
+  ],
+  "projection": "interactive",
+  "tileSize": 256,
+  "minZoom": 1,
+  "maxZoom": 6,
+  "transform": [
+    0.524,
+    167.3,
+    0.524,
+    65.1
+  ],
+  "coordinateRotation": 180,
+  "bounds": [
+    [
+      249,
+      -124
+    ],
+    [
+      -99,
+      364
+    ]
+  ],
+  "heightRange": [
+    -1000,
+    28
+  ],
+  "author": "Tarkov.dev",
+  "authorLink": "https://tarkov.dev",
+  "svgPath": "https://assets.tarkov.dev/maps/svg/GroundZero-Ground_Level.svg",
+  "tilePath": "https://assets.tarkov.dev/maps/groundzero/main/{z}/{x}/{y}.png",
+  "layers": [
+    {
+      "name": "Garage",
+      "svgPath": "https://assets.tarkov.dev/maps/svg/GroundZero-Underground_Level.svg",
+      "tilePath": "https://assets.tarkov.dev/maps/groundzero/garage/{z}/{x}/{y}.png",
+      "show": false,
+      "extents": [
+        {
+          "height": [
+            -1000,
+            21
+          ],
+          "bounds": [
+            [
+              [
+                117,
+                -100
+              ],
+              [
+                43,
+                190
+              ],
+              "garage"
+            ],
+            [
+              [
+                143,
+                49
+              ],
+              [
+                117,
+                80
+              ],
+              "underpass"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2nd Floor",
+      "svgPath": "https://assets.tarkov.dev/maps/svg/GroundZero-Second_Floor.svg",
+      "tilePath": "https://assets.tarkov.dev/maps/groundzero/2nd/{z}/{x}/{y}.png",
+      "show": false,
+      "extents": [
+        {
+          "height": [
+            28,
+            32.3
+          ]
+        },
+        {
+          "height": [
+            26,
+            31
+          ],
+          "bounds": [
+            [
+              [
+                98,
+                216
+              ],
+              [
+                91,
+                228
+              ],
+              "m showroom"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3rd Floor",
+      "svgPath": "https://assets.tarkov.dev/maps/svg/GroundZero-Third_Floor.svg",
+      "tilePath": "https://assets.tarkov.dev/maps/groundzero/3rd/{z}/{x}/{y}.png",
+      "show": false,
+      "extents": [
+        {
+          "height": [
+            32.3,
+            1000
+          ]
+        }
+      ]
+    }
+  ],
+  "labels": [
+    {
+      "position": [
+        -50,
+        0
+      ],
+      "text": "TerraGroup"
+    },
+    {
+      "position": [
+        150,
+        1
+      ],
+      "text": "Skyside"
+    },
+    {
+      "position": [
+        141,
+        142
+      ],
+      "text": "Fusion"
+    },
+    {
+      "position": [
+        14,
+        201
+      ],
+      "text": "Empire"
+    },
+    {
+      "position": [
+        115,
+        285
+      ],
+      "text": "Capital Insight"
+    },
+    {
+      "position": [
+        2,
+        324
+      ],
+      "text": "Nakatani"
+    },
+    {
+      "position": [
+        80,
+        -118
+      ],
+      "text": "Elemental Global"
+    },
+    {
+      "position": [
+        115,
+        104
+      ],
+      "text": "Oasis",
+      "size": 70
+    },
+    {
+      "position": [
+        115,
+        30
+      ],
+      "text": "ASAP Winery",
+      "size": 70
+    },
+    {
+      "position": [
+        43,
+        150
+      ],
+      "text": "Tarbank",
+      "size": 70
+    },
+    {
+      "position": [
+        58,
+        234
+      ],
+      "text": "GAGRIN Hotel",
+      "size": 70
+    },
+    {
+      "position": [
+        97,
+        223
+      ],
+      "text": "M Showroom",
+      "size": 70
+    },
+    {
+      "position": [
+        -13,
+        48
+      ],
+      "text": "Science Office",
+      "top": 28,
+      "bottom": 28,
+      "size": 60
+    }
+  ],
+  "id": "65b8d6f5cdde2479cb2a3125",
+  "tarkovDataId": null,
+  "name": "中心区 21+",
+  "normalizedName": "ground-zero-21",
+  "wiki": "https://escapefromtarkov.fandom.com/wiki/Ground_Zero",
+  "description": "The business center of Tarkov. This is where TerraGroup was headquartered. This is where it all began.",
+  "enemies": [
+    "Kollontay",
+    " 保镖 (Security)",
+    "邪教徒牧师",
+    "邪教徒战士"
+  ],
+  "raidDuration": 35,
+  "players": "9-12",
+  "bosses": [
+    {
+      "boss": {
+        "id": "bossKolontay",
+        "name": "Kollontay",
+        "normalizedName": "kollontay",
+        "imagePortraitLink": "https://assets.tarkov.dev/kollontay-portrait.png",
+        "imagePosterLink": "https://assets.tarkov.dev/kollontay-poster.jpg"
+      },
+      "spawnChance": 0.4,
+      "spawnLocations": [
+        {
+          "spawnKey": "ZoneSandbox",
+          "name": "Any scav spawn",
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "boss": {
+        "id": "sectantPriest",
+        "name": "邪教徒牧师",
+        "normalizedName": "cultist-priest",
+        "imagePortraitLink": "https://assets.tarkov.dev/cultist-priest-portrait.png",
+        "imagePosterLink": "https://assets.tarkov.dev/cultist-priest-poster.jpg"
+      },
+      "spawnChance": 0.02,
+      "spawnLocations": [
+        {
+          "spawnKey": "ZoneSandbox",
+          "name": "Any scav spawn",
+          "chance": 1
+        }
+      ]
+    }
+  ],
+  "nameId": "Sandbox_high",
+  "spawns": [
+    {
+      "zoneName": "0344832c-a6f2-4c58-8d89-85e9d451a7ed",
+      "position": {
+        "x": 72.81,
+        "y": 14.18,
+        "z": 5.44599962
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "0524be03-bcd4-4e28-98d4-f477dd0e550d",
+      "position": {
+        "x": 65.03,
+        "y": 14.722,
+        "z": 161.741
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "0b110691-b8a9-4020-9ea1-910386dde586",
+      "position": {
+        "x": 127.158,
+        "y": 23.21,
+        "z": 187.909
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 45.6098022,
+        "y": 23.30565,
+        "z": -99.78419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "0dadcf0c-b3b8-4837-a16e-12ef201c21e1",
+      "position": {
+        "x": 67.59,
+        "y": 14.18,
+        "z": 104.54
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 73.69881,
+        "y": 14.1636515,
+        "z": 117.034813
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "0eebe151-c53b-417e-a349-18c070ce5dac",
+      "position": {
+        "x": 137.37,
+        "y": 22.74,
+        "z": -70.18
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 26.6068039,
+        "y": 23.86865,
+        "z": -26.9641876
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -12.6441956,
+        "y": 23.8186512,
+        "z": -59.9541855
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "14e76203-f6d3-49d3-bb5e-300ff6bd3773",
+      "position": {
+        "x": 121.832,
+        "y": 22.796,
+        "z": -1.133
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "16b9cd7d-ebea-41eb-8c9f-fe01aa2c9245",
+      "position": {
+        "x": 111.243,
+        "y": 23.193,
+        "z": 174.479
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "1c2fe835-f486-4f7e-847d-9ff1dfadc5c5",
+      "position": {
+        "x": 180.9,
+        "y": 16.27,
+        "z": 114.89
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "1d60dfbb-d470-4557-8309-deb68d3cd7a4",
+      "position": {
+        "x": 184.961,
+        "y": 17.209,
+        "z": -8.589
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 44.2268066,
+        "y": 23.30565,
+        "z": -104.874191
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -15.6471939,
+        "y": 23.87565,
+        "z": 101.716812
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 13.4328041,
+        "y": 23.48965,
+        "z": 157.559814
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "2251a0dd-f096-483c-88c6-d8abe1f0a8d8",
+      "position": {
+        "x": 117.106,
+        "y": 28.963,
+        "z": 150.689
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "22c535e6-6d49-46bd-9009-e688aace63d1",
+      "position": {
+        "x": 38.43,
+        "y": 23.44,
+        "z": 149.07
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 180.1868,
+        "y": 16.21865,
+        "z": 128.1658
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 17.0218048,
+        "y": 24.20565,
+        "z": 66.79081
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 96.2568054,
+        "y": 22.87865,
+        "z": -85.19419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "2790d68f-c087-45d2-8b63-660e26858b34",
+      "position": {
+        "x": 143.1,
+        "y": 23.3,
+        "z": 248.83
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -49.8631973,
+        "y": 24.19465,
+        "z": 42.17581
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 98.94981,
+        "y": 22.87865,
+        "z": -85.03119
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "31fca074-b125-48d7-9beb-4cc6f67c82d2",
+      "position": {
+        "x": 110.661,
+        "y": 23.193,
+        "z": 171.344
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "36a3716c-e3f2-43c7-8b98-ea68c59f8238",
+      "position": {
+        "x": -8.020001,
+        "y": 23.86,
+        "z": -4.959993
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 58.3678055,
+        "y": 23.4366512,
+        "z": 229.1268
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "3c5c66f2-5ce2-443f-b962-8938f67bf2b4",
+      "position": {
+        "x": 1.43,
+        "y": 23.89,
+        "z": -60.42
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "3d869992-11e2-4ebf-9d24-f160b612ed17",
+      "position": {
+        "x": 112.67,
+        "y": 23.193,
+        "z": 175.8
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 164.696808,
+        "y": 22.768652,
+        "z": -85.8841858
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 29.9268036,
+        "y": 23.86865,
+        "z": -25.2141876
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "412cc11b-b2ec-4d7b-bfbe-9691162949b7",
+      "position": {
+        "x": 67.764,
+        "y": 13.981,
+        "z": 163.128
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "419a0f20-e32e-4f17-a526-675314485814",
+      "position": {
+        "x": -0.66,
+        "y": 23.89,
+        "z": -60.43
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "4274c09b-9544-45e0-aa8a-011b6e929b70",
+      "position": {
+        "x": 73.06999,
+        "y": 14.18,
+        "z": 2.27599764
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "442298dc-403c-4550-9c2f-60398a638c07",
+      "position": {
+        "x": 73.09,
+        "y": 14.147,
+        "z": -56.52
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 71.7568054,
+        "y": 14.1386509,
+        "z": 0.6758108
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 36.1368027,
+        "y": 22.6686516,
+        "z": 334.6858
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "45bf1ce6-cab7-4b6b-a420-aefc135a942a",
+      "position": {
+        "x": 64.94,
+        "y": 14.14,
+        "z": 103.31
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "469bf936-cee9-4b9c-9fa9-54ccdc5467f2",
+      "position": {
+        "x": 139.255,
+        "y": 14.088,
+        "z": 65.609
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "46cb5fbc-3d56-45a1-a6ab-18b22b51cf15",
+      "position": {
+        "x": 36.95,
+        "y": 23.47,
+        "z": 146.98
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "4a3e3ae1-e6fb-442f-99c6-f74b25b06a28",
+      "position": {
+        "x": 127.454,
+        "y": 23.204,
+        "z": 196.106
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "4ad4b25c-70f0-47a0-84fd-f8dc685cf399",
+      "position": {
+        "x": -6.32000065,
+        "y": 23.86,
+        "z": -2.03999472
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "4e5dd2d4-cbee-4f97-8f88-18b9a7897e72",
+      "position": {
+        "x": 127.266,
+        "y": 23.199,
+        "z": 186.033
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "5051d4e9-291a-4384-9557-e10d149f3282",
+      "position": {
+        "x": 44.67,
+        "y": 23.276,
+        "z": -102.55
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "52521917-58bb-412f-b509-ed69191bf6a3",
+      "position": {
+        "x": 113.965996,
+        "y": 23.448,
+        "z": 269.982
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "551f5ea8-4bea-474d-a3d1-0af1e507aa73",
+      "position": {
+        "x": 75.1199951,
+        "y": 14.18,
+        "z": 6.036
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "564c09fb-f464-4c30-b61b-4cc1943808be",
+      "position": {
+        "x": 102.15,
+        "y": 28.1424046,
+        "z": 311.83
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 71.866806,
+        "y": 14.1386509,
+        "z": -13.0741882
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "5a4e21b9-8234-45a5-b24a-1cd71ffc9d4a",
+      "position": {
+        "x": 117.61,
+        "y": 28.963,
+        "z": 146.43
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -60.6341934,
+        "y": 24.19465,
+        "z": 43.00981
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandSnipeCenter",
+      "position": {
+        "x": 104.531586,
+        "y": 33.44029,
+        "z": 107.521042
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "5cb1309d-05b9-4043-ba3a-1ef53d52c012",
+      "position": {
+        "x": 40.19,
+        "y": 23.45,
+        "z": 148.61
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "5d711f09-edc9-4ec1-94f8-2e1765929dbd",
+      "position": {
+        "x": 73.815,
+        "y": 14.147,
+        "z": -54.394
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "5fa59046-4e17-408e-8531-14766ae4a7c4",
+      "position": {
+        "x": 117.49,
+        "y": 28.963,
+        "z": 148.6
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "612fd960-fdd6-422b-9b5b-8161d4e5ec12",
+      "position": {
+        "x": 72.331,
+        "y": 14.147,
+        "z": -51.719
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 22.2868042,
+        "y": 23.53865,
+        "z": 255.1308
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "61bc3b0f-bbb7-41a6-a3cb-fc647cb4d57d",
+      "position": {
+        "x": 137.174,
+        "y": 14.088,
+        "z": 67.36
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "65f10e3a-3f0c-415a-82c9-65c494071117",
+      "position": {
+        "x": 131.006,
+        "y": 23.45,
+        "z": 268.826
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 180.9668,
+        "y": 16.21865,
+        "z": 130.085815
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "6a18e621-14cc-4de5-83e9-4dbb5d57db3d",
+      "position": {
+        "x": 180.8,
+        "y": 16.21,
+        "z": 117.5
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 137.5668,
+        "y": 14.1126509,
+        "z": 61.81581
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "6a4b6afe-e215-4d9b-8d1e-4c2f7187baef",
+      "position": {
+        "x": 46.38,
+        "y": 23.276,
+        "z": -101.48
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "6acdf3c0-2c89-4824-97b9-7d5d10969670",
+      "position": {
+        "x": 64.41,
+        "y": 14.702,
+        "z": 164.414
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 175.106812,
+        "y": 16.9956512,
+        "z": 2.17581081
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "6b4a840c-fc42-4b8c-bc68-04d7f6c2113a",
+      "position": {
+        "x": 151.47,
+        "y": 22.85,
+        "z": 243.36
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "6bb1d97d-c152-4467-b67b-bcd052438a96",
+      "position": {
+        "x": 180.58,
+        "y": 16.2,
+        "z": 123.16
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 130.6398,
+        "y": 14.1126509,
+        "z": 63.12081
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "6f70381f-dcd2-4b4b-8f7e-27a787298af6",
+      "position": {
+        "x": -4.45,
+        "y": 23.89,
+        "z": -58.9
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 22.8788033,
+        "y": 23.53865,
+        "z": 253.499817
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 182.9868,
+        "y": 16.21865,
+        "z": 127.555809
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "71e27ce2-54ef-4070-942c-c8a136e81fcf",
+      "position": {
+        "x": 113.345993,
+        "y": 23.448,
+        "z": 273.162
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "734798e9-93cc-4239-93eb-8f23476b1f3d",
+      "position": {
+        "x": 137.609,
+        "y": 14.088,
+        "z": 63.101
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "74ce5970-afa4-4bfa-9a57-5f1725adb6f6",
+      "position": {
+        "x": 73.57,
+        "y": 14.147,
+        "z": -48.848
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "74da28f8-d773-4ede-9c03-83811cf9563f",
+      "position": {
+        "x": 74.271,
+        "y": 14.147,
+        "z": -51.551
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 109.116806,
+        "y": 22.70865,
+        "z": 234.205811
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 26.1368027,
+        "y": 23.86865,
+        "z": -24.01419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "75f2a001-06c8-40a2-99f0-715c75b38138",
+      "position": {
+        "x": 135.18,
+        "y": 14.088,
+        "z": 66.07
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "76076875-b690-43f3-8917-68f7b077742f",
+      "position": {
+        "x": 117.819,
+        "y": 28.963,
+        "z": 152.665
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "7650aa3e-7ab6-4e76-9b71-af60211b4ad1",
+      "position": {
+        "x": 143.83,
+        "y": 22.74,
+        "z": -71.39
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "7689966a-e33d-45af-bec8-7f4161438b74",
+      "position": {
+        "x": 133.66,
+        "y": 23.45,
+        "z": 268.62
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -13.1111984,
+        "y": 23.87565,
+        "z": 98.92881
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 18.5388031,
+        "y": 24.20565,
+        "z": 73.82181
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 22.6368027,
+        "y": 23.53865,
+        "z": 257.9848
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "7abcf691-7aa8-4dff-a592-5cd860701676",
+      "position": {
+        "x": 121.494,
+        "y": 22.834,
+        "z": -2.778
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -10.7931976,
+        "y": 23.982048,
+        "z": 16.7358112
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "7b81d205-9028-4a06-81ce-b1d73922fce0",
+      "position": {
+        "x": 115.777,
+        "y": 23.426,
+        "z": 274.272
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "7f0d4fce-32a8-4d9a-ac19-d27ab617a45a",
+      "position": {
+        "x": 132.107,
+        "y": 23.45,
+        "z": 270.349
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "811063e9-7b4c-4e88-b571-dda14fc5c422",
+      "position": {
+        "x": 111.826,
+        "y": 23.448,
+        "z": 269.082
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "818d8bb3-2bb9-4323-be8a-f03b1cfc2137",
+      "position": {
+        "x": 143.33,
+        "y": 22.74,
+        "z": -69.41
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "894397aa-eb45-4371-a2da-dcaa55bbc2df",
+      "position": {
+        "x": 111.535995,
+        "y": 23.448,
+        "z": 271.632
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "8991994e-2dd2-4335-8fb9-5f906a80c0f8",
+      "position": {
+        "x": 179.893,
+        "y": 17.01,
+        "z": -6.997
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "8a478f38-07d3-4e3d-8322-d2f1f6137aff",
+      "position": {
+        "x": 99.644,
+        "y": 28.1424046,
+        "z": 314.177
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "8aa4f53e-1ecd-4bda-900a-3c650e197c8e",
+      "position": {
+        "x": 134.04,
+        "y": 23.45,
+        "z": 271.91
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 32.7768021,
+        "y": 22.6686516,
+        "z": 335.6558
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "8e2cf7d7-6b81-4686-be31-1f169492165f",
+      "position": {
+        "x": 144.95,
+        "y": 22.949,
+        "z": 253.29
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 46.5608063,
+        "y": 23.30565,
+        "z": -102.121193
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "8e70071b-0949-4f6a-b106-dcc689714e07",
+      "position": {
+        "x": 109.208,
+        "y": 23.193,
+        "z": 174.245
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "8f3bef35-3e52-47ec-a072-02b3ad071433",
+      "position": {
+        "x": 183.821,
+        "y": 17.209,
+        "z": -6.948
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 72.74081,
+        "y": 14.1386509,
+        "z": 29.96981
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "96c84440-4cc8-410e-afd2-15dc920dca8b",
+      "position": {
+        "x": 147.74,
+        "y": 23.3,
+        "z": 253.63
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 96.9698,
+        "y": 22.87865,
+        "z": -86.9261856
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 57.486805,
+        "y": 14.0686512,
+        "z": -33.82419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "989cfb81-3a2e-4cef-b3c1-a2a914dceaad",
+      "position": {
+        "x": 119.189,
+        "y": 22.834,
+        "z": -2.685
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 57.486805,
+        "y": 23.4366512,
+        "z": 229.5658
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "9c0e31a8-2008-41ef-b42b-b8888cc523ba",
+      "position": {
+        "x": 142.85,
+        "y": 22.74,
+        "z": -67.64
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "9cc6b2c3-948c-4902-8344-fa12d0c0e700",
+      "position": {
+        "x": 135.85,
+        "y": 14.088,
+        "z": 68.92
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "9fbe814b-9217-4d81-84c2-cc43e67f7bda",
+      "position": {
+        "x": 117.413,
+        "y": 28.963,
+        "z": 154.495
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 133.4458,
+        "y": 14.1126509,
+        "z": 66.43681
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "a5654bc0-d8a6-4897-9f9a-768c4af478c1",
+      "position": {
+        "x": -8.37,
+        "y": 23.86,
+        "z": -0.3899932
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 72.76581,
+        "y": 14.2016516,
+        "z": 113.208809
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "a8b2e367-82fd-4e64-a37c-906955df399f",
+      "position": {
+        "x": 67.72,
+        "y": 13.981,
+        "z": 164.591
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "a9f2fbc7-fa61-4538-9e91-39ca505f86e7",
+      "position": {
+        "x": -11.19,
+        "y": 23.86,
+        "z": -2.8199935
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -15.4731979,
+        "y": 23.8186512,
+        "z": -56.62419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "b2d85104-d574-4482-8962-9dbeae1221f5",
+      "position": {
+        "x": 74.228,
+        "y": 14.18,
+        "z": 8.865999
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "b5e02957-b03d-4295-b05d-9be69f6f2e82",
+      "position": {
+        "x": 67.816,
+        "y": 13.981,
+        "z": 166.22
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "b7183870-a16c-4429-a8e7-2c2710fe3b57",
+      "position": {
+        "x": 103.8,
+        "y": 28.1424046,
+        "z": 316.122
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ba5a0138-2a24-4ceb-bdb2-92d351fec342",
+      "position": {
+        "x": 42.021,
+        "y": 23.276,
+        "z": -104.487
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandSnipeCenter2",
+      "position": {
+        "x": 61.6479034,
+        "y": 35.4903679,
+        "z": 133.8455
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "c081b15d-fb2d-4a02-afeb-b0664e2bdb02",
+      "position": {
+        "x": 38.7,
+        "y": 23.48,
+        "z": 147.19
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "c106dee0-2b28-461f-8d43-1ca961ff1d04",
+      "position": {
+        "x": 127.225,
+        "y": 23.225,
+        "z": 192.607
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -60.1112,
+        "y": 24.19465,
+        "z": 37.58181
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 162.2768,
+        "y": 22.768652,
+        "z": -86.23419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 74.6868057,
+        "y": 13.9586515,
+        "z": 160.9158
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 72.22681,
+        "y": 13.9586515,
+        "z": 159.3858
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "c6b7ada3-06e1-4c17-bbfc-805297968e04",
+      "position": {
+        "x": 101.579,
+        "y": 28.1424046,
+        "z": 314.783
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 73.880806,
+        "y": 14.1386509,
+        "z": 37.23281
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot",
+        "boss"
+      ]
+    },
+    {
+      "zoneName": "c83cfa66-d6c2-4b78-8dfd-23d3fc83413c",
+      "position": {
+        "x": 147.55,
+        "y": 23.3,
+        "z": 250.06
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "c94a8465-be54-4bf3-833b-b83822b582df",
+      "position": {
+        "x": 176.79,
+        "y": 17.01,
+        "z": -6.32
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "cbf941fc-9b66-4a2c-aa00-b1d9b1ba7f9f",
+      "position": {
+        "x": 177.581,
+        "y": 17.01,
+        "z": -4.079
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "cc5ed6f2-1e4e-43d4-9ad4-9fc3aaf1e162",
+      "position": {
+        "x": -11,
+        "y": 23.86,
+        "z": -5.77
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 57.236805,
+        "y": 14.0986509,
+        "z": -31.15419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ced4b14f-e478-467d-bed1-0314278e555a",
+      "position": {
+        "x": 101.809,
+        "y": 28.1424046,
+        "z": 317.117
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -10.5931931,
+        "y": 23.982048,
+        "z": 22.86581
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "d4f55d16-038b-455e-bc9a-74a49e57ab89",
+      "position": {
+        "x": 119.705,
+        "y": 22.834,
+        "z": -4.314
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 163.6168,
+        "y": 22.768652,
+        "z": -88.24419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "d9e3c316-cf61-454b-8fca-aae78f2c0622",
+      "position": {
+        "x": 136.6,
+        "y": 22.74,
+        "z": -66.89
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 11.1888046,
+        "y": 23.48965,
+        "z": 159.016815
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "db5b9d0d-3105-4814-b413-03d28d4a87d2",
+      "position": {
+        "x": 47.123,
+        "y": 23.276,
+        "z": -103.068
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "dcbe096a-7083-4dc0-a7e2-8149e7c153d4",
+      "position": {
+        "x": 130.538,
+        "y": 23.45,
+        "z": 271.616
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 57.717804,
+        "y": 23.4366512,
+        "z": 226.737823
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "de5f4d8c-1411-446e-b67b-269830a40a15",
+      "position": {
+        "x": 60.9,
+        "y": 14.18,
+        "z": 105.16
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "df92e08a-08a9-4a19-8b90-cc8aa13b3062",
+      "position": {
+        "x": 122.356,
+        "y": 22.834,
+        "z": -4.153
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -10.4581985,
+        "y": 23.982048,
+        "z": 19.6548119
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 8.986805,
+        "y": 23.48965,
+        "z": 158.425812
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "e545318d-f757-4a76-90be-079bf41998d2",
+      "position": {
+        "x": 180.81,
+        "y": 16.24,
+        "z": 119.29
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 55.2668037,
+        "y": 14.0686512,
+        "z": -32.35419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": -14.633194,
+        "y": 23.8186512,
+        "z": -58.76419
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 11.5208054,
+        "y": 23.48965,
+        "z": 156.3288
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "eaa886c4-d771-4f7d-89f8-03b0c6d38365",
+      "position": {
+        "x": 110.82,
+        "y": 23.193,
+        "z": 176.03
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "eb268aaa-dfde-4021-bdfa-44faed92c139",
+      "position": {
+        "x": 64.88,
+        "y": 14.22,
+        "z": 105.85
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ec099d7a-f15a-488b-8402-4113f56c5822",
+      "position": {
+        "x": 180.85,
+        "y": 16.24,
+        "z": 121.4
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ec13b292-f7ef-4a17-85ae-84b356502878",
+      "position": {
+        "x": 4.36,
+        "y": 23.89,
+        "z": -59.74
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 17.0988045,
+        "y": 24.20565,
+        "z": 73.366806
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 172.2468,
+        "y": 16.9886513,
+        "z": 9.425811
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "f2187ee3-7751-441b-a7ef-b88e072a94c3",
+      "position": {
+        "x": -2.8,
+        "y": 23.89,
+        "z": -59.58
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 109.396805,
+        "y": 22.688652,
+        "z": 239.435822
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "f2a7bbe4-cd32-4e72-875e-3624083ec8e8",
+      "position": {
+        "x": 44.427,
+        "y": 23.276,
+        "z": -104.867
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "f5481928-9ee3-47cd-8998-77edfd1626d3",
+      "position": {
+        "x": 74.49,
+        "y": 14.18,
+        "z": 10.55
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "f5ba4d5f-08f4-411d-b246-2bac60595f01",
+      "position": {
+        "x": 66.95,
+        "y": 14.18,
+        "z": 107.25
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 176.3018,
+        "y": 16.9956512,
+        "z": 10.2488108
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "f76c3749-0412-41cb-a61c-0d7bca49e779",
+      "position": {
+        "x": 127.474,
+        "y": 23.225,
+        "z": 194.108
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "fc1387ee-e540-4433-9022-d3c53a04b8c2",
+      "position": {
+        "x": 39.85,
+        "y": 23.42,
+        "z": 150.63
+      },
+      "sides": [
+        "all"
+      ],
+      "categories": [
+        "player"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 112.2068,
+        "y": 22.688652,
+        "z": 220.925812
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    },
+    {
+      "zoneName": "ZoneSandbox",
+      "position": {
+        "x": 71.97681,
+        "y": 14.1386509,
+        "z": 20.19581
+      },
+      "sides": [
+        "scav"
+      ],
+      "categories": [
+        "bot"
+      ]
+    }
+  ],
+  "extracts": [
+    {
+      "id": "78b945ec320190d896a16bda3066892d9368bf17",
+      "name": "警方封锁线（载具撤离点）",
+      "faction": "pmc",
+      "switches": [],
+      "position": {
+        "x": -19.5134068,
+        "y": 23.7110023,
+        "z": 114.942139
+      },
+      "outline": [
+        {
+          "x": -22.1185246,
+          "y": 23.7110023,
+          "z": 110.356392
+        },
+        {
+          "x": -22.1185226,
+          "y": 23.7110023,
+          "z": 110.356392
+        },
+        {
+          "x": -16.9581242,
+          "y": 23.7110023,
+          "z": 110.328438
+        },
+        {
+          "x": -16.9581223,
+          "y": 23.7110023,
+          "z": 110.328438
+        },
+        {
+          "x": -16.90829,
+          "y": 23.7110023,
+          "z": 119.527878
+        },
+        {
+          "x": -22.0686913,
+          "y": 23.7110023,
+          "z": 119.555832
+        }
+      ],
+      "top": 24.9210052,
+      "bottom": 22.5010014
+    },
+    {
+      "id": "c812e0bac1d630c34af374428e34cf10dc344e9b",
+      "name": "Emercom检查点",
+      "faction": "shared",
+      "switches": [],
+      "position": {
+        "x": 151.625,
+        "y": 24.662056,
+        "z": -97.45658
+      },
+      "outline": [
+        {
+          "x": 142.220459,
+          "y": 24.662056,
+          "z": -106.067726
+        },
+        {
+          "x": 161.029541,
+          "y": 24.662056,
+          "z": -106.067726
+        },
+        {
+          "x": 161.029541,
+          "y": 24.662056,
+          "z": -88.8454361
+        },
+        {
+          "x": 142.220459,
+          "y": 24.662056,
+          "z": -88.8454361
+        }
+      ],
+      "top": 26.7090569,
+      "bottom": 22.6150551
+    },
+    {
+      "id": "4fdf4eeb9e65607d68760103109e9e72dd5d816e",
+      "name": "Scav检查站（合作撤离点）",
+      "faction": "shared",
+      "switches": [],
+      "position": {
+        "x": 25.2195644,
+        "y": 24.5091858,
+        "z": -79.5413742
+      },
+      "outline": [
+        {
+          "x": 16.182127,
+          "y": 24.5091858,
+          "z": -89.90186
+        },
+        {
+          "x": 34.2570038,
+          "y": 24.5091858,
+          "z": -89.90186
+        },
+        {
+          "x": 34.2570038,
+          "y": 24.5091858,
+          "z": -69.1808853
+        },
+        {
+          "x": 16.182127,
+          "y": 24.5091858,
+          "z": -69.1808853
+        }
+      ],
+      "top": 26.5561867,
+      "bottom": 22.4621849
+    },
+    {
+      "id": "1bb328c35dbf9c2127defe6df5a48c630ece92a1",
+      "name": "Nakatani地下室楼梯",
+      "faction": "shared",
+      "switches": [],
+      "position": {
+        "x": -16.1249924,
+        "y": 14.7620564,
+        "z": 335.063416
+      },
+      "outline": [
+        {
+          "x": -17.98841,
+          "y": 14.7620564,
+          "z": 329.6299
+        },
+        {
+          "x": -14.2615747,
+          "y": 14.7620564,
+          "z": 329.6299
+        },
+        {
+          "x": -14.2615747,
+          "y": 14.7620564,
+          "z": 340.4969
+        },
+        {
+          "x": -17.98841,
+          "y": 14.7620564,
+          "z": 340.4969
+        }
+      ],
+      "top": 19.61799,
+      "bottom": 9.906122
+    },
+    {
+      "id": "d9e23573110e4fe1dbe4a47bc3ba7e316e09cfbc",
+      "name": "Mira大道",
+      "faction": "pmc",
+      "switches": [],
+      "position": {
+        "x": 218.225,
+        "y": 17.9920559,
+        "z": -38.5065842
+      },
+      "outline": [
+        {
+          "x": 203.108765,
+          "y": 17.9920559,
+          "z": -83.10464
+        },
+        {
+          "x": 233.341248,
+          "y": 17.9920559,
+          "z": -83.10464
+        },
+        {
+          "x": 233.341248,
+          "y": 17.9920559,
+          "z": 6.091469
+        },
+        {
+          "x": 203.108765,
+          "y": 17.9920559,
+          "z": 6.091469
+        }
+      ],
+      "top": 20.0390549,
+      "bottom": 15.945056
+    }
+  ],
+  "locks": [
+    {
+      "lockType": "trunk",
+      "key": {
+        "id": "5448ba0b4bdc2d02308b456c",
+        "name": "工厂出口钥匙",
+        "normalizedName": "factory-emergency-exit-key"
+      },
+      "needsPower": false,
+      "position": {
+        "x": 80.03309,
+        "y": 15.7374516,
+        "z": 147.795776
+      },
+      "outline": [
+        {
+          "x": 79.53308,
+          "y": 15.7374516,
+          "z": 148.095764
+        },
+        {
+          "x": 80.53309,
+          "y": 15.7374516,
+          "z": 148.095764
+        },
+        {
+          "x": 80.53308,
+          "y": 15.7374516,
+          "z": 149.095764
+        },
+        {
+          "x": 79.53308,
+          "y": 15.7374516,
+          "z": 149.095764
+        }
+      ],
+      "top": 16.2374516,
+      "bottom": 15.2374516
+    },
+    {
+      "lockType": "door",
+      "key": {
+        "id": "658199972dc4e60f6d556a2f",
+        "name": "地下停车场杂物间钥匙",
+        "normalizedName": "underground-parking-utility-room-key"
+      },
+      "needsPower": false,
+      "position": {
+        "x": 107.056,
+        "y": 13.499,
+        "z": 50.6362534
+      },
+      "outline": [
+        {
+          "x": 106.846,
+          "y": 13.499,
+          "z": 49.57125
+        },
+        {
+          "x": 107.266,
+          "y": 13.499,
+          "z": 49.57125
+        },
+        {
+          "x": 107.266,
+          "y": 13.499,
+          "z": 50.24125
+        },
+        {
+          "x": 106.846,
+          "y": 13.499,
+          "z": 50.24125
+        }
+      ],
+      "top": 13.999,
+      "bottom": 12.999
+    },
+    {
+      "lockType": "trunk",
+      "key": {
+        "id": "5448ba0b4bdc2d02308b456c",
+        "name": "工厂出口钥匙",
+        "normalizedName": "factory-emergency-exit-key"
+      },
+      "needsPower": false,
+      "position": {
+        "x": 264.952,
+        "y": 17.95282,
+        "z": 56.1417046
+      },
+      "outline": [
+        {
+          "x": 263.529419,
+          "y": 17.95244,
+          "z": 56.457943
+        },
+        {
+          "x": 263.5258,
+          "y": 17.95244,
+          "z": 56.4514542
+        },
+        {
+          "x": 264.36972,
+          "y": 17.95244,
+          "z": 55.9149971
+        },
+        {
+          "x": 264.373322,
+          "y": 17.95244,
+          "z": 55.9214859
+        },
+        {
+          "x": 264.906158,
+          "y": 17.95244,
+          "z": 56.7589
+        },
+        {
+          "x": 264.9098,
+          "y": 17.95244,
+          "z": 56.76539
+        },
+        {
+          "x": 264.065857,
+          "y": 17.95244,
+          "z": 57.3018456
+        },
+        {
+          "x": 264.062256,
+          "y": 17.95244,
+          "z": 57.2953568
+        }
+      ],
+      "top": 18.45635,
+      "bottom": 17.4485321
+    },
+    {
+      "lockType": "door",
+      "key": {
+        "id": "6581998038c79576a2569e11",
+        "name": "Unity Credit银行现金收纳机钥匙",
+        "normalizedName": "unity-credit-bank-cash-register-key"
+      },
+      "needsPower": false,
+      "position": {
+        "x": 58.2430344,
+        "y": 24.5022011,
+        "z": 172.429
+      },
+      "outline": [
+        {
+          "x": 57.1780319,
+          "y": 24.5022011,
+          "z": 172.219
+        },
+        {
+          "x": 57.8480339,
+          "y": 24.5022011,
+          "z": 172.219
+        },
+        {
+          "x": 57.84803,
+          "y": 24.5022011,
+          "z": 172.638992
+        },
+        {
+          "x": 57.1780319,
+          "y": 24.5022011,
+          "z": 172.638992
+        }
+      ],
+      "top": 25.0022011,
+      "bottom": 24.0022011
+    },
+    {
+      "lockType": "door",
+      "key": {
+        "id": "658199aa38c79576a2569e13",
+        "name": "TerraGroup科学家办公室钥匙",
+        "normalizedName": "terragroup-science-office-key"
+      },
+      "needsPower": false,
+      "position": {
+        "x": -17.975647,
+        "y": 30.7062054,
+        "z": 58.5532341
+      },
+      "outline": [
+        {
+          "x": -17.8056469,
+          "y": 30.7062054,
+          "z": 58.39323
+        },
+        {
+          "x": -17.0856476,
+          "y": 30.7062054,
+          "z": 58.39323
+        },
+        {
+          "x": -17.0856476,
+          "y": 30.7062054,
+          "z": 58.6532326
+        },
+        {
+          "x": -17.8056469,
+          "y": 30.7062054,
+          "z": 58.6532326
+        }
+      ],
+      "top": 31.1112118,
+      "bottom": 30.3012066
+    }
+  ],
+  "switches": [],
+  "hazards": [
+    {
+      "hazardType": "sniper",
+      "name": "狙击手",
+      "position": {
+        "x": 227.853851,
+        "y": 27.1399918,
+        "z": -42.09
+      },
+      "outline": [
+        {
+          "x": 203.016312,
+          "y": 27.1399918,
+          "z": -107.963806
+        },
+        {
+          "x": 253.052368,
+          "y": 27.1399918,
+          "z": -107.826569
+        },
+        {
+          "x": 252.6914,
+          "y": 27.1399918,
+          "z": 23.7837982
+        },
+        {
+          "x": 202.655334,
+          "y": 27.1399918,
+          "z": 23.6465645
+        }
+      ],
+      "top": 39.82466,
+      "bottom": 14.4553223
+    },
+    {
+      "hazardType": "sniper",
+      "name": "狙击手",
+      "position": {
+        "x": -88.15002,
+        "y": 31.409996,
+        "z": 137.459991
+      },
+      "outline": [
+        {
+          "x": -153.252533,
+          "y": 31.409996,
+          "z": 94.64397
+        },
+        {
+          "x": -24.034996,
+          "y": 31.409996,
+          "z": 93.17892
+        },
+        {
+          "x": -23.0475,
+          "y": 31.409996,
+          "z": 180.276031
+        },
+        {
+          "x": -152.26503,
+          "y": 31.409996,
+          "z": 181.741089
+        }
+      ],
+      "top": 44.0946655,
+      "bottom": 18.7253265
+    },
+    {
+      "hazardType": "sniper",
+      "name": "狙击手",
+      "position": {
+        "x": -45.80002,
+        "y": 31.409996,
+        "z": 295.74
+      },
+      "outline": [
+        {
+          "x": -85.43869,
+          "y": 31.409996,
+          "z": 277.291321
+        },
+        {
+          "x": -6.589813,
+          "y": 31.409996,
+          "z": 276.397339
+        },
+        {
+          "x": -6.16134262,
+          "y": 31.409996,
+          "z": 314.18866
+        },
+        {
+          "x": -85.0102158,
+          "y": 31.409996,
+          "z": 315.082642
+        }
+      ],
+      "top": 44.0946655,
+      "bottom": 18.7253265
+    },
+    {
+      "hazardType": "sniper",
+      "name": "狙击手",
+      "position": {
+        "x": -69.20001,
+        "y": 31.409996,
+        "z": 289.199982
+      },
+      "outline": [
+        {
+          "x": -108.936935,
+          "y": 31.409996,
+          "z": 262.085327
+        },
+        {
+          "x": -30.088068,
+          "y": 31.409996,
+          "z": 261.1913
+        },
+        {
+          "x": -29.4630871,
+          "y": 31.409996,
+          "z": 316.3147
+        },
+        {
+          "x": -108.311958,
+          "y": 31.409996,
+          "z": 317.208679
+        }
+      ],
+      "top": 44.0946655,
+      "bottom": 18.7253265
+    },
+    {
+      "hazardType": "minefield",
+      "name": "地雷",
+      "position": {
+        "x": 220.805481,
+        "y": 15.6500015,
+        "z": 133.905258
+      },
+      "outline": [
+        {
+          "x": 205.079742,
+          "y": 15.6500015,
+          "z": 130.34462
+        },
+        {
+          "x": 238.489258,
+          "y": 15.6500015,
+          "z": 127.732925
+        },
+        {
+          "x": 236.531158,
+          "y": 15.6500015,
+          "z": 137.4659
+        },
+        {
+          "x": 203.121674,
+          "y": 15.6500015,
+          "z": 140.077591
+        }
+      ],
+      "top": 31.7150021,
+      "bottom": -0.4149971
+    },
+    {
+      "hazardType": "minefield",
+      "name": "地雷",
+      "position": {
+        "x": 222.7634,
+        "y": 15.6500015,
+        "z": 175.468857
+      },
+      "outline": [
+        {
+          "x": 188.043777,
+          "y": 15.6500015,
+          "z": 140.842438
+        },
+        {
+          "x": 262.147522,
+          "y": 15.6500015,
+          "z": 135.464767
+        },
+        {
+          "x": 257.483032,
+          "y": 15.6500015,
+          "z": 210.095276
+        },
+        {
+          "x": 183.379272,
+          "y": 15.6500015,
+          "z": 215.472931
+        }
+      ],
+      "top": 31.7150021,
+      "bottom": -0.4149971
+    },
+    {
+      "hazardType": "minefield",
+      "name": "地雷",
+      "position": {
+        "x": 59.784,
+        "y": 23.8979988,
+        "z": 170.7
+      },
+      "outline": [
+        {
+          "x": 59.13831,
+          "y": 23.8979988,
+          "z": 169.858521
+        },
+        {
+          "x": 60.6254768,
+          "y": 23.8979988,
+          "z": 170.0543
+        },
+        {
+          "x": 60.4296875,
+          "y": 23.8979988,
+          "z": 171.541473
+        },
+        {
+          "x": 58.94252,
+          "y": 23.8979988,
+          "z": 171.345688
+        }
+      ],
+      "top": 24.3979988,
+      "bottom": 23.3979988
+    },
+    {
+      "hazardType": "minefield",
+      "name": "地雷",
+      "position": {
+        "x": 59.721,
+        "y": 23.8979988,
+        "z": 170.799
+      },
+      "outline": [
+        {
+          "x": 58.971,
+          "y": 23.8979988,
+          "z": 170.049
+        },
+        {
+          "x": 60.471,
+          "y": 23.8979988,
+          "z": 170.049
+        },
+        {
+          "x": 60.471,
+          "y": 23.8979988,
+          "z": 171.549
+        },
+        {
+          "x": 58.971,
+          "y": 23.8979988,
+          "z": 171.549
+        }
+      ],
+      "top": 24.3979988,
+      "bottom": 23.3979988
+    },
+    {
+      "hazardType": "minefield",
+      "name": "地雷",
+      "position": {
+        "x": 59.834,
+        "y": 23.8979988,
+        "z": 170.875992
+      },
+      "outline": [
+        {
+          "x": 58.9925232,
+          "y": 23.8979988,
+          "z": 170.2303
+        },
+        {
+          "x": 60.47969,
+          "y": 23.8979988,
+          "z": 170.034515
+        },
+        {
+          "x": 60.67548,
+          "y": 23.8979988,
+          "z": 171.521683
+        },
+        {
+          "x": 59.18831,
+          "y": 23.8979988,
+          "z": 171.717468
+        }
+      ],
+      "top": 24.3979988,
+      "bottom": 23.3979988
+    }
+  ],
+  "lootContainers": [
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 79.82588,
+        "y": 22.737,
+        "z": 242.33963
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 82.9592,
+        "y": 23.4532738,
+        "z": 241.411377
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 83.56084,
+        "y": 23.0361881,
+        "z": 240.988251
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 35.90251,
+        "y": 22.9930649,
+        "z": -80.03077
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 52.62951,
+        "y": 22.7500153,
+        "z": 114.745689
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 80.51353,
+        "y": 22.74403,
+        "z": 81.70168
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 79.63353,
+        "y": 22.7360229,
+        "z": 107.287712
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 114.838493,
+        "y": 2.98397827,
+        "z": 509.974762
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 84.20201,
+        "y": 22.77001,
+        "z": 134.770966
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 74.83215,
+        "y": 22.6757317,
+        "z": 91.88204
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 215.870087,
+        "y": 16.1605988,
+        "z": 14.7894211
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6bb0c3b9823fe6d1840",
+        "name": "Scav尸体",
+        "normalizedName": "scav-body"
+      },
+      "position": {
+        "x": 213.565063,
+        "y": 16.1389923,
+        "z": 38.27491
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 222.411758,
+        "y": 16.0439911,
+        "z": 154.11792
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 170.604568,
+        "y": 16.0732918,
+        "z": 67.63975
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 225.219131,
+        "y": 16.14399,
+        "z": 89.0685349
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -15.4650116,
+        "y": 22.76,
+        "z": 301.532166
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -6.813999,
+        "y": 22.7519989,
+        "z": 299.387
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f8782245977354405a1e3",
+        "name": "保险箱",
+        "normalizedName": "safe"
+      },
+      "position": {
+        "x": 5.54368973,
+        "y": 23.44575,
+        "z": 295.50647
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 234.438126,
+        "y": 16.1576214,
+        "z": 62.4971
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 220.280716,
+        "y": 16.341053,
+        "z": 126.859695
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 56.6553879,
+        "y": 24.2371445,
+        "z": 171.99295
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 56.6553879,
+        "y": 24.2371445,
+        "z": 171.99295
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 56.6553879,
+        "y": 24.2371445,
+        "z": 171.99295
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 56.6553879,
+        "y": 24.2371445,
+        "z": 171.99295
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 54.5070152,
+        "y": 24.2311211,
+        "z": 148.031342
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 54.5070152,
+        "y": 24.2311211,
+        "z": 148.031342
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 54.5070152,
+        "y": 24.2311211,
+        "z": 148.031342
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 54.5070152,
+        "y": 24.2311211,
+        "z": 148.031342
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 52.07105,
+        "y": 24.2385,
+        "z": 174.019958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 52.07105,
+        "y": 24.2385,
+        "z": 174.019958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 52.07105,
+        "y": 24.2385,
+        "z": 174.019958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 52.07105,
+        "y": 24.2385,
+        "z": 174.496948
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 52.07105,
+        "y": 24.2385,
+        "z": 174.496948
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 60.9822159,
+        "y": 31.1117287,
+        "z": 134.776276
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 61.4272079,
+        "y": 31.1117287,
+        "z": 145.835281
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 59.95133,
+        "y": 31.1117287,
+        "z": 147.445038
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 58.9568939,
+        "y": 31.923,
+        "z": 145.816925
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.5809479,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.5809479,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.5809479,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.5809479,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.0929451,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.0929451,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.0929451,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 38.0929451,
+        "y": 31.7079163,
+        "z": 137.114441
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 59.1404228,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 59.1404228,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 59.1404228,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 59.1404228,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 58.6604233,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 58.6604233,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 58.6604233,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 58.6604233,
+        "y": 31.7079163,
+        "z": 150.374527
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 44.65702,
+        "y": 22.0125,
+        "z": 150.05304
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 29.564785,
+        "y": 23.939045,
+        "z": 8.718117
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 51.836998,
+        "y": 23.5745525,
+        "z": -54.6975327
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 54.623,
+        "y": 24.1140461,
+        "z": 92.63597
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 56.1682358,
+        "y": 22.7398014,
+        "z": 70.05502
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 2.13999939,
+        "y": 23.8230457,
+        "z": 3.94400024
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f879c24597735401e6bc6",
+        "name": "收银机",
+        "normalizedName": "cash-register"
+      },
+      "position": {
+        "x": 17.7421074,
+        "y": 25.1818027,
+        "z": 69.9996643
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 15.8007278,
+        "y": 24.2740345,
+        "z": 71.68893
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 64.28,
+        "y": 23.4480457,
+        "z": 90.8959656
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 42.71881,
+        "y": 22.7002048,
+        "z": 101.456924
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 33.22687,
+        "y": 23.9430122,
+        "z": 37.2366867
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 45.4134178,
+        "y": 24.436285,
+        "z": 101.119781
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 7.70899963,
+        "y": 23.9680462,
+        "z": -0.9820328
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 61.65975,
+        "y": 22.7537022,
+        "z": 89.4429855
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 16.302002,
+        "y": 23.9750462,
+        "z": 83.78197
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 101.96,
+        "y": 14.823081,
+        "z": -6.96299744
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f8778245977358849a9b5",
+        "name": "夹克",
+        "normalizedName": "jacket"
+      },
+      "position": {
+        "x": 98.396,
+        "y": 16.084,
+        "z": 44.3350067
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f8778245977358849a9b5",
+        "name": "夹克",
+        "normalizedName": "jacket"
+      },
+      "position": {
+        "x": 97.689,
+        "y": 16.091,
+        "z": 44.3840027
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 54.204,
+        "y": 14.0929995,
+        "z": -27.8359985
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 101.474,
+        "y": 15.0640812,
+        "z": 51.081
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 82.01365,
+        "y": 14.376,
+        "z": 181.608673
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 106.301964,
+        "y": 14.105,
+        "z": 53.5747681
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -27.5070038,
+        "y": 24.3270073,
+        "z": 55.6059952
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -15.0389633,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -15.0389633,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -15.0389633,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -15.0389633,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -17.8699646,
+        "y": 30.4876747,
+        "z": 39.8393631
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -17.8699646,
+        "y": 30.4876747,
+        "z": 39.8393631
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -17.8699646,
+        "y": 30.4876747,
+        "z": 39.8393631
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -17.8699646,
+        "y": 30.4876747,
+        "z": 39.8393631
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -11.7009659,
+        "y": 30.4916763,
+        "z": 39.7893677
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -11.7009659,
+        "y": 30.4916763,
+        "z": 39.7893677
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -11.7009659,
+        "y": 30.4916763,
+        "z": 39.7893677
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -11.7009659,
+        "y": 30.4916763,
+        "z": 39.7893677
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -14.5459671,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -14.5459671,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -14.5459671,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -14.5459671,
+        "y": 30.4876747,
+        "z": 39.8383636
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -36.4220047,
+        "y": 29.845005,
+        "z": 66.00299
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -14.6449966,
+        "y": 23.9659977,
+        "z": -26.4980011
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -47.2868729,
+        "y": 24.5690746,
+        "z": 28.0868759
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -24.677002,
+        "y": 24.3249969,
+        "z": -26.7290039
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6c6edf14c4c6023adf2",
+        "name": "实验室技术员尸体",
+        "normalizedName": "lab-technician-body"
+      },
+      "position": {
+        "x": -59.3569946,
+        "y": 24.4230022,
+        "z": 26.4859924
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -24.3079834,
+        "y": 30.4973278,
+        "z": 84.84346
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -24.3079834,
+        "y": 30.4973278,
+        "z": 84.84346
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -24.3079834,
+        "y": 30.4973278,
+        "z": 84.84346
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": -24.3079834,
+        "y": 30.4973278,
+        "z": 84.84346
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -21.7979965,
+        "y": 23.954998,
+        "z": -21.875
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -10.18,
+        "y": 24.3280048,
+        "z": 30.5259933
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -50.293,
+        "y": 24.3370075,
+        "z": 44.4989929
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": -19.1823578,
+        "y": 29.9147511,
+        "z": 55.02748
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": -19.2463989,
+        "y": 29.9147472,
+        "z": 46.3064651
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": -11.52,
+        "y": 29.9270039,
+        "z": 54.8289948
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": -29.47467,
+        "y": 29.9167538,
+        "z": 90.81073
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 22.44902,
+        "y": 23.9438229,
+        "z": -49.25274
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 160.829346,
+        "y": 22.889,
+        "z": -42.568367
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 183.220688,
+        "y": 20.515,
+        "z": 45.75745
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 181.577133,
+        "y": 21.0476112,
+        "z": 48.8395271
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 158.861,
+        "y": 22.9199982,
+        "z": -49.5790176
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 147.49707,
+        "y": 23.034996,
+        "z": -95.24186
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 23.2689972,
+        "y": 22.88,
+        "z": 311.753
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f879c24597735401e6bc6",
+        "name": "收银机",
+        "normalizedName": "cash-register"
+      },
+      "position": {
+        "x": 28.6802139,
+        "y": 23.15468,
+        "z": 340.9612
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.894875,
+        "y": 33.6343765,
+        "z": 274.522522
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.894875,
+        "y": 33.6343765,
+        "z": 274.522522
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.894875,
+        "y": 33.6343765,
+        "z": 274.522522
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.894875,
+        "y": 33.6343765,
+        "z": 274.522522
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 105.0363,
+        "y": 33.0538979,
+        "z": 271.799377
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 106.2372,
+        "y": 33.0538979,
+        "z": 282.316071
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 105.295662,
+        "y": 33.0538979,
+        "z": 274.751
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 106.984283,
+        "y": 33.0538979,
+        "z": 276.604675
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 101.718269,
+        "y": 33.0538979,
+        "z": 278.722015
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 105.196053,
+        "y": 33.0538979,
+        "z": 279.618652
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.63488,
+        "y": 33.6343765,
+        "z": 274.927551
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.63488,
+        "y": 33.6343765,
+        "z": 274.927551
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.63488,
+        "y": 33.6343765,
+        "z": 274.927551
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 112.63488,
+        "y": 33.6343765,
+        "z": 274.927551
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 109.705307,
+        "y": 33.0538979,
+        "z": 273.5864
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 111.784393,
+        "y": 33.0775,
+        "z": 276.637482
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 103.910172,
+        "y": 33.0538979,
+        "z": 268.27536
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 108.788155,
+        "y": 33.0538979,
+        "z": 260.553223
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 109.110443,
+        "y": 33.0538979,
+        "z": 262.766876
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 111.812622,
+        "y": 33.6343765,
+        "z": 270.511627
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 111.812622,
+        "y": 33.6343765,
+        "z": 270.511627
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 111.812622,
+        "y": 33.6343765,
+        "z": 270.511627
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 111.812622,
+        "y": 33.6343765,
+        "z": 270.511627
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 105.120018,
+        "y": 33.0538979,
+        "z": 261.9593
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 109.9703,
+        "y": 33.0538979,
+        "z": 266.863342
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 106.4833,
+        "y": 33.0538979,
+        "z": 265.799347
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 138.255264,
+        "y": 27.1606712,
+        "z": -98.4473
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 138.255264,
+        "y": 27.1606712,
+        "z": -98.4473
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 138.255264,
+        "y": 27.1606712,
+        "z": -98.4473
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 138.255264,
+        "y": 27.1606712,
+        "z": -98.4473
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 84.03392,
+        "y": 27.1613426,
+        "z": -89.89866
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 84.03392,
+        "y": 27.1613426,
+        "z": -89.89866
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 84.03392,
+        "y": 27.1613426,
+        "z": -89.89866
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 84.03392,
+        "y": 27.1613426,
+        "z": -89.89866
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 154.651,
+        "y": 23.43,
+        "z": -99.135994
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 150.653,
+        "y": 22.9199982,
+        "z": -80.16401
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 3.97108078,
+        "y": 22.8856087,
+        "z": 333.7597
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "658420d8085fea07e674cdb6",
+        "name": "死去的平民",
+        "normalizedName": "dead-civilian"
+      },
+      "position": {
+        "x": 175.599411,
+        "y": 17.8746319,
+        "z": -10.8448029
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f879c24597735401e6bc6",
+        "name": "收银机",
+        "normalizedName": "cash-register"
+      },
+      "position": {
+        "x": 172.97,
+        "y": 17.81,
+        "z": 27.45401
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 181.469009,
+        "y": 17.2479954,
+        "z": -12.94677
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 100.315224,
+        "y": 14.107,
+        "z": 3.615837
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 133.892,
+        "y": 17.0589981,
+        "z": -12.4760056
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 126.803642,
+        "y": 22.7504311,
+        "z": -0.9584503
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 100.846527,
+        "y": 29.3569965,
+        "z": -26.36988
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 113.814034,
+        "y": 23.267,
+        "z": 196.53183
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.904968
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.904968
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.904968
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.904968
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.437958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.437958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.437958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87b7245977356274f2cd",
+        "name": "抽屉",
+        "normalizedName": "drawer"
+      },
+      "position": {
+        "x": 117.77739,
+        "y": 23.9706745,
+        "z": 196.437958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 119.604004,
+        "y": 23.4089985,
+        "z": 185.35
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 117.905556,
+        "y": 23.4089985,
+        "z": 191.092255
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 121.996,
+        "y": 23.4089985,
+        "z": 195.871
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 109.063278,
+        "y": 27.671,
+        "z": 176.029984
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 124.298058,
+        "y": 25.0673866,
+        "z": 104.06337
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 121.7352,
+        "y": 24.704,
+        "z": 105.1222
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 111.014549,
+        "y": 27.8436928,
+        "z": 201.316254
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 46.37985,
+        "y": 24.362999,
+        "z": 123.345322
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 119.545128,
+        "y": 24.6151161,
+        "z": 107.771126
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 107.31456,
+        "y": 24.9089985,
+        "z": 110.74868
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 100.8196,
+        "y": 24.5181942,
+        "z": 133.204559
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f8782245977354405a1e3",
+        "name": "保险箱",
+        "normalizedName": "safe"
+      },
+      "position": {
+        "x": 200.287628,
+        "y": 16.6209984,
+        "z": 123.84259
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 128.224365,
+        "y": 22.971,
+        "z": 207.606476
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 184.3757,
+        "y": 23.0226841,
+        "z": 103.349831
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 171.738708,
+        "y": 25.1689987,
+        "z": 79.45656
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 94.62578,
+        "y": 22.9744644,
+        "z": 226.035065
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 97.11545,
+        "y": 22.9287472,
+        "z": 169.451172
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 191.700378,
+        "y": 16.4299259,
+        "z": 132.934647
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "59139c2186f77411564f8e42",
+        "name": "电脑机箱",
+        "normalizedName": "pc-block"
+      },
+      "position": {
+        "x": 192.026062,
+        "y": 16.5134411,
+        "z": 136.356323
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 66.423,
+        "y": 23.5609989,
+        "z": 190.681
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 45.871,
+        "y": 22.934,
+        "z": 246.40802
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": -6.56499863,
+        "y": 22.719,
+        "z": 287.443
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 20.7720852,
+        "y": 23.41219,
+        "z": 251.278992
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "6582e6d7b14c3f72eb071420",
+        "name": "PMC尸体",
+        "normalizedName": "pmc-body"
+      },
+      "position": {
+        "x": 39.687,
+        "y": 23.5530167,
+        "z": 123.478989
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 23.704,
+        "y": 24.344,
+        "z": 14.4980011
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 34.56,
+        "y": 24.36,
+        "z": 20.181
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 32.506,
+        "y": 24.188,
+        "z": 60.084
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 17.1829987,
+        "y": 24.241,
+        "z": 84.114
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 4.5719986,
+        "y": 24.267,
+        "z": 33.231
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 41.409,
+        "y": 24.342,
+        "z": -6.425003
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 112.624,
+        "y": 23.433,
+        "z": -75.074
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 120.355,
+        "y": 23.433,
+        "z": -77.301
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 140.385,
+        "y": 23.433,
+        "z": -77.355
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 139.667,
+        "y": 23.315,
+        "z": -71.7869949
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 116.344,
+        "y": 23.334,
+        "z": -96.3559952
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 85.557,
+        "y": 23.237,
+        "z": -67.010994
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 186.693,
+        "y": 17.666,
+        "z": -38.109993
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 195.079,
+        "y": 17.508,
+        "z": -43.3100052
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 183.739,
+        "y": 17.658,
+        "z": -38.1290054
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 194.622,
+        "y": 16.97,
+        "z": -22.862999
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 199.69,
+        "y": 17.037,
+        "z": -4.939003
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 200.381,
+        "y": 16.747,
+        "z": 103.451
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 194.796,
+        "y": 16.741,
+        "z": 90.543
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 200.225,
+        "y": 16.605,
+        "z": 106.337
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 181.781,
+        "y": 25.089,
+        "z": 95.349
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 194.223,
+        "y": 16.944,
+        "z": 81.704
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 178.354,
+        "y": 17.081,
+        "z": 114.553
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 105.277,
+        "y": 23.549,
+        "z": 219.799
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 116.972,
+        "y": 23.408,
+        "z": 227.159
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 124.421,
+        "y": 23.408,
+        "z": 229.512
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 144.109,
+        "y": 23.328,
+        "z": 229.285
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 133.121,
+        "y": 23.268,
+        "z": 218.23
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 37.021,
+        "y": 23.359,
+        "z": 276.562
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 35.829,
+        "y": 23.153,
+        "z": 260.154
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 54.405,
+        "y": 23.61,
+        "z": 263.195
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 71.739,
+        "y": 23.368,
+        "z": 296.132
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 81.136,
+        "y": 23.301,
+        "z": 289.841
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 31.02177,
+        "y": 22.753,
+        "z": 284.355255
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 160.570267,
+        "y": 23.5518,
+        "z": -77.33747
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 154.948853,
+        "y": 23.562,
+        "z": -83.49903
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 152.058548,
+        "y": 23.0714,
+        "z": -83.5051956
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 154.638565,
+        "y": 22.748,
+        "z": -90.2664261
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 149.888016,
+        "y": 23.4756,
+        "z": -77.33672
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd13186f77424ad2a8c69",
+        "name": "配给物资箱",
+        "normalizedName": "ration-supply-crate"
+      },
+      "position": {
+        "x": 122.281052,
+        "y": 25.355999,
+        "z": 144.039856
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd13186f77424ad2a8c69",
+        "name": "配给物资箱",
+        "normalizedName": "ration-supply-crate"
+      },
+      "position": {
+        "x": 121.028587,
+        "y": 25.357,
+        "z": 137.8912
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 128.914841,
+        "y": 24.6554985,
+        "z": 163.7237
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 113.543564,
+        "y": 24.6555,
+        "z": 164.461868
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 115.4312,
+        "y": 23.4195,
+        "z": 170.9961
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 129.4982,
+        "y": 25.1499,
+        "z": 165.45108
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 125.435013,
+        "y": 24.935,
+        "z": 90.91302
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 131.200012,
+        "y": 24.935,
+        "z": 93.582016
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 113.994011,
+        "y": 24.893,
+        "z": 113.743019
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 106.116013,
+        "y": 24.944,
+        "z": 114.181015
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 122.366013,
+        "y": 24.7069988,
+        "z": 118.392014
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 124.14901,
+        "y": 24.99,
+        "z": 101.487015
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 118.651009,
+        "y": 25.298,
+        "z": 126.382019
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 121.38501,
+        "y": 24.385,
+        "z": 130.85701
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 126.444008,
+        "y": 24.386,
+        "z": 134.661011
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 104.53801,
+        "y": 29.4289989,
+        "z": 115.706017
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 100.548012,
+        "y": 28.889,
+        "z": 109.168015
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d5ef86f77467974efbd8",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 131.271286,
+        "y": 29.546999,
+        "z": 88.782486
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 122.057907,
+        "y": 24.4665,
+        "z": 157.003021
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 120.233009,
+        "y": 24.4665,
+        "z": 156.194016
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 119.087006,
+        "y": 24.8599987,
+        "z": 162.413025
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 124.328011,
+        "y": 24.835,
+        "z": 158.572021
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 127.859009,
+        "y": 24.854,
+        "z": 163.439011
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 108.263,
+        "y": 23.079,
+        "z": 5.277977
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 113.846,
+        "y": 22.768,
+        "z": -0.416023254
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 110.190994,
+        "y": 23.0796,
+        "z": -11.3160172
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 104.348,
+        "y": 23.232,
+        "z": -12.4210205
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 114.113,
+        "y": 23.656,
+        "z": -5.63802338
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 123.313873,
+        "y": 23.0334988,
+        "z": 6.23636627
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 129.447647,
+        "y": 23.0334988,
+        "z": 9.534004
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 123.655479,
+        "y": 23.0335,
+        "z": 13.9900436
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 111.671,
+        "y": 23.249,
+        "z": 32.9030075
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 106.528992,
+        "y": 23.3305,
+        "z": 28.2430038
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 110.137993,
+        "y": 23.578,
+        "z": 26.5990067
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 122.006996,
+        "y": 23.4704,
+        "z": 23.45301
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 124.629,
+        "y": 23.244,
+        "z": 29.6880112
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 127.867836,
+        "y": 23.0305,
+        "z": 20.6557083
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 129.6282,
+        "y": 23.8319,
+        "z": 21.1632156
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 123.44416,
+        "y": 23.0335,
+        "z": 25.7569885
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 179.735977,
+        "y": 16.921999,
+        "z": 30.5779762
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 179.283981,
+        "y": 16.921999,
+        "z": 35.303978
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 171.189972,
+        "y": 16.921999,
+        "z": 34.5359764
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 179.358978,
+        "y": 17.374,
+        "z": 21.3159714
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 171.21698,
+        "y": 21.373,
+        "z": 27.5029755
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 176.714981,
+        "y": 21.373,
+        "z": 20.3679733
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 109.562012,
+        "y": 24.0159988,
+        "z": 284.349
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 114.793007,
+        "y": 24.0159988,
+        "z": 279.487
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 111.194008,
+        "y": 24.0159988,
+        "z": 273.758
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 120.730011,
+        "y": 24.407999,
+        "z": 281.587
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 109.352013,
+        "y": 24.0159988,
+        "z": 287.719
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 103.632011,
+        "y": 24.362999,
+        "z": 290.621
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 113.064011,
+        "y": 33.408,
+        "z": 277.022
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 121.447006,
+        "y": 32.806,
+        "z": 282.336
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 121.682007,
+        "y": 32.801,
+        "z": 292.645
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 107.785011,
+        "y": 33.431,
+        "z": 285.952
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 107.267014,
+        "y": 33.589,
+        "z": 275.259
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 105.091011,
+        "y": 33.589,
+        "z": 273.835
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 110.313011,
+        "y": 33.552002,
+        "z": 261.62
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 107.99601,
+        "y": 33.552002,
+        "z": 268.926
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 104.814011,
+        "y": 32.801,
+        "z": 266.60498
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 105.402008,
+        "y": 32.801,
+        "z": 260.189
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -39.802002,
+        "y": 24.768,
+        "z": 37.35599
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -41.33,
+        "y": 24.631,
+        "z": 22.0979919
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -31.2569962,
+        "y": 24.562,
+        "z": 27.73899
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -44.5759964,
+        "y": 30.167,
+        "z": 62.1719933
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -37.266,
+        "y": 29.687,
+        "z": 62.9239922
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -45.586,
+        "y": 29.652,
+        "z": 67.885994
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -45.9519958,
+        "y": 29.652,
+        "z": 56.3949928
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -27.8809967,
+        "y": 30.282,
+        "z": 54.6629944
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -7.681999,
+        "y": 30.26,
+        "z": 48.0239944
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -9.903999,
+        "y": 30.46,
+        "z": 52.340992
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -18.6449966,
+        "y": 30.46,
+        "z": 51.9509926
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -8.233997,
+        "y": 29.661,
+        "z": 45.4369926
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -19.5369949,
+        "y": 29.661,
+        "z": 47.2229919
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -21.585,
+        "y": 30.219,
+        "z": 74.09099
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -23.8399963,
+        "y": 30.2729988,
+        "z": 81.4549942
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -22.9659958,
+        "y": 29.657999,
+        "z": 88.84699
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -13.5679932,
+        "y": 29.657999,
+        "z": 81.38699
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -15.445,
+        "y": 29.737999,
+        "z": 68.5519943
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -3.7009964,
+        "y": 29.6619987,
+        "z": 63.7309952
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -27.904,
+        "y": 30.296999,
+        "z": 52.9629936
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -23.7169952,
+        "y": 29.657,
+        "z": 56.12799
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -28.1669922,
+        "y": 30.128,
+        "z": 80.62299
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": -28.5745544,
+        "y": 29.9285,
+        "z": 74.62695
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": -27.384552,
+        "y": 30.2104988,
+        "z": 71.98795
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": -24.9958649,
+        "y": 29.9305,
+        "z": 87.07776
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": -25.0304871,
+        "y": 29.9305,
+        "z": 82.2673
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 99.088,
+        "y": 14.5939989,
+        "z": 63.60299
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 106.634995,
+        "y": 14.2219982,
+        "z": 69.85299
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 127.590996,
+        "y": 14.8939991,
+        "z": 61.35199
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 127.224335,
+        "y": 15.1554995,
+        "z": 60.00315
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 101.065094,
+        "y": 13.6070986,
+        "z": 49.7341232
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 104.129066,
+        "y": 12.6764984,
+        "z": 47.19061
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 98.23266,
+        "y": 14.9544983,
+        "z": 43.78568
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 97.2324142,
+        "y": 14.2054987,
+        "z": 42.5176964
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.823,
+        "y": 14.5278988,
+        "z": 86.3879852
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 88.5519943,
+        "y": 15.848999,
+        "z": 97.48099
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 57.8049965,
+        "y": 15.0859985,
+        "z": 107.077988
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 73.37399,
+        "y": 15.0309982,
+        "z": 126.023987
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 80.004,
+        "y": 15.2399988,
+        "z": 120.312988
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.9109955,
+        "y": 15.3479986,
+        "z": 121.925987
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 88.4809952,
+        "y": 14.9049988,
+        "z": 132.794983
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 79.888,
+        "y": 14.9379988,
+        "z": 149.986
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 71.129,
+        "y": 14.8979988,
+        "z": 157.152
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 62.0669975,
+        "y": 14.7609987,
+        "z": 163.030991
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 69.001,
+        "y": 14.914999,
+        "z": 163.875
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 82.169,
+        "y": 14.1939983,
+        "z": 178.836
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 90.446,
+        "y": 14.9789982,
+        "z": 21.7369919
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.765,
+        "y": 15.2869987,
+        "z": 4.488991
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 64.492,
+        "y": 15.0191984,
+        "z": 28.4449921
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 101.228,
+        "y": 15.6589985,
+        "z": 43.27499
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 85.6069946,
+        "y": 14.926199,
+        "z": 57.88599
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 79.0239944,
+        "y": 14.6879988,
+        "z": -40.018013
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.9799957,
+        "y": 14.9179983,
+        "z": -20.9240112
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 81.94299,
+        "y": 14.5439987,
+        "z": -57.79801
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 84.6461945,
+        "y": 14.5959988,
+        "z": -24.8834076
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 92.377,
+        "y": 14.822999,
+        "z": -49.9080124
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 68.30266,
+        "y": 14.8719988,
+        "z": 156.540863
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 65.99105,
+        "y": 14.8719988,
+        "z": 163.183746
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 71.88733,
+        "y": 15.8659992,
+        "z": 164.27417
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 63.7859955,
+        "y": 14.9179983,
+        "z": 26.96196
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 67.94057,
+        "y": 14.9199982,
+        "z": 22.5584183
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 65.69703,
+        "y": 14.9179983,
+        "z": 22.5909882
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 117.775993,
+        "y": 23.618,
+        "z": 188.134018
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 118.425995,
+        "y": 23.618,
+        "z": 190.527023
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 121.124992,
+        "y": 23.618,
+        "z": 186.058014
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 121.575989,
+        "y": 23.618,
+        "z": 195.28302
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 117.46,
+        "y": 23.5619984,
+        "z": 192.058823
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 129.18219,
+        "y": 23.562,
+        "z": 190.49202
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 128.780182,
+        "y": 23.562,
+        "z": 182.495026
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 122.838989,
+        "y": 23.562,
+        "z": 197.151215
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 49.1314354,
+        "y": 23.7902718,
+        "z": 154.148346
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 51.7422562,
+        "y": 23.7902718,
+        "z": 154.781937
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 47.4403038,
+        "y": 23.786272,
+        "z": 154.158432
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 25.0444031,
+        "y": 24.1997,
+        "z": 156.1347
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 19.7560043,
+        "y": 24.038,
+        "z": 156.230011
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 12.5440025,
+        "y": 24.038,
+        "z": 160.150009
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 17.4920044,
+        "y": 23.407,
+        "z": 157.839
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 55.7250023,
+        "y": 24.046,
+        "z": 142.645
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 25.2780037,
+        "y": 23.953,
+        "z": 137.212311
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 49.038002,
+        "y": 24.3599987,
+        "z": 142.934
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 54.696003,
+        "y": 23.954,
+        "z": 136.85701
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fe50986f77449d97f7463",
+        "name": "医疗物资箱",
+        "normalizedName": "medical-supply-crate"
+      },
+      "position": {
+        "x": 63.14752,
+        "y": 31.822998,
+        "z": 133.436874
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fe50986f77449d97f7463",
+        "name": "医疗物资箱",
+        "normalizedName": "medical-supply-crate"
+      },
+      "position": {
+        "x": 63.3037453,
+        "y": 31.82,
+        "z": 149.271484
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 48.0824661,
+        "y": 31.822998,
+        "z": 160.134247
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 49.8713036,
+        "y": 31.822998,
+        "z": 127.304832
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 48.9798355,
+        "y": 31.8432732,
+        "z": 135.910538
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 50.552536,
+        "y": 31.2452717,
+        "z": 137.794174
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 58.367836,
+        "y": 31.2452717,
+        "z": 129.111542
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 181.978989,
+        "y": 17.778,
+        "z": -11.0040131
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 187.105988,
+        "y": 17.778,
+        "z": -10.89901
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 171.056,
+        "y": 17.15,
+        "z": -9.080009
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 181.898987,
+        "y": 17.784,
+        "z": -4.88900757
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 171.332,
+        "y": 17.37,
+        "z": 17.79599
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 172.612991,
+        "y": 17.959,
+        "z": 2.7869873
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 158.1238,
+        "y": 17.9435,
+        "z": 8.33979
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 151.911865,
+        "y": 17.1934986,
+        "z": -1.48796082
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 147.2464,
+        "y": 17.1934986,
+        "z": -1.67598724
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 147.2334,
+        "y": 17.6175,
+        "z": -9.312988
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 134.173233,
+        "y": 17.1898,
+        "z": -10.2857819
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 139.7555,
+        "y": 17.1898,
+        "z": -10.9265671
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 136.6283,
+        "y": 17.1895,
+        "z": -14.59185
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 188.692764,
+        "y": 16.4574986,
+        "z": 134.6635
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 197.045685,
+        "y": 16.4574986,
+        "z": 137.691467
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 194.392578,
+        "y": 16.4574986,
+        "z": 129.520966
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 80.796,
+        "y": 23.028,
+        "z": 131.538
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.23,
+        "y": 22.629,
+        "z": 134.645
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 101.316986,
+        "y": 22.781,
+        "z": 220.366959
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 97.06999,
+        "y": 22.781,
+        "z": 226.806976
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 95.32199,
+        "y": 27.288,
+        "z": 225.144958
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 95.12599,
+        "y": 27.909,
+        "z": 220.601959
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 93.9747543,
+        "y": 23.0485,
+        "z": 223.656464
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 96.4938049,
+        "y": 23.0505,
+        "z": 226.231537
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 95.02957,
+        "y": 23.0525,
+        "z": 226.979279
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 17.8579941,
+        "y": 24.389,
+        "z": -52.0209732
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 9.707993,
+        "y": 24.3599987,
+        "z": -43.7269821
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -10.28701,
+        "y": 24.99,
+        "z": -34.527977
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 28.8279915,
+        "y": 23.8109989,
+        "z": -21.6829758
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d5ef86f77467974efbd8",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": -15.2488327,
+        "y": 23.980999,
+        "z": -38.663002
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": -15.0260086,
+        "y": 24.3129978,
+        "z": -40.751976
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": -16.51648,
+        "y": 24.271,
+        "z": -39.333107
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -10.250946,
+        "y": 22.72941,
+        "z": 326.52655
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": -18.2840881,
+        "y": 21.4841213,
+        "z": 339.14032
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": -5.42783737,
+        "y": 22.8968945,
+        "z": 332.256775
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": 175.877,
+        "y": 17.0449963,
+        "z": 12.403244
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 106.057571,
+        "y": 14.3604994,
+        "z": 9.501549
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 115.202339,
+        "y": 23.5452728,
+        "z": 195.458389
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d5ef86f77467974efbd8",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 111.845,
+        "y": 29.728981,
+        "z": 161.0518
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 109.138,
+        "y": 29.9129982,
+        "z": 161.824
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 99.72046,
+        "y": 14.503,
+        "z": 171.207184
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 136.358627,
+        "y": 27.6398849,
+        "z": 107.697983
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 108.624634,
+        "y": 24.994,
+        "z": 153.210358
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d4c186f7746ad34e805a",
+        "name": "医药箱",
+        "normalizedName": "medcase"
+      },
+      "position": {
+        "x": 119.224907,
+        "y": 24.960886,
+        "z": 155.858292
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 118.766,
+        "y": 25.3380013,
+        "z": 137.849
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": 191.037415,
+        "y": 16.7716846,
+        "z": 100.784637
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 172.353943,
+        "y": 25.039,
+        "z": 104.307442
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 172.279678,
+        "y": 24.902607,
+        "z": 82.8226547
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 174.9792,
+        "y": 25.1222725,
+        "z": 79.0661
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 97.89871,
+        "y": 25.4779987,
+        "z": 79.66956
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 105.602913,
+        "y": 24.7451839,
+        "z": 84.16972
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 115.82222,
+        "y": 25.1905,
+        "z": 93.63992
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 174.686539,
+        "y": 25.2951851,
+        "z": 115.696449
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d89086f77472591234a0",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 186.452,
+        "y": 16.854,
+        "z": 130.909
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 48.8240128,
+        "y": 31.1295,
+        "z": 131.2507
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 40.35461,
+        "y": 23.5297527,
+        "z": 125.362709
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 61.051,
+        "y": 23.384,
+        "z": 129.775
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 44.84317,
+        "y": 23.7762871,
+        "z": 124.069466
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 48.2372322,
+        "y": 24.3592873,
+        "z": 123.540657
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 62.0375,
+        "y": 30.86274,
+        "z": 142.200989
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 12.166,
+        "y": 23.329,
+        "z": 327.504
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": -18.3162842,
+        "y": 17.3165,
+        "z": 331.9835
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 39.2884521,
+        "y": 23.9024143,
+        "z": 336.203674
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": 183.468353,
+        "y": 17.282,
+        "z": -8.171486
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 95.2853,
+        "y": 14.4285,
+        "z": -9.733658
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 121.388641,
+        "y": 23.5392723,
+        "z": 184.784668
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d5ef86f77467974efbd8",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 102.437996,
+        "y": 24.50898,
+        "z": 144.321808
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 124.197,
+        "y": 29.3650017,
+        "z": 163.526
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 101.525,
+        "y": 18.587,
+        "z": 170.762
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 122.190948,
+        "y": 25.1703987,
+        "z": 129.959229
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d4c186f7746ad34e805a",
+        "name": "医药箱",
+        "normalizedName": "medcase"
+      },
+      "position": {
+        "x": 117.371979,
+        "y": 25.1588,
+        "z": 138.786057
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": 193.6368,
+        "y": 16.7716846,
+        "z": 103.124687
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": 176.454391,
+        "y": 24.819,
+        "z": 114.511162
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 173.051376,
+        "y": 24.9237061,
+        "z": 83.4879
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 177.113953,
+        "y": 24.7782726,
+        "z": 84.3255157
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 106.384,
+        "y": 24.937,
+        "z": 81.615
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 170.349319,
+        "y": 24.668499,
+        "z": 80.92142
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 97.17261,
+        "y": 24.668499,
+        "z": 88.6849442
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 170.817154,
+        "y": 24.9895,
+        "z": 116.087433
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d89086f77472591234a0",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 176.633,
+        "y": 25.078001,
+        "z": 112.943
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 58.5129,
+        "y": 31.1295,
+        "z": 148.2924
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 48.4129829,
+        "y": 23.5301056,
+        "z": 125.10936
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 49.943,
+        "y": 23.974,
+        "z": 124.281
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 48.2929,
+        "y": 23.7822723,
+        "z": 129.72316
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -14.673996,
+        "y": 24.1716,
+        "z": 91.983
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 2.79999924,
+        "y": 24.3483,
+        "z": 59.442
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f8782245977354405a1e3",
+        "name": "保险箱",
+        "normalizedName": "safe"
+      },
+      "position": {
+        "x": 70.9302139,
+        "y": 23.2842522,
+        "z": 313.060547
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 50.3193779,
+        "y": 26.7407722,
+        "z": 152.302887
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d89086f77472591234a0",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 123.485886,
+        "y": 23.14648,
+        "z": 63.9226532
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 101.500092,
+        "y": 15.644,
+        "z": -9.330994
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 54.36,
+        "y": 14.555,
+        "z": -29.3099976
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 143.041,
+        "y": 14.061,
+        "z": 66.425
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 97.74,
+        "y": 14.3575,
+        "z": 52.6714058
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 106.8786,
+        "y": 12.6735811,
+        "z": 48.336
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 76.88451,
+        "y": 14.2755,
+        "z": -33.2349625
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 91.85268,
+        "y": 14.9871674,
+        "z": 14.45797
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 105.095,
+        "y": 12.874,
+        "z": 44.988
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d5ef86f77467974efbd8",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 102.83284,
+        "y": 13.302,
+        "z": 47.33304
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 102.665543,
+        "y": 13.300107,
+        "z": 48.1396027
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 114.266655,
+        "y": 14.866107,
+        "z": 51.46521
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d45286f77465a8136dc6",
+        "name": "木制弹药箱",
+        "normalizedName": "wooden-ammo-box"
+      },
+      "position": {
+        "x": 106.757668,
+        "y": 13.4584,
+        "z": 47.84982
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d45286f77465a8136dc6",
+        "name": "木制弹药箱",
+        "normalizedName": "wooden-ammo-box"
+      },
+      "position": {
+        "x": 111.949478,
+        "y": 14.9558172,
+        "z": 54.3466148
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 103.750824,
+        "y": 13.1942711,
+        "z": 50.5383263
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.5775,
+        "y": 14.337081,
+        "z": 116.9411
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d76c86f77471e53d2adf",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 22.2255173,
+        "y": 23.94627,
+        "z": 315.210571
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -29.86435,
+        "y": 24.3023033,
+        "z": 31.0682335
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -45.040596,
+        "y": 24.3023071,
+        "z": 44.0092964
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -19.99369,
+        "y": 23.9643,
+        "z": -26.7177658
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -25.4585419,
+        "y": 24.3053055,
+        "z": -0.647209167
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -22.6914368,
+        "y": 29.792305,
+        "z": 56.92238
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": -13.1718826,
+        "y": 30.2550545,
+        "z": 66.1286
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": -22.9659958,
+        "y": 24.6209183,
+        "z": 93.9736557
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 153.991974,
+        "y": 23.7287979,
+        "z": 32.398632
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d45286f77465a8136dc6",
+        "name": "木制弹药箱",
+        "normalizedName": "wooden-ammo-box"
+      },
+      "position": {
+        "x": -15.3834152,
+        "y": 22.7612572,
+        "z": 302.9927
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 191.142014,
+        "y": 16.413,
+        "z": 69.46
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 157.830719,
+        "y": 17.6816158,
+        "z": 60.2844963
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 157.111,
+        "y": 17.628,
+        "z": 60.214
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d45286f77465a8136dc6",
+        "name": "木制弹药箱",
+        "normalizedName": "wooden-ammo-box"
+      },
+      "position": {
+        "x": 204.153534,
+        "y": 17.3044,
+        "z": 35.97107
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 204.94957,
+        "y": 16.9342728,
+        "z": 33.8554268
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 83.811,
+        "y": 14.15408,
+        "z": 182.048
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": -3.66320038,
+        "y": 24.401,
+        "z": 84.5851
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 0.480999,
+        "y": 24.3483,
+        "z": 18.9780045
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f8782245977354405a1e3",
+        "name": "保险箱",
+        "normalizedName": "safe"
+      },
+      "position": {
+        "x": 54.79811,
+        "y": 23.9683781,
+        "z": 155.259415
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 43.29366,
+        "y": 31.2382717,
+        "z": 149.9008
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d89086f77472591234a0",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 120.190849,
+        "y": 23.4636555,
+        "z": 60.75271
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5d6fd45b86f774317075ed43",
+        "name": "技术物资箱",
+        "normalizedName": "technical-supply-crate"
+      },
+      "position": {
+        "x": 105.923508,
+        "y": 15.06,
+        "z": 3.06318665
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 97.039,
+        "y": 14.41,
+        "z": -5.16200256
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 107.977,
+        "y": 12.408,
+        "z": 49.454
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 105.434311,
+        "y": 14.3375006,
+        "z": 69.7777252
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 106.1386,
+        "y": 12.6755,
+        "z": 46.244
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d50c86f774659e6aaebe",
+        "name": "工具箱",
+        "normalizedName": "toolbox"
+      },
+      "position": {
+        "x": 92.1315,
+        "y": 14.2035007,
+        "z": 19.2580566
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d7cf86f77470ee57d75a",
+        "name": "武器箱",
+        "normalizedName": "weapon-box"
+      },
+      "position": {
+        "x": 106.476,
+        "y": 12.874,
+        "z": 47.442
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 106.150345,
+        "y": 12.8301077,
+        "z": 45.531208
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87a3245977356274f2cb",
+        "name": "旅行包",
+        "normalizedName": "duffle-bag"
+      },
+      "position": {
+        "x": 93.2,
+        "y": 14.1727,
+        "z": 141.189
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -31.0209961,
+        "y": 24.3023033,
+        "z": 27.0169983
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5c052cea86f7746b2101e8d8",
+        "name": "塑料手提箱",
+        "normalizedName": "plastic-suitcase"
+      },
+      "position": {
+        "x": -31.7580185,
+        "y": 24.3023071,
+        "z": 35.034
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d24f86f77466f56e6855",
+        "name": "SMU06 医疗包",
+        "normalizedName": "medbag-smu06"
+      },
+      "position": {
+        "x": -11.803997,
+        "y": 30.2550545,
+        "z": 67.97675
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d45286f77465a8136dc6",
+        "name": "木制弹药箱",
+        "normalizedName": "wooden-ammo-box"
+      },
+      "position": {
+        "x": -8.071129,
+        "y": 23.2893982,
+        "z": 297.176
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d36d86f774660f0bb900",
+        "name": "手榴弹箱",
+        "normalizedName": "grenade-box"
+      },
+      "position": {
+        "x": 125.751053,
+        "y": 22.9431763,
+        "z": 66.25792
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909d45286f77465a8136dc6",
+        "name": "木制弹药箱",
+        "normalizedName": "wooden-ammo-box"
+      },
+      "position": {
+        "x": 207.08493,
+        "y": 16.4054,
+        "z": 34.06144
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "578f87ad245977356274f2cc",
+        "name": "木制板条箱",
+        "normalizedName": "wooden-crate"
+      },
+      "position": {
+        "x": 185.0277,
+        "y": 21.7872715,
+        "z": 93.78077
+      }
+    },
+    {
+      "lootContainer": {
+        "id": "5909e4b686f7747f5b744fa4",
+        "name": "死去的Scav",
+        "normalizedName": "dead-scav"
+      },
+      "position": {
+        "x": 87.70216,
+        "y": 23.1952019,
+        "z": -8.333893
+      }
+    }
+  ],
+  "stationaryWeapons": [
+    {
+      "stationaryWeapon": {
+        "id": "5cdeb229d7f00c000e7ce174",
+        "name": "NSV “Utes” 12.7x108机关枪",
+        "shortName": "NSV"
+      },
+      "position": {
+        "x": 57.2261047,
+        "y": 32.0727425,
+        "z": 128.323532
+      }
+    },
+    {
+      "stationaryWeapon": {
+        "id": "5d52cc5ba4b9367408500062",
+        "name": "AGS 30x29毫米自动榴弹发射器",
+        "shortName": "AGS"
+      },
+      "position": {
+        "x": 98.5608,
+        "y": 33.9177437,
+        "z": 277.282654
+      }
+    }
+  ]
+}

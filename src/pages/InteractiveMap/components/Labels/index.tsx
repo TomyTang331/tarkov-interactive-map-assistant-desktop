@@ -1,3 +1,4 @@
+import React from 'react';
 import { Group, Text } from 'react-konva';
 
 interface LabelsProps {
@@ -44,4 +45,5 @@ const Index = (props: LabelsProps & InteractiveMap.UtilProps) => {
   }
 };
 
-export default Index;
+Index.displayName = 'Labels';
+export default React.memo(Index);

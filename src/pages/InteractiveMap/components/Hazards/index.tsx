@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Group, Path } from 'react-konva';
 
 import { getIconCDN, mouseClickEvent, mouseHoverEvent } from '@/pages/InteractiveMap/utils';
@@ -10,7 +10,7 @@ interface HazardsProps {
   show: string[];
 }
 
-const Index = (props: HazardsProps & InteractiveMap.UtilProps) => {
+const Index = React.memo((props: HazardsProps & InteractiveMap.UtilProps) => {
   const {
     hazards = [],
     baseMapStatus,
@@ -117,6 +117,7 @@ const Index = (props: HazardsProps & InteractiveMap.UtilProps) => {
   } else {
     return null;
   }
-};
+});
 
-export default Index;
+Index.displayName = 'Hazards';
+export default React.memo(Index);

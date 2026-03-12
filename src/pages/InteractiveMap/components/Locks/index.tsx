@@ -1,3 +1,4 @@
+import React from 'react';
 import { Group } from 'react-konva';
 
 import { getIconCDN, mouseClickEvent, mouseHoverEvent } from '@/pages/InteractiveMap/utils';
@@ -9,7 +10,7 @@ interface LocksProps {
   show: string[];
 }
 
-const Index = (props: LocksProps & InteractiveMap.UtilProps) => {
+const Index = React.memo((props: LocksProps & InteractiveMap.UtilProps) => {
   const {
     locks = [],
     baseMapStatus,
@@ -67,6 +68,7 @@ const Index = (props: LocksProps & InteractiveMap.UtilProps) => {
   } else {
     return null;
   }
-};
+});
 
-export default Index;
+Index.displayName = 'Locks';
+export default React.memo(Index);

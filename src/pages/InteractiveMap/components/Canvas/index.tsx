@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Group, Layer, Rect, Stage } from 'react-konva';
 
 import { useInterval } from 'ahooks';
@@ -8,6 +8,7 @@ import useImage from 'use-image';
 
 import {
   calculateHypotenuse,
+  getTileMapVirtualSize,
   image2realPos as _image2realPos,
   real2imagePos as _real2imagePos,
 } from '@/pages/InteractiveMap/utils';
@@ -24,6 +25,7 @@ import PlayerLocation from '../PlayerLocation';
 import Ruler from '../Ruler';
 import Spawns from '../Spawns';
 import StationaryWeapons from '../StationaryWeapons';
+import TileLayer from '../TileLayer';
 import { showContextMenu } from '../UI/ContextMenu';
 
 import './style.less';
@@ -88,38 +90,67 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const operationInitialVal = useRef([{ x: 0, y: 0, pageX: 0, pageY: 0 }]);
   const touchTouches = useRef(0);
 
-  const [baseMap, baseMapStatus] = useImage(mapData.svgPath, 'anonymous');
+  const baseMapSrc = mapData.svgPath || '#';
+  const [baseMap, baseMapStatus] = useImage(baseMapSrc, 'anonymous');
+  const isTileOnlyMap = !mapData.svgPath && !!mapData.tilePath;
+  const tileVirtualSize = useMemo(() => getTileMapVirtualSize(mapData), [mapData]);
+  const virtualImage = useMemo(
+    () =>
+      (tileVirtualSize
+        ? { width: tileVirtualSize.width, height: tileVirtualSize.height }
+        : null),
+    [tileVirtualSize],
+  );
+  let effectiveStatus: 'loaded' | 'loading' | 'failed';
+  if (isTileOnlyMap && tileVirtualSize) {
+    effectiveStatus = 'loaded';
+  } else if (isTileOnlyMap) {
+    effectiveStatus = 'failed';
+  } else {
+    effectiveStatus = baseMapStatus;
+  }
 
-  const baseScale = baseMap ? (baseMap.width + baseMap.height) / 1024 : 1;
+  const baseMapOrVirtual = isTileOnlyMap && virtualImage ? virtualImage : baseMap;
+  const baseScale = baseMapOrVirtual
+    ? (baseMapOrVirtual.width + baseMapOrVirtual.height) / 1024
+    : 1;
   const heightRange = useMemo(() => {
     let _heightRange = [mapData.heightRange?.[0] || -1000, mapData.heightRange?.[1] || 1000];
-    if (activeLayer) {
+    if (activeLayer && activeLayer.extents?.[0]?.height) {
       _heightRange = activeLayer.extents[0].height;
     }
     return _heightRange;
   }, [activeLayer]);
 
   const image2realPos = useMemo(() => {
-    return _image2realPos(baseMap, mapData.bounds);
-  }, [baseMap, mapData]);
+    return _image2realPos(baseMapOrVirtual ?? undefined, mapData.bounds);
+  }, [baseMapOrVirtual, mapData]);
   const real2imagePos = useMemo(() => {
-    return _real2imagePos(baseMap, mapData.bounds);
-  }, [baseMap, mapData]);
+    return _real2imagePos(baseMapOrVirtual ?? undefined, mapData.bounds);
+  }, [baseMapOrVirtual, mapData]);
 
-  const utils: InteractiveMap.UtilProps = {
-    baseMapStatus,
+  const utils = useMemo<InteractiveMap.UtilProps>(() => ({
+    baseMapStatus: effectiveStatus,
     baseScale,
     mapScale,
     activeLayer,
     heightRange,
     image2realPos,
     real2imagePos,
-  };
+  }), [
+    effectiveStatus,
+    baseScale,
+    mapScale,
+    activeLayer,
+    heightRange,
+    image2realPos,
+    real2imagePos,
+  ]);
 
   const scaleAccepted = (_scale: number) => {
-    if (stageRef.current && baseMap) {
-      const scaleX = stageRef.current.width() / baseMap.width;
-      const scaleY = stageRef.current.height() / baseMap.height;
+    if (stageRef.current && baseMapOrVirtual) {
+      const scaleX = stageRef.current.width() / baseMapOrVirtual.width;
+      const scaleY = stageRef.current.height() / baseMapOrVirtual.height;
       const _baseScale = scaleX < scaleY ? scaleX : scaleY;
       if (_scale < _baseScale / 2) {
         return false;
@@ -148,10 +179,10 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     playerLocation: InteractiveMap.Position & { mapId: string },
   ) => {
     const { x, z, mapId } = playerLocation;
-    if (stageRef.current && baseMap && mapId === mapData.id) {
+    if (stageRef.current && baseMapOrVirtual && mapId === mapData.id) {
       if (locationScale) {
-        const scaleX = stageRef.current.width() / baseMap.width;
-        const scaleY = stageRef.current.height() / baseMap.height;
+        const scaleX = stageRef.current.width() / baseMapOrVirtual.width;
+        const scaleY = stageRef.current.height() / baseMapOrVirtual.height;
         const _baseScale = scaleX < scaleY ? scaleX : scaleY;
         const newScale = _baseScale * 3; // magnification
         setMapScale(newScale);
@@ -394,14 +425,14 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   useEffect(() => {
     if (stageRef.current) {
-      if (baseMap && baseMapStatus === 'loaded') {
-        const scaleX = stageRef.current.width() / baseMap.width;
-        const scaleY = stageRef.current.height() / baseMap.height;
+      if (baseMapOrVirtual && effectiveStatus === 'loaded') {
+        const scaleX = stageRef.current.width() / baseMapOrVirtual.width;
+        const scaleY = stageRef.current.height() / baseMapOrVirtual.height;
         const newScale = scaleX < scaleY ? scaleX : scaleY;
         setMapScale(newScale);
         setMapPosition({
-          x: (stageRef.current.width() - baseMap.width * newScale) / 2,
-          y: (stageRef.current.height() - baseMap.height * newScale) / 2,
+          x: (stageRef.current.width() - baseMapOrVirtual.width * newScale) / 2,
+          y: (stageRef.current.height() - baseMapOrVirtual.height * newScale) / 2,
         });
         setCursorPosition({ x: 0, y: 0 });
       } else {
@@ -414,7 +445,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         setRulerPosition(undefined);
       }
     }
-  }, [baseMap, baseMapStatus, resolution]);
+  }, [baseMapOrVirtual, effectiveStatus, resolution]);
 
   useEffect(() => {
     onCursorPositionChange?.(cursorPosition);
@@ -426,7 +457,15 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   useEffect(() => {
     callbackUtils?.(utils);
-  }, [baseMapStatus, baseScale, mapScale, activeLayer, heightRange, image2realPos, real2imagePos]);
+  }, [
+    effectiveStatus,
+    baseScale,
+    mapScale,
+    activeLayer,
+    heightRange,
+    image2realPos,
+    real2imagePos,
+  ]);
 
   // Separate useEffect for forceStageRefresh to avoid infinite loop
   useEffect(() => {
@@ -535,19 +574,30 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           id="im-background"
           x={0}
           y={0}
-          width={baseMap?.width}
-          height={baseMap?.height}
+          width={baseMapOrVirtual?.width}
+          height={baseMapOrVirtual?.height}
           fill="#00000028"
         />
-        <BaseMap
-          id="im-basemap"
-          baseMap={baseMap}
-          activeLayer={activeLayer}
-          status={baseMapStatus}
-          coordinateRotation={mapData.coordinateRotation}
-          resolution={{ width, height }}
-        />
-        {activeLayer && <Image id="im-layermap" imageSrc={activeLayer.svgPath} />}
+        {isTileOnlyMap && tileVirtualSize ? (
+          <TileLayer
+            tilePath={mapData.tilePath!}
+            tileSize={mapData.tileSize ?? 256}
+            zoom={mapData.minZoom ?? 2}
+            coordinateRotation={mapData.coordinateRotation}
+            opacity={activeLayer ? 0.1 : 1}
+          />
+        ) : (
+          <BaseMap
+            id="im-basemap"
+            baseMap={baseMap}
+            activeLayer={activeLayer}
+            status={effectiveStatus}
+            tileOnlyUnsupported={isTileOnlyMap && !tileVirtualSize}
+            coordinateRotation={mapData.coordinateRotation}
+            resolution={{ width, height }}
+          />
+        )}
+        {activeLayer && activeLayer.svgPath && <Image id="im-layermap" imageSrc={activeLayer.svgPath} />}
         <Labels {...utils} labels={mapData.labels} show />
         <LootContainers {...utils} lootContainers={mapData.lootContainers} show={markerLootKeys} />
         <StationaryWeapons
@@ -591,4 +641,5 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'Canvas';
+export default React.memo(Index);

@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.5
+**Version**: 1.1.6
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -19,9 +19,9 @@ Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop 
 ## ✨ Features
 
 - 🖥️ **Native Desktop App** - Built with Tauri, small installer (~5-10MB)
-- 🗺️ **Real-time Interactive Map** - Smooth map display and interaction
+- 🗺️ **Real-time Interactive Map** - Smooth map display and interaction (including tile-based maps e.g. Labs)
 - 📍 **Auto Coordinate Tracking** - Automatic player location tracking (requires setup)
-- 🔄 **Auto Map Switching** - Smart map switching based on game state
+- 🔄 **Auto Map Switching** - Smart map switching based on game state (Rust-backed game log watching in desktop)
 - 🎯 **Location Markers** - Mark important locations and loot spots
 - 📊 **Coordinate Calculation** - Real-time coordinate and direction display
 - 🎨 **Tarkov Theme** - Military tactical UI design
@@ -172,14 +172,18 @@ npm run tauri icon       # Generate app icons
 Available Rust backend commands
 
 ```rust
-// Read text file
+// File system
 read_text_file(path: String) -> Result<String, String>
-
-// Read directory
 read_directory(path: String) -> Result<Vec<String>, String>
-
-// Check if path exists
 path_exists(path: String) -> bool
+
+// Screenshot directory (for coordinate tracking)
+set_screenshot_path(path: String) -> Result<String, String>
+get_screenshot_path() -> String
+
+// Tarkov game directory (game log watching, profile/raid events)
+set_tarkov_game_path(path: String) -> Result<String, String>
+get_tarkov_game_path() -> String
 ```
 
 ---
@@ -208,6 +212,9 @@ path_exists(path: String) -> bool
 - ✅ File System Access API
 - ✅ Single Instance Lock (Prevents multiple instances)
 - ✅ Global Keyboard Listener (M key toggles Picture-in-Picture)
+- ✅ Rust Game Log Watcher (desktop: pick game dir via dialog, backend parses application log and emits profile/raid events)
+- ✅ Tile Map Support (Labs / The Lab map loads via tile layer)
+- ✅ Extract Name Localization (PMC/Scav extract Chinese names from reference data)
 
 ### Known Issues
 - None
@@ -241,15 +248,23 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 
 ## 📊 Changelog
 
-### Version 1.1.1 (2025-12-18)
-
-- **Fix**: Resolved "Failed to unregister class" error on exit by explicitly destroying the window.
-- **Fix**: Removed `React.StrictMode` to prevent duplicate notifications on startup.
-- **Feat**: Implemented single instance application lock to prevent multiple instances.
-
-## 📋 Changelog
-
 See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
+
+### Version 1.1.6 (2026-03-11)
+
+- ✨ **New Feature**: The Lab (实验室) map now loads correctly
+  - Implemented tile-based map support: `TileLayer` component loads and renders map tiles
+  - Virtual canvas size for coordinate conversion when no SVG base image exists
+  - Labs uses `tilePath` only; rendering and markers now work as expected
+- ✨ **New Feature**: Rust-backed game log watching
+  - In desktop app, "Select Tarkov game directory" uses Tauri dialog; path is stored in Rust
+  - Backend resolves `Logs` → latest `log_*` → application log file and watches it in a background thread
+  - Parses profile and raid lines, emits `profile-log` and `raid-log` events to frontend
+  - Frontend listens for events and updates raid info / auto map switch without polling
+  - Screenshot directory watching and all other behavior unchanged
+- ✨ **New Feature**: PMC/Scav extract Chinese names
+  - Added `extract_names_zh.json` and `getExtractDisplayName()`; extract labels use reference Chinese names
+- 🧹 **Code quality**: ESLint fixes (max-len, no-nested-ternary, no-empty) in Canvas, BaseMap, MapInfo, index
 
 ### Version 1.1.5 (2025-12-19)
 

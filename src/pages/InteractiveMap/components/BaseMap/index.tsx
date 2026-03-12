@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, Text } from 'react-konva';
 
 interface BaseMapProps {
@@ -7,10 +8,20 @@ interface BaseMapProps {
   status: 'loaded' | 'loading' | 'failed';
   coordinateRotation?: number;
   resolution: { width: number; height: number };
+  /** 仅瓦片图、无 SVG 底图的地图（如实验室），当前版本未实现瓦片渲染 */
+  tileOnlyUnsupported?: boolean;
 }
 
-const Index = (props: BaseMapProps) => {
-  const { id, baseMap, activeLayer, status, coordinateRotation = 180, resolution } = props;
+const Index = React.memo((props: BaseMapProps) => {
+  const {
+    id,
+    baseMap,
+    activeLayer,
+    status,
+    coordinateRotation = 180,
+    resolution,
+    tileOnlyUnsupported,
+  } = props;
 
   if (baseMap && status === 'loaded') {
     if (coordinateRotation === 90) {
@@ -71,7 +82,7 @@ const Index = (props: BaseMapProps) => {
       <Text
         id={id}
         fontFamily="JinBuTi"
-        text={'地图载入失败...'}
+        text={tileOnlyUnsupported ? '该地图为瓦片图，当前版本暂不支持，请选择其他地图' : '地图载入失败...'}
         fontSize={24}
         fill="#cccccc"
         width={resolution.width}
@@ -83,6 +94,7 @@ const Index = (props: BaseMapProps) => {
       />
     );
   }
-};
+});
 
-export default Index;
+Index.displayName = 'BaseMap';
+export default React.memo(Index);

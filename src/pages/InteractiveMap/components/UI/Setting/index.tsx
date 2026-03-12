@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useRecoilState } from 'recoil';
 
 import useI18N from '@/i18n';
@@ -80,4 +82,5 @@ const Index = (props: SettingProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'Setting';
+export default React.memo(Index);

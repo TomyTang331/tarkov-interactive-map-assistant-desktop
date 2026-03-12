@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { Group } from 'react-konva';
 
 import {
@@ -36,30 +37,33 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
     real2imagePos,
     show,
   } = props;
-  const bosses: { [key: string]: SpawnBoss[] } = {};
-  baseMap.bosses?.forEach((boss) => {
-    boss.spawnLocations.forEach((spawnLocation) => {
-      if (bosses[spawnLocation.spawnKey]) {
-        bosses[spawnLocation.spawnKey].push({
-          spawnKey: spawnLocation.spawnKey,
-          spawnChance: boss.spawnChance,
-          name: boss.boss.name,
-          normalizedName: boss.boss.normalizedName,
-          subSpawnChance: spawnLocation.chance,
-        });
-      } else {
-        bosses[spawnLocation.spawnKey] = [
-          {
+  const bosses = useMemo(() => {
+    const map: { [key: string]: SpawnBoss[] } = {};
+    baseMap.bosses?.forEach((boss) => {
+      boss.spawnLocations.forEach((spawnLocation) => {
+        if (map[spawnLocation.spawnKey]) {
+          map[spawnLocation.spawnKey].push({
             spawnKey: spawnLocation.spawnKey,
             spawnChance: boss.spawnChance,
             name: boss.boss.name,
             normalizedName: boss.boss.normalizedName,
             subSpawnChance: spawnLocation.chance,
-          },
-        ];
-      }
+          });
+        } else {
+          map[spawnLocation.spawnKey] = [
+            {
+              spawnKey: spawnLocation.spawnKey,
+              spawnChance: boss.spawnChance,
+              name: boss.boss.name,
+              normalizedName: boss.boss.normalizedName,
+              subSpawnChance: spawnLocation.chance,
+            },
+          ];
+        }
+      });
     });
-  });
+    return map;
+  }, [baseMap.bosses]);
   if (baseMapStatus === 'loaded' && show.length > 0) {
     return (
       <Group>
@@ -133,5 +137,6 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
   }
 };
 
-export default Index;
+Index.displayName = 'Spawns';
+export default React.memo(Index);
 

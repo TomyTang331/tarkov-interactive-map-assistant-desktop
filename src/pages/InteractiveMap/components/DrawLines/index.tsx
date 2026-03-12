@@ -1,3 +1,4 @@
+import React from 'react';
 import { Circle, Group, Line } from 'react-konva';
 
 import './style.less';
@@ -85,4 +86,5 @@ const Index = (props: DrawLinesProps & InteractiveMap.DrawProps & InteractiveMap
   }
 };
 
-export default Index;
+Index.displayName = 'DrawLines';
+export default React.memo(Index);

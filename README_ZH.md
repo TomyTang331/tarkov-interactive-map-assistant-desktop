@@ -10,7 +10,7 @@
 
 逃离塔科夫实时交互式地图助手桌面版，基于 Tauri + React 开发，提供原生桌面体验。帮助玩家更好地探索和导航游戏世界。
 
-**版本**: 1.1.5
+**版本**: 1.1.6
 **作者**: Tomy
 **原项目**: 基于 [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -19,9 +19,9 @@
 ## ✨ 功能特性
 
 - 🖥️ **原生桌面应用** - 使用 Tauri 构建，安装包小（~5-10MB）
-- 🗺️ **实时交互式地图** - 流畅的地图显示和交互
+- 🗺️ **实时交互式地图** - 流畅的地图显示和交互（含瓦片图，如实验室）
 - 📍 **自动坐标追踪** - 自动获取玩家位置（需配置）
-- 🔄 **自动地图切换** - 根据游戏状态智能切换地图
+- 🔄 **自动地图切换** - 根据游戏状态智能切换地图（桌面版由 Rust 监听游戏日志）
 - 🎯 **位置标记** - 标记重要地点和物资点
 - 📊 **坐标计算** - 实时显示坐标和方向
 - 🎨 **塔科夫主题** - 军事战术风格 UI 设计
@@ -172,14 +172,18 @@ npm run tauri icon       # 生成应用图标
 Rust 后端提供的命令
 
 ```rust
-// 读取文本文件
+// 文件系统
 read_text_file(path: String) -> Result<String, String>
-
-// 读取目录内容
 read_directory(path: String) -> Result<Vec<String>, String>
-
-// 检查路径是否存在
 path_exists(path: String) -> bool
+
+// 截图目录（用于坐标追踪）
+set_screenshot_path(path: String) -> Result<String, String>
+get_screenshot_path() -> String
+
+// 塔科夫游戏目录（监听游戏日志，解析 profile/raid 并发送事件）
+set_tarkov_game_path(path: String) -> Result<String, String>
+get_tarkov_game_path() -> String
 ```
 
 ---
@@ -208,6 +212,9 @@ path_exists(path: String) -> bool
 - ✅ 文件系统访问 API
 - ✅ 单实例应用锁（防止多开）
 - ✅ 全局键盘监听器（M键切换画中画）
+- ✅ Rust 游戏日志监听（桌面版通过对话框选择游戏目录，后端解析 application 日志并发送 profile/raid 事件）
+- ✅ 瓦片地图支持（实验室等仅瓦片图的地图可正常加载）
+- ✅ 撤离点中文名（PMC/Scav 撤离点使用参考项目的中文名称）
 
 ### 已知问题
 - 无
@@ -242,6 +249,21 @@ path_exists(path: String) -> bool
 ## 📊 更新日志
 
 查看 [CHANGELOG.md](./CHANGELOG.md) 了解详细的版本发布历史。
+
+### Version 1.1.6 (2026-03-11)
+
+- ✨ **新功能**: 实验室地图可正常加载
+  - 实现瓦片地图支持：`TileLayer` 组件按 zoom 请求并渲染瓦片
+  - 无 SVG 底图时使用虚拟画布尺寸参与坐标换算
+  - 实验室仅含 tilePath，现已正常显示底图与标记
+- ✨ **新功能**: Rust 端监听游戏日志
+  - 桌面版「选择塔科夫游戏目录」使用 Tauri 对话框，路径存入 Rust
+  - 后端解析 Logs → 最新 log_* → application 日志文件，独立线程轮询并解析
+  - 解析 profile/raid 行后向前端发送 `profile-log`、`raid-log` 事件
+  - 前端监听事件更新战局信息与自动切图，无需轮询；截图目录监听等逻辑不变
+- ✨ **新功能**: PMC/Scav 撤离点中文名
+  - 新增 `extract_names_zh.json` 与 `getExtractDisplayName()`，撤离点标签使用参考项目中文名
+- 🧹 **代码质量**: 修复 ESLint（max-len、no-nested-ternary、no-empty）于 Canvas、BaseMap、MapInfo、index
 
 ### Version 1.1.5 (2025-12-19)
 

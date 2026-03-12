@@ -1,3 +1,4 @@
+import React from 'react';
 import { CirclePicker } from 'react-color';
 
 import Slider from 'rc-slider';
@@ -53,4 +54,5 @@ const Index = (props: DrawSettingProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'DrawSetting';
+export default React.memo(Index);

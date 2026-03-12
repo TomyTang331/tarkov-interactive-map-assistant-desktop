@@ -1,3 +1,4 @@
+import React from 'react';
 import { Group } from 'react-konva';
 
 import { getIconCDN, mouseClickEvent, mouseHoverEvent } from '@/pages/InteractiveMap/utils';
@@ -9,7 +10,7 @@ interface StationaryWeaponsProps {
   show: string[];
 }
 
-const Index = (props: StationaryWeaponsProps & InteractiveMap.UtilProps) => {
+const Index = React.memo((props: StationaryWeaponsProps & InteractiveMap.UtilProps) => {
   const {
     stationaryWeapons = [],
     baseMapStatus,
@@ -70,6 +71,7 @@ const Index = (props: StationaryWeaponsProps & InteractiveMap.UtilProps) => {
   } else {
     return null;
   }
-};
+});
 
-export default Index;
+Index.displayName = 'StationaryWeapons';
+export default React.memo(Index);

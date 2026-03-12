@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 import { message } from 'tilty-ui';
 import { UAParser } from 'ua-parser-js';
 
-import dataImap from '@/data/interactive_maps';
+import dataImap, { loadMapData } from '@/data/interactive_maps';
 import langState from '@/store/lang';
 import { tarkovGamePathResolve } from '@/utils/tarkov';
 
@@ -43,6 +43,8 @@ const Index = () => {
 
   const [directoryHandler, setDirectoryHandler] = useState<string>(); // 改为存储路径字符串
   const [tarkovGamePathHandler, setTarkovGamePathHandler] = useState<FileSystemDirectoryHandle>();
+  /** 由 Tauri 监听的游戏目录路径（与 tarkovGamePathHandler 二选一，Rust 端解析日志并发事件） */
+  const [tarkovGamePathFromRust, setTarkovGamePathFromRust] = useState<string>();
   const [applicationLogsHandler, setApplicationLogsHandler] = useState<FileSystemFileHandle>();
   const applicationPathNameCache = useRef<string>();
   const applicationModifiedGmt = useRef(0);
@@ -285,7 +287,7 @@ const Index = () => {
       });
 
       if (selectedPath && typeof selectedPath === 'string') {
-        await invoke('set_screenshot_path', { path: selectedPath }).catch(() => {});
+        await invoke('set_screenshot_path', { path: selectedPath }).catch(() => { });
         setDirectoryHandler(selectedPath);
         const folderName = selectedPath.split('\\').pop() || selectedPath;
         toast.info(`开始监听截图目录: ${folderName}`);
@@ -298,6 +300,38 @@ const Index = () => {
   };
 
   const handleClickTarkovGamePath = async () => {
+    const hasPath = tarkovGamePathFromRust || tarkovGamePathHandler;
+    if (hasPath) {
+      setTarkovGamePathHandler(undefined);
+      setTarkovGamePathFromRust(undefined);
+      setApplicationLogsHandler(undefined);
+      try {
+        const { invoke } = await import('@tauri-apps/api/core');
+        await invoke('set_tarkov_game_path', { path: '' });
+      } catch {
+        // When not in the Tauri environment, the "invoke" function does not exist. Just ignore it.
+      }
+      return;
+    }
+    const isTauri = typeof (window as any).__TAURI__ !== 'undefined';
+    if (isTauri) {
+      try {
+        const { open } = await import('@tauri-apps/plugin-dialog');
+        const { invoke } = await import('@tauri-apps/api/core');
+        const { documentDir } = await import('@tauri-apps/api/path');
+        const defaultPath = await documentDir();
+        const selected = await open({ directory: true, multiple: false, defaultPath });
+        if (selected && typeof selected === 'string') {
+          await invoke('set_tarkov_game_path', { path: selected });
+          setTarkovGamePathFromRust(selected);
+          const folderName = selected.split(/[/\\]/).pop() || selected;
+          toast.info(`开始监听游戏日志目录: ${folderName}`);
+        }
+      } catch (err) {
+        console.error('Tarkov game path (Tauri):', err);
+      }
+      return;
+    }
     if (window.showDirectoryPicker) {
       try {
         const handler = await window.showDirectoryPicker();
@@ -339,7 +373,6 @@ const Index = () => {
 
   const handleMapChange = (mapId: string) => {
     setActiveMapId(mapId);
-    setActiveLayer(undefined);
     toast.info('正在切换地图，请稍候...');
   };
 
@@ -350,11 +383,18 @@ const Index = () => {
   };
 
   useEffect(() => {
+    let cancelled = false;
     if (activeMapId) {
-      const data = dataImap.filter((v) => v.id === activeMapId)?.[0] as any;
-      setActiveMap(data);
-      toast.success(`地图已切换至${data.name}`);
+      loadMapData(activeMapId).then((data) => {
+        if (!cancelled && data) {
+          setActiveMap(data);
+          toast.success(`地图已切换至${data.name}`);
+        }
+      });
     }
+    return () => {
+      cancelled = true;
+    };
   }, [activeMapId]);
 
   useEffect(() => {
@@ -434,6 +474,30 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
+    let unlistenProfile: Promise<() => void> | null = null;
+    let unlistenRaid: Promise<() => void> | null = null;
+
+    (async () => {
+      try {
+        const { listen } = await import('@tauri-apps/api/event');
+        unlistenProfile = listen<InteractiveMap.ProfileLogProps>('profile-log', (event) => {
+          parseProfileInfo(event.payload);
+        });
+        unlistenRaid = listen<InteractiveMap.RaidLogProps>('raid-log', (event) => {
+          parseRaidInfo(event.payload);
+        });
+      } catch {
+        // 非 Tauri 环境
+      }
+    })();
+
+    return () => {
+      unlistenProfile?.then((u) => u());
+      unlistenRaid?.then((u) => u());
+    };
+  }, []);
+
+  useEffect(() => {
     if (tarkovGamePathHandler) {
       console.log(`File Watcher: ${tarkovGamePathHandler.name}`);
       resolveTarkovGamePath();
@@ -459,15 +523,15 @@ const Index = () => {
     }
   }, 10000);
 
-  if (activeMap) {
-    return (
-      <div
-        className={classNames({
-          desktop: !isMobile,
-          mobile: isMobile,
-          'simple-ui-mode': simpleUIMode,
-        })}
-      >
+  return (
+    <div
+      className={classNames({
+        desktop: !isMobile,
+        mobile: isMobile,
+        'simple-ui-mode': simpleUIMode,
+      })}
+    >
+      {activeMap ? (
         <div onContextMenu={(e) => e.preventDefault()}>
           <Canvas
             {...resolution}
@@ -510,6 +574,7 @@ const Index = () => {
                     raidInfo={raidInfo}
                     directoryHandler={directoryHandler}
                     tarkovGamePathHandler={tarkovGamePathHandler}
+                    tarkovGamePathFromRust={tarkovGamePathFromRust}
                     show={mapInfoActive}
                   />
                 </div>
@@ -574,24 +639,25 @@ const Index = () => {
           <Tooltip {...resolution} />
           <ContextMenu />
           <QuickSearch show={quickSearchShow} onHide={() => setQuickSearchShow(false)} />
-          <EFTWatcher
-            directoryHandler={directoryHandler}
-            tarkovGamePathHandler={tarkovGamePathHandler}
-            onClickEftWatcherPath={handleClickEftWatcherPath}
-            onClickTarkovGamePath={handleClickTarkovGamePath}
-          />
           <Warning />
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="im-loading">
-        <img src="/images/tomy_logo_round_white.png" />
-        <span>{t('interactive.mapLoading')}</span>
-      </div>
-    );
-  }
+      ) : (
+        <div className="im-loading">
+          <img src="/images/tomy_logo_round_white.png" />
+          <span>{t('interactive.mapLoading')}</span>
+        </div>
+      )}
+      {/* EFTWatcher stays outside the activeMap conditional so it never remounts on map switch */}
+      <EFTWatcher
+        directoryHandler={directoryHandler}
+        tarkovGamePathHandler={tarkovGamePathHandler}
+        tarkovGamePathFromRust={tarkovGamePathFromRust}
+        onClickEftWatcherPath={handleClickEftWatcherPath}
+        onClickTarkovGamePath={handleClickTarkovGamePath}
+      />
+    </div>
+  );
 };
 
 export default Index;
+

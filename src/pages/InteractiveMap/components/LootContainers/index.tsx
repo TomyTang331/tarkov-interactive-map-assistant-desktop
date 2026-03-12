@@ -1,3 +1,4 @@
+import React from 'react';
 import { Group } from 'react-konva';
 
 import {
@@ -14,7 +15,7 @@ interface ExtractsProps {
   show: string[];
 }
 
-const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
+const Index = React.memo((props: ExtractsProps & InteractiveMap.UtilProps) => {
   const {
     lootContainers = [],
     baseMapStatus,
@@ -73,6 +74,7 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
   } else {
     return null;
   }
-};
+});
 
-export default Index;
+Index.displayName = 'LootContainers';
+export default React.memo(Index);

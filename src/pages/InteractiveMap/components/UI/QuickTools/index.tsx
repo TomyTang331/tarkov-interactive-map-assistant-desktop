@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import classNames from 'classnames';
@@ -266,4 +266,5 @@ const Index = (
   );
 };
 
-export default Index;
+Index.displayName = 'QuickTools';
+export default React.memo(Index);

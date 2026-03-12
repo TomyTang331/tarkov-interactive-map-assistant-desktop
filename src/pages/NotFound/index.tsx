@@ -11,6 +11,7 @@ const Index = () => {
   };
 
   useEffect(() => {
+    console.log('NotFound mounted, current pathname:', window.location.pathname, 'href:', window.location.href);
     const resizeEvent = () => {
       const doc = document.documentElement;
       doc?.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);

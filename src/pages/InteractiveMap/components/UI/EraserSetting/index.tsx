@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Slider from 'rc-slider';
 import { useRecoilState } from 'recoil';
 
@@ -37,4 +39,5 @@ const Index = (props: EraserSettingProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'EraserSetting';
+export default React.memo(Index);

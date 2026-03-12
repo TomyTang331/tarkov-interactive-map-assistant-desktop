@@ -15,11 +15,20 @@ interface MapInfoProps {
   raidInfo?: InteractiveMap.RaidLogProps;
   directoryHandler?: string;
   tarkovGamePathHandler?: FileSystemDirectoryHandle;
+  tarkovGamePathFromRust?: string;
   show: boolean;
 }
 
 const Index = (props: MapInfoProps) => {
-  const { mapData, raidInfo, directoryHandler, tarkovGamePathHandler, show } = props;
+  const {
+    mapData,
+    raidInfo,
+    directoryHandler,
+    tarkovGamePathHandler,
+    tarkovGamePathFromRust,
+    show,
+  } = props;
+  const hasTarkovPath = tarkovGamePathHandler || tarkovGamePathFromRust;
 
   const [realTime, setRealTime] = useState(0);
   const [timeDiff, setTimeDiff] = useState(0);
@@ -76,10 +85,14 @@ const Index = (props: MapInfoProps) => {
           <span className="im-mapinfo-item-title warning">尚未监听截图目录，无法自动获取坐标</span>
         </div>
       )}
-      {self === top && window.showDirectoryPicker && !tarkovGamePathHandler && (
-        <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title warning">尚未监听游戏目录，无法获取战局信息</span>
-        </div>
+      {self === top &&
+        (window.showDirectoryPicker || (window as any).__TAURI__) &&
+        !hasTarkovPath && (
+          <div className="im-mapinfo-item">
+            <span className="im-mapinfo-item-title warning">
+              尚未监听游戏目录，无法获取战局信息
+            </span>
+          </div>
       )}
       {raidInfo?.ip && raidInfo?.port && (
         <div className="im-mapinfo-item">

@@ -1,6 +1,12 @@
+import React from 'react';
 import { Group, Text } from 'react-konva';
 
-import { getIconCDN, mouseClickEvent, mouseHoverEvent } from '@/pages/InteractiveMap/utils';
+import {
+  getExtractDisplayName,
+  getIconCDN,
+  mouseClickEvent,
+  mouseHoverEvent,
+} from '@/pages/InteractiveMap/utils';
 
 import Image from '../Image';
 
@@ -36,13 +42,14 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
             }
           }
           if (show.includes(extract.faction)) {
+            const displayName = getExtractDisplayName(extract.id, extract.name);
             return (
               <Group
                 key={`im-extract-group-${extract.id}-${extract.position.x}-${extract.position.z}`}
                 id={`im-extract-group-${extract.id}-${extract.position.x}-${extract.position.z}`}
                 {...mouseHoverEvent}
                 {...mouseClickEvent({
-                  text: extract.name,
+                  text: displayName,
                   mapScale,
                   position: {
                     x: extract.position.x,
@@ -66,7 +73,7 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
                   x={real2imagePos.x(extract.position.x)}
                   y={real2imagePos.y(extract.position.z)}
                   fontFamily="JinBuTi"
-                  text={extract.name}
+                  text={displayName}
                   fontSize={12 / mapScale}
                   fill={colorMap[extract.faction]}
                   width={600 / mapScale}
@@ -90,4 +97,5 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
   }
 };
 
-export default Index;
+Index.displayName = 'Extracts';
+export default React.memo(Index);

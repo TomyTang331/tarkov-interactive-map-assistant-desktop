@@ -1,3 +1,5 @@
+import React from 'react';
+
 import classNames from 'classnames';
 import { useRecoilState } from 'recoil';
 
@@ -208,4 +210,5 @@ const Index = (props: MarkerSelectProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'MarkerSelect';
+export default React.memo(Index);
