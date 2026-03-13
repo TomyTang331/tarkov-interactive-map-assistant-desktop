@@ -252,70 +252,36 @@ get_tarkov_game_path() -> String
 
 ### Version 1.1.6 (2026-03-11)
 
-- ✨ **新功能**: 实验室地图可正常加载
-  - 实现瓦片地图支持：`TileLayer` 组件按 zoom 请求并渲染瓦片
-  - 无 SVG 底图时使用虚拟画布尺寸参与坐标换算
-  - 实验室仅含 tilePath，现已正常显示底图与标记
-- ✨ **新功能**: Rust 端监听游戏日志
-  - 桌面版「选择塔科夫游戏目录」使用 Tauri 对话框，路径存入 Rust
-  - 后端解析 Logs → 最新 log_* → application 日志文件，独立线程轮询并解析
-  - 解析 profile/raid 行后向前端发送 `profile-log`、`raid-log` 事件
-  - 前端监听事件更新战局信息与自动切图，无需轮询；截图目录监听等逻辑不变
-- ✨ **新功能**: PMC/Scav 撤离点中文名
-  - 新增 `extract_names_zh.json` 与 `getExtractDisplayName()`，撤离点标签使用参考项目中文名
-- 🧹 **代码质量**: 修复 ESLint（max-len、no-nested-ternary、no-empty）于 Canvas、BaseMap、MapInfo、index
+- 实验室地图：瓦片加载（`TileLayer` + 本地瓦片 `src/assets/the-lab-map`），无 SVG 时使用虚拟画布尺寸。
+- 游戏日志监听：Tauri 对话框选择游戏目录，Rust 解析 application 日志并发送 `profile-log` / `raid-log`，前端更新战局信息与自动切图。
+- PMC/Scav 撤离点标签使用 `extract_names_zh.json` 中文名。
+- M 键在窗口有焦点（前端 keydown）或失焦（rdev 事件）时均可切换画中画。
+- ESLint 修复（Canvas、BaseMap、MapInfo、QuickTools）；代码注释改为英文。
 
 ### Version 1.1.5 (2025-12-19)
 
-- ✨ **新功能**: 程序退出时自动清理 PNG 文件
-  - 选择截图目录后，程序退出时会自动删除该目录下的所有 PNG 文件
-  - 通过系统托盘 "Quit" 菜单退出时触发
-  - 静默执行，无任何提示
-  - 帮助自动保持截图文件夹整洁
+- 退出时自动清理截图目录下 PNG 文件（托盘「退出」触发）。
 
 ### Version 1.1.4 (2025-12-19)
 
-- ✨ **新功能**: 全局键盘快捷键支持
-  - 随时按下 **M键** 可切换画中画模式，即使应用窗口失焦也能工作
-  - 使用 `rdev` 库实现系统级键盘事件监听
-  - 在游戏全屏时提供无缝控制体验
+- 全局 M 键通过 `rdev` 切换画中画（窗口失焦时也可用）。
 
 ### Version 1.1.3 (2025-12-19)
 
-- 🐛 **修复**: 标点缩放功能现已正常工作
-  - 取消注释 PlayerLocation 组件中的 `onPlayerLocationChange` 回调
-  - 优化 Canvas 组件中的缩放逻辑
-  - 启用后，地图现在可以正确放大到 3 倍基础缩放并居中到玩家位置
-- 🧹 **优化**: 代码深度清理与重构
-  - 移除了未使用的 `AdditionFunc` 组件及冗余社交链接
-  - 移除了废弃的 `parseFleaMarketInfo` 逻辑及死代码
-  - 优化了文件系统访问 API 的类型定义
-  - 修复了多处 ESLint 警告，提升代码质量
+- 修复标点缩放：恢复 `onPlayerLocationChange` 与 Canvas 缩放逻辑，地图 3 倍居中。
+- 移除未使用组件与死代码；ESLint 与类型修复。
 
 ### Version 1.1.2 (2025-12-18)
 
-- 🐛 修复了所有 React 控制台 key 属性警告（11个组件）
-- 🐛 修复了画中画窗口初始化时空白的问题
-- 🐛 修复了 Canvas 无限循环警告
-- 🔒 禁用所有刷新快捷键（防止意外刷新页面）
-- ⚡ 性能优化
+- 修复 React key 警告、画中画空白、Canvas 循环；禁用刷新快捷键。
 
 ### Version 1.1.1 (2025-12-18)
 
-- **修复**: 解决了退出时 "Failed to unregister class" 的报错（通过显式销毁窗口）。
-- **修复**: 移除了 `React.StrictMode` 以防止启动时出现重复通知。
-- **功能**: 实现了单实例应用锁，防止程序多开。
+- 退出时显式销毁窗口，消除 "Failed to unregister class"；移除 StrictMode；单实例锁。
 
 ### Version 1.1.0 (2025-12-17)
 
-- ✨ 桌面版首次发布
-- ✨ 使用 Tauri 重构，安装包仅 5-10MB
-- ✨ 蓝色主题 UI 设计
-- ✨ 优化启动加载体验
-- ✨ 自定义塔科夫主题图标
-- ✨ 系统托盘支持（显示/隐藏/退出）
-- ✨ 窗口启动默认最大化
-- ✨ 关闭窗口隐藏到托盘而非退出
+- Tauri 桌面版首发；托盘、最大化启动、关闭进托盘；蓝色主题与自定义图标。
 
 ---
 

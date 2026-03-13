@@ -4,7 +4,7 @@ import extractNamesZh from '@/data/extract_names_zh.json';
 
 import { showTooltip } from './components/UI/Tooltip';
 
-/** 撤离点中文名（参考 tarkov-tilty-frontend-opensource），按 id 优先使用 */
+/** Extract display names by id (reference: tarkov-tilty-frontend-opensource) */
 const extractNamesMap = extractNamesZh as Record<string, string>;
 export function getExtractDisplayName(id: string, fallback: string): string {
   return extractNamesMap[id] ?? fallback;
@@ -273,12 +273,23 @@ export const calculateHypotenuse = (
   return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 };
 
-/** 仅瓦片图（无 svgPath）时的虚拟画布尺寸，与瓦片网格一致：2^zoom * tileSize */
 export function getTileMapVirtualSize(mapData: {
   tilePath?: string;
   tileSize?: number;
   minZoom?: number;
+  localTileLayers?: {
+    gridCols: number;
+    gridRows: number;
+    tileSize: number;
+  };
 }): { width: number; height: number } | null {
+  if (mapData.localTileLayers) {
+    const { gridCols, gridRows, tileSize } = mapData.localTileLayers;
+    return {
+      width: gridCols * tileSize,
+      height: gridRows * tileSize,
+    };
+  }
   if (!mapData.tilePath || mapData.tileSize == null) return null;
   const zoom = mapData.minZoom ?? 2;
   const side = Math.pow(2, zoom) * (mapData.tileSize || 256);

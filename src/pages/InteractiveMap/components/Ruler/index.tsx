@@ -19,11 +19,11 @@ const Index = (props: RulerProps) => {
     }
   }, [rulerPosition]);
 
-  const rulerHeight = 25 * baseScale; // 尺子高度
-  const tickDistance = 10 * baseScale; // 刻度间隔
-  const majorTickEvery = 50 * baseScale; // 主刻度间隔
-  const minorTickLength = 5 * baseScale; // 次刻度线长度
-  const majorTickLength = 10 * baseScale; // 主刻度线长度
+  const rulerHeight = 25 * baseScale; // Ruler bar height
+  const tickDistance = 10 * baseScale; // Tick spacing
+  const majorTickEvery = 50 * baseScale; // Major tick interval
+  const minorTickLength = 5 * baseScale; // Minor tick length
+  const majorTickLength = 10 * baseScale; // Major tick length
 
   if (rulerPosition) {
     const ShapeGroup: any[] = [];

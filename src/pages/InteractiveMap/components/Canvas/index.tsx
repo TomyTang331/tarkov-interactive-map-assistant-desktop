@@ -19,6 +19,7 @@ import Extracts from '../Extracts';
 import Hazards from '../Hazards';
 import Image from '../Image';
 import Labels from '../Labels';
+import LocalTileLayers from '../LocalTileLayers';
 import Locks from '../Locks';
 import LootContainers from '../LootContainers';
 import PlayerLocation from '../PlayerLocation';
@@ -80,7 +81,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const [rulerPosition, setRulerPosition] = useState<InteractiveMap.Position2D[]>();
 
   const stageRef = useRef<StageType>(null);
-  // 使用 ref 累积临时绘制点，并通过 rAF 合并更新，减小高频 setState 开销
   const drawTempPointsRef = useRef<number[]>([]);
   const drawTempPointsRafRef = useRef<number | null>(null);
   const operationType = useRef<InteractiveMap.OperationType>(-1);
@@ -92,7 +92,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   const baseMapSrc = mapData.svgPath || '#';
   const [baseMap, baseMapStatus] = useImage(baseMapSrc, 'anonymous');
-  const isTileOnlyMap = !mapData.svgPath && !!mapData.tilePath;
+  const isTileOnlyMap = !mapData.svgPath && (!!mapData.tilePath || !!mapData.localTileLayers);
   const tileVirtualSize = useMemo(() => getTileMapVirtualSize(mapData), [mapData]);
   const virtualImage = useMemo(
     () =>
@@ -202,7 +202,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const handleMouseDown = (e: KonvaEventObject<MouseEvent>) => {
     const stage = e.target.getStage();
     if (stage) {
-      // 初始化
+      // Initialize
       operationType.current = e.evt.button as InteractiveMap.OperationType;
       if (!operationInitialStage.current) {
         operationInitialStage.current = { x: stage.x(), y: stage.y() };
@@ -218,7 +218,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           pageY: e.evt.pageY,
         },
       ];
-      // 初始化
+      // Initialize
       if (e.evt.button === 2) operationContext.current = true;
       if (strokeType === 'draw' || strokeType === 'eraser') {
         const startPoints = [operationInitialVal.current[0].x, operationInitialVal.current[0].y];
@@ -234,7 +234,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     e.evt.preventDefault();
     const stage = e.target.getStage();
     if (stage) {
-      // 初始化
+      // Initialize
       if (e.evt.touches.length > touchTouches.current) {
         touchTouches.current = e.evt.touches.length;
       }
@@ -255,7 +255,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         });
       }
       operationInitialVal.current = _operationInitialVal;
-      // 初始化
+      // Initialize
       if (strokeType === 'ruler') setRulerPosition(undefined);
     }
     updateCursorPosition();
@@ -372,7 +372,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
       };
       setDrawLines((prev) => [...prev, data as any]);
     }
-    // 初始化
+    // Initialize
     operationInitialStage.current = undefined;
     operationInitialScale.current = 0;
     operationInitialVal.current = [{ x: 0, y: 0, pageX: 0, pageY: 0 }];
@@ -380,17 +380,17 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     operationContext.current = false;
     drawTempPointsRef.current = [];
     setDrawTempPoints([]);
-    // 初始化
+    // Initialize
   };
 
   const handleTouchEnd = (e: KonvaEventObject<TouchEvent>) => {
     if (e.evt.touches.length === 0) {
-      // 初始化
+      // Initialize
       operationInitialStage.current = undefined;
       operationInitialScale.current = 0;
       operationInitialVal.current = [{ x: 0, y: 0, pageX: 0, pageY: 0 }];
       touchTouches.current = 0;
-      // 初始化
+      // Initialize
     }
   };
 
@@ -578,25 +578,89 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           height={baseMapOrVirtual?.height}
           fill="#00000028"
         />
-        {isTileOnlyMap && tileVirtualSize ? (
-          <TileLayer
-            tilePath={mapData.tilePath!}
-            tileSize={mapData.tileSize ?? 256}
-            zoom={mapData.minZoom ?? 2}
-            coordinateRotation={mapData.coordinateRotation}
-            opacity={activeLayer ? 0.1 : 1}
-          />
-        ) : (
-          <BaseMap
-            id="im-basemap"
-            baseMap={baseMap}
-            activeLayer={activeLayer}
-            status={effectiveStatus}
-            tileOnlyUnsupported={isTileOnlyMap && !tileVirtualSize}
-            coordinateRotation={mapData.coordinateRotation}
-            resolution={{ width, height }}
-          />
-        )}
+        {(() => {
+          const tileOpacity = activeLayer ? 0.1 : 1;
+          if (isTileOnlyMap && tileVirtualSize && mapData.localTileLayers) {
+            return (
+              <LocalTileLayers
+                basePath={mapData.localTileLayers.basePath}
+                layerCount={mapData.localTileLayers.layerCount}
+                gridCols={mapData.localTileLayers.gridCols}
+                gridRows={mapData.localTileLayers.gridRows}
+                tileSize={mapData.localTileLayers.tileSize}
+                flipX={mapData.localTileLayers.flipX}
+                flipY={mapData.localTileLayers.flipY}
+                coordinateRotation={mapData.coordinateRotation}
+                opacity={tileOpacity}
+              />
+            );
+          }
+          if (isTileOnlyMap && tileVirtualSize) {
+            const tileProps = {
+              tileSize: mapData.tileSize ?? 256,
+              minZoom: mapData.minZoom ?? 2,
+              maxZoom: mapData.maxZoom ?? 6,
+              mapScale,
+              mapPosition,
+              resolution,
+              coordinateRotation: mapData.coordinateRotation,
+            };
+            const layersWithTiles = mapData.layers?.filter((l) => l.tilePath) ?? [];
+            return (
+              <>
+                {layersWithTiles.length > 0 ? (
+                  <>
+                    {/* Technical layer (bottom) */}
+                    {layersWithTiles
+                      .filter((l) => l.name === 'Technical')
+                      .map((layer) => (
+                        <TileLayer
+                          key={layer.name}
+                          tilePath={layer.tilePath}
+                          {...tileProps}
+                          opacity={activeLayer?.name === layer.name ? 1 : tileOpacity}
+                        />
+                      ))}
+                    {/* 1st (main) layer */}
+                    <TileLayer
+                      tilePath={mapData.tilePath!}
+                      {...tileProps}
+                      opacity={activeLayer ? tileOpacity : 1}
+                    />
+                    {/* Second Level (top) */}
+                    {layersWithTiles
+                      .filter((l) => l.name === 'Second Level')
+                      .map((layer) => (
+                        <TileLayer
+                          key={layer.name}
+                          tilePath={layer.tilePath}
+                          {...tileProps}
+                          opacity={activeLayer?.name === layer.name ? 1 : tileOpacity}
+                        />
+                      ))}
+                  </>
+                ) : (
+                  <TileLayer
+                    tilePath={mapData.tilePath!}
+                    {...tileProps}
+                    opacity={tileOpacity}
+                  />
+                )}
+              </>
+            );
+          }
+          return (
+            <BaseMap
+              id="im-basemap"
+              baseMap={baseMap}
+              activeLayer={activeLayer}
+              status={effectiveStatus}
+              tileOnlyUnsupported={isTileOnlyMap && !tileVirtualSize}
+              coordinateRotation={mapData.coordinateRotation}
+              resolution={{ width, height }}
+            />
+          );
+        })()}
         {activeLayer && activeLayer.svgPath && <Image id="im-layermap" imageSrc={activeLayer.svgPath} />}
         <Labels {...utils} labels={mapData.labels} show />
         <LootContainers {...utils} lootContainers={mapData.lootContainers} show={markerLootKeys} />

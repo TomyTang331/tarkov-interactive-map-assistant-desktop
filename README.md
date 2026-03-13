@@ -252,65 +252,32 @@ See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
 
 ### Version 1.1.6 (2026-03-11)
 
-- ✨ **New Feature**: The Lab (实验室) map now loads correctly
-  - Implemented tile-based map support: `TileLayer` component loads and renders map tiles
-  - Virtual canvas size for coordinate conversion when no SVG base image exists
-  - Labs uses `tilePath` only; rendering and markers now work as expected
-- ✨ **New Feature**: Rust-backed game log watching
-  - In desktop app, "Select Tarkov game directory" uses Tauri dialog; path is stored in Rust
-  - Backend resolves `Logs` → latest `log_*` → application log file and watches it in a background thread
-  - Parses profile and raid lines, emits `profile-log` and `raid-log` events to frontend
-  - Frontend listens for events and updates raid info / auto map switch without polling
-  - Screenshot directory watching and all other behavior unchanged
-- ✨ **New Feature**: PMC/Scav extract Chinese names
-  - Added `extract_names_zh.json` and `getExtractDisplayName()`; extract labels use reference Chinese names
-- 🧹 **Code quality**: ESLint fixes (max-len, no-nested-ternary, no-empty) in Canvas, BaseMap, MapInfo, index
+- The Lab map: tile-based loading via `TileLayer` and local tiles at `src/assets/the-lab-map`; virtual canvas size when no SVG base.
+- Game log watching: Tauri dialog for game directory; Rust parses application log and emits `profile-log` / `raid-log`; frontend updates raid info and auto map switch.
+- PMC/Scav extract labels use Chinese names from `extract_names_zh.json`.
+- M key toggles Picture-in-Picture when window is focused (frontend keydown) or unfocused (rdev event).
+- ESLint fixes (Canvas, BaseMap, MapInfo, QuickTools); code comments in English.
 
 ### Version 1.1.5 (2025-12-19)
 
-- ✨ **New Feature**: Automatic PNG cleanup on exit
-  - Selected screenshot directory's PNG files are automatically deleted when the application exits
-  - Triggered when quitting via system tray "Quit" menu
-  - Silent operation with no user prompts
-  - Helps keep screenshot folder clean automatically
+- Automatic PNG cleanup in screenshot directory on quit (tray "Quit" menu).
 
 ### Version 1.1.4 (2025-12-19)
 
-- ✨ **New Feature**: Global keyboard hotkey support
-  - Press **M key** anytime to toggle Picture-in-Picture mode, even when the application window is unfocused
-  - Implemented using `rdev` library for system-wide keyboard event listening
-  - Provides seamless control while playing the game in fullscreen
+- Global M key toggles Picture-in-Picture via `rdev` (works when window unfocused).
 
 ### Version 1.1.3 (2025-12-19)
 
-- 🐛 **Fixed**: Marker zoom functionality (标点缩放) now works correctly
-  - Uncommented the `onPlayerLocationChange` callback in PlayerLocation component
-  - Optimized zoom logic in Canvas component
-  - When enabled, map now properly zooms to 3x base scale and centers on player location
-- 🧹 **Optimization**: Significant code cleanup and refactoring
-  - Removed unused `AdditionFunc` component and redundant social links
-  - Removed deprecated `parseFleaMarketInfo` logic and dead code
-  - Optimized File System Access API type definitions
-  - Fixed various ESLint warnings and improved code quality
+- Fixed marker zoom (标点缩放): `onPlayerLocationChange` and Canvas zoom; map centers at 3x scale.
+- Removed unused components and dead code; ESLint and type fixes.
 
 ### Version 1.1.2 (2025-12-18)
 
-- 🐛 Fixed all React console key prop warnings (11 components)
-- 🐛 Fixed Picture-in-Picture blank window issue
-- 🐛 Fixed canvas infinite loop warning
-- 🔒 Blocked all reload shortcuts (prevents accidental refresh)
-- ⚡ Performance improvements
+- Fixed React key warnings, PiP blank window, canvas loop; blocked reload shortcuts.
 
 ### Version 1.1.0 (2025-12-17)
 
-- ✨ First desktop release
-- ✨ Rebuilt with Tauri, installer only 5-10MB
-- ✨ Blue theme UI design
-- ✨ Optimized loading experience
-- ✨ Custom Tarkov-themed icon
-- ✨ System tray support (show/hide/quit)
-- ✨ Window starts maximized by default
-- ✨ Close button hides to tray instead of exit
+- First Tauri desktop release; tray, maximized start, close-to-tray; blue theme and custom icon.
 
 ---
 

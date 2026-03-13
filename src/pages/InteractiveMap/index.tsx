@@ -41,9 +41,9 @@ const Index = () => {
   const [simpleUIMode, setSimpleUIMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const [directoryHandler, setDirectoryHandler] = useState<string>(); // 改为存储路径字符串
+  const [directoryHandler, setDirectoryHandler] = useState<string>(); // Store path string
   const [tarkovGamePathHandler, setTarkovGamePathHandler] = useState<FileSystemDirectoryHandle>();
-  /** 由 Tauri 监听的游戏目录路径（与 tarkovGamePathHandler 二选一，Rust 端解析日志并发事件） */
+  /** Game dir path from Tauri (Rust parses logs and emits events; alternative to tarkovGamePathHandler) */
   const [tarkovGamePathFromRust, setTarkovGamePathFromRust] = useState<string>();
   const [applicationLogsHandler, setApplicationLogsHandler] = useState<FileSystemFileHandle>();
   const applicationPathNameCache = useRef<string>();
@@ -97,7 +97,7 @@ const Index = () => {
 
   const { t } = useI18N(lang);
 
-  // 使用 requestAnimationFrame 合并高频坐标更新，减少整页重渲染
+  // Use requestAnimationFrame to throttle cursor/ruler updates and avoid full-page re-renders
   const cursorPositionNextRef = useRef<InteractiveMap.Position2D | null>(null);
   const cursorPositionRafRef = useRef<number | null>(null);
   const rulerPositionNextRef = useRef<InteractiveMap.Position2D[] | undefined | null>(null);
@@ -449,7 +449,7 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // 监听 Tauri 后端发送的截图新建事件，避免在前端轮询目录
+    // Listen for Tauri screenshot-created events instead of polling
     let unlistenPromise: Promise<() => void> | null = null;
 
     (async () => {
@@ -487,7 +487,7 @@ const Index = () => {
           parseRaidInfo(event.payload);
         });
       } catch {
-        // 非 Tauri 环境
+        // Non-Tauri environment
       }
     })();
 

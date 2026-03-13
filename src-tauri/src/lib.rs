@@ -418,7 +418,7 @@ pub fn run() {
             // Start global keyboard listener
             start_global_keyboard_listener(app.handle().clone());
 
-            // Start screenshot directory watcher in a background thread（保持不变）
+            // Start screenshot directory watcher in a background thread
             let app_handle_screenshot = app.handle().clone();
             thread::spawn(move || {
                 use std::collections::HashSet;

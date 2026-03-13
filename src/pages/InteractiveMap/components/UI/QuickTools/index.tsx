@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import classNames from 'classnames';
@@ -38,6 +38,9 @@ const Index = (
   const [strokeType, setStrokeType] = useState<InteractiveMap.StrokeType>('drag');
   const [activeModal, setActiveModal] = useState<InteractiveMap.QuickTools>();
   const [pipActive, setPipActive] = useState(false);
+  const setPipActiveRef = useRef(setPipActive);
+  const handleTogglePiPRef = useRef<() => Promise<void>>(() => Promise.resolve());
+  setPipActiveRef.current = setPipActive;
 
   const handleSelectDraw = () => {
     setStrokeType('draw');
@@ -51,76 +54,90 @@ const Index = (
     setActiveModal(undefined);
   };
 
+  const forceStageRedraw = () => {
+    if (typeof (window as any).forceStageRefresh === 'function') {
+      (window as any).forceStageRefresh();
+    }
+  };
+
+  /** Video Picture-in-Picture: canvas → captureStream → video → requestPictureInPicture */
+  const openVideoPiP = async () => {
+    const canvasElement = document.querySelector('.im-stage canvas') as HTMLCanvasElement;
+    if (!canvasElement || !('captureStream' in canvasElement)) {
+      throw new Error('Map canvas not found or PiP not supported');
+    }
+
+    await new Promise<void>((resolve) => {
+      requestAnimationFrame(() => {
+        forceStageRedraw();
+        requestAnimationFrame(() => {
+          forceStageRedraw();
+          requestAnimationFrame(() => {
+            forceStageRedraw();
+            resolve();
+          });
+        });
+      });
+    });
+
+    const stream = canvasElement.captureStream(30);
+    const video = document.createElement('video');
+    video.srcObject = stream;
+    video.muted = true;
+    video.playsInline = true;
+    await video.play();
+    forceStageRedraw();
+    await new Promise((r) => setTimeout(r, 100));
+    await video.requestPictureInPicture();
+    (window as any)._pipVideo = video;
+    video.addEventListener('leavepictureinpicture', () => {
+      setPipActiveRef.current(false);
+      stream.getTracks().forEach((t) => t.stop());
+      video.srcObject = null;
+      (window as any)._pipVideo = null;
+    });
+  };
+
+  const closeVideoPiP = async () => {
+    try {
+      await document.exitPictureInPicture();
+    } finally {
+      const video = (window as any)._pipVideo;
+      if (video?.srcObject) {
+        (video.srcObject as MediaStream).getTracks().forEach((t) => t.stop());
+        video.srcObject = null;
+      }
+      (window as any)._pipVideo = null;
+    }
+  };
+
   const handleTogglePiP = async () => {
     try {
-      if (!document.pictureInPictureElement) {
-        const canvasElement = document.querySelector('.im-stage canvas') as HTMLCanvasElement;
-
-        if (canvasElement && 'captureStream' in canvasElement) {
-          // Force multiple redraws before capturing stream
-          const forceRedraw = () => {
-            if (typeof (window as any).forceStageRefresh === 'function') {
-              (window as any).forceStageRefresh();
-            }
-          };
-
-          // Use multiple requestAnimationFrame to ensure canvas is drawn
-          await new Promise<void>((resolve) => {
-            requestAnimationFrame(() => {
-              forceRedraw();
-              requestAnimationFrame(() => {
-                forceRedraw();
-                requestAnimationFrame(() => {
-                  forceRedraw();
-                  resolve();
-                });
-              });
-            });
-          });
-
-          // Now create stream after ensuring canvas is rendered
-          const stream = canvasElement.captureStream(30);
-          const video = document.createElement('video');
-          video.srcObject = stream;
-          video.muted = true;
-          video.playsInline = true;
-
-          await video.play();
-
-          // One more redraw after stream is playing
-          forceRedraw();
-          await new Promise((resolve) => setTimeout(resolve, 100));
-
-          await video.requestPictureInPicture();
-          setPipActive(true);
-
-          toast.info('画中画模式已开启');
-
-          video.addEventListener('leavepictureinpicture', () => {
-            setPipActive(false);
-            stream.getTracks().forEach((track) => track.stop());
-            video.srcObject = null;
-          });
-
-          (window as any)._pipVideo = video;
+      if (document.pictureInPictureElement) {
+        try {
+          await closeVideoPiP();
+        } finally {
+          setPipActive(false);
         }
-      } else {
-        await document.exitPictureInPicture();
-        setPipActive(false);
-
-        const video = (window as any)._pipVideo;
-        if (video && video.srcObject) {
-          const stream = video.srcObject as MediaStream;
-          stream.getTracks().forEach((track) => track.stop());
-          video.srcObject = null;
-        }
-        (window as any)._pipVideo = null;
+        return;
       }
+
+      const canvasElement = document.querySelector('.im-stage canvas') as HTMLCanvasElement;
+      if (!canvasElement || !('captureStream' in canvasElement)) {
+        toast.error('未找到地图画布或当前环境不支持画中画');
+        return;
+      }
+
+      await openVideoPiP();
+      setPipActive(true);
+      toast.info('画中画模式已开启');
     } catch (error) {
       console.error('PiP error:', error);
+      setPipActive(false);
       toast.error('画中画模式启动失败');
     }
   };
+  handleTogglePiPRef.current = handleTogglePiP;
 
   useEffect(() => {
     onStrokeTypeChange?.(strokeType);
@@ -144,6 +161,9 @@ const Index = (
       } else if (e.ctrlKey && e.key === 'f') {
         e.preventDefault();
         setStrokeType('ruler');
+      } else if (!e.ctrlKey && !e.metaKey && (e.key === 'm' || e.key === 'M')) {
+        e.preventDefault();
+        handleTogglePiPRef.current?.();
       }
     };
     window.addEventListener('keydown', keydown);
@@ -154,7 +174,7 @@ const Index = (
 
   useEffect(() => {
     const unlistenPromise = listen('toggle-pip', () => {
-      handleTogglePiP();
+      handleTogglePiPRef.current?.();
     });
 
     return () => {

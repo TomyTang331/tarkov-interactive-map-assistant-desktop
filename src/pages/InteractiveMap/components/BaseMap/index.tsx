@@ -8,7 +8,7 @@ interface BaseMapProps {
   status: 'loaded' | 'loading' | 'failed';
   coordinateRotation?: number;
   resolution: { width: number; height: number };
-  /** 仅瓦片图、无 SVG 底图的地图（如实验室），当前版本未实现瓦片渲染 */
+  /** Tile-only map without SVG base (e.g. Labs); tile rendering is handled in Canvas */
   tileOnlyUnsupported?: boolean;
 }
 
