@@ -52,23 +52,20 @@ export const calculatePenetration = (props: {
 };
 
 export const quaternionToEulerAngles = (q: number[]) => {
-  // 四元数各分量
   const x = q[0];
   const z = q[1];
   const y = q[2];
   const w = q[3];
 
-  // 计算欧拉角
   let roll = Math.atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y));
   let pitch = Math.asin(Math.max(Math.min(2 * (w * y - z * x), 1), -1));
   let yaw = Math.atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z));
 
-  // 将弧度转换为度（如果需要）
   roll = roll * 180 / Math.PI;
   pitch = pitch * 180 / Math.PI;
   yaw = yaw * 180 / Math.PI;
 
-  return [yaw, pitch, roll]; // 返回ZYX欧拉角
+  return [yaw, pitch, roll];
 };
 
 export const readFileContent = async (file: File): Promise<string | ArrayBuffer | null> => {

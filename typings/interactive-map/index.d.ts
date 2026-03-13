@@ -29,6 +29,15 @@ declare namespace InteractiveMap {
     authorLink: string;
     svgPath: string;
     tilePath: string;
+    localTileLayers?: {
+      basePath: string;
+      layerCount: number;
+      gridCols: number;
+      gridRows: number;
+      tileSize: number;
+      flipX?: boolean;
+      flipY?: boolean;
+    };
     layers?: Layer[];
     labels: Label[];
   }
@@ -55,7 +64,7 @@ declare namespace InteractiveMap {
     sides: string[];
     categories: string[];
   }
-  
+
   interface Extract {
     id: string;
     name: string;
@@ -120,7 +129,7 @@ declare namespace InteractiveMap {
     y: number;
     z: number;
   }
-  
+
   interface Switch {
     id: string;
     name: string;
@@ -158,7 +167,7 @@ declare namespace InteractiveMap {
     width: number;
     height: number;
   }
-  
+
   interface ImageTransformProps {
     x: (pos: number) => number;
     y: (pos: number) => number;
