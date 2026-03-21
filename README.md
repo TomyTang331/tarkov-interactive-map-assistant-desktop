@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.7
+**Version**: 1.1.8
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -112,23 +112,23 @@ src-tauri/target/release/bundle/
 
 ### GitHub Release (CI)
 
-Workflow: [`.github/workflows/build.yml`](./.github/workflows/build.yml). It builds **Windows, macOS, and Linux** bundles and attaches them to a **GitHub Release** when you push a version tag.
+Workflow: [`.github/workflows/build.yml`](./.github/workflows/build.yml). It runs on **Windows only** (the game is Windows-only), builds **NSIS `.exe` and `.msi`** installers, and attaches them to a **GitHub Release** when you push a version tag.
 
 1. Align versions in `package.json`, `src-tauri/Cargo.toml`, and `src-tauri/tauri.conf.json`.
 2. Commit and push to `main` (or your default branch).
-3. Create and push a tag (must match `v*`, e.g. `v1.1.7`):
+3. Create and push a tag (must match `v*`, e.g. `v1.1.8`):
 
    ```bash
-   git tag v1.1.7
-   git push origin v1.1.7
+   git tag v1.1.8
+   git push origin v1.1.8
    ```
 
-4. Open **Actions** → **Build and Release** and wait for all matrix jobs to finish.
-5. Open **Releases**: you should see tag `v1.1.7` with `.exe` / `.msi` (Windows), `.dmg` / `.app` (macOS), `.deb` / `.AppImage` (Linux) as appropriate.
+4. Open **Actions** → **Build and Release** and wait for the single **windows-latest** job to finish.
+5. Open **Releases**: you should see `*_x64-setup.exe` and `*_x64_*.msi` for that tag.
 
 **Release notes (changelog like v1.1.5):** The workflow sets a short default body via `tauri-action`. For a rich Markdown description, either **Edit release** on GitHub after CI completes and paste from `README.md` / `README_ZH.md`, or change `releaseBody` in the workflow (multi-line YAML `|` block).
 
-**Manual run:** **Actions** → **Build and Release** → **Run workflow** (`workflow_dispatch`) also runs the build; with `tauri-action`, release creation is tied to tags—use tag push for a full public Release with assets.
+**Manual run:** **Actions** → **Build and Release** → **Run workflow** (`workflow_dispatch`) also runs the Windows build; with `tauri-action`, attaching assets to a **Release** is intended for **tag pushes** (`v*`).
 
 ---
 
@@ -267,6 +267,10 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 ---
 
 ## 📊 Changelog
+
+### Version 1.1.8 (2026-03-13)
+
+- **CI / Release**: GitHub Actions builds on **Windows only** (game is Windows-only); **Node 22** for Vite 7; uploads `.exe` / `.msi` only.
 
 ### Version 1.1.7 (2026-03-13)
 

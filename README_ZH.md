@@ -10,7 +10,7 @@
 
 逃离塔科夫实时交互式地图助手桌面版，基于 Tauri + React 开发，提供原生桌面体验。帮助玩家更好地探索和导航游戏世界。
 
-**版本**: 1.1.7
+**版本**: 1.1.8
 **作者**: Tomy
 **原项目**: 基于 [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -112,7 +112,7 @@ src-tauri/target/release/bundle/
 
 ### GitHub 自动发布（Release）
 
-工作流：[`.github/workflows/build.yml`](./.github/workflows/build.yml)。在推送符合 `v*` 的版本标签时，会在 **GitHub Actions** 中编译 **Windows / macOS / Linux** 安装包，并由 **tauri-action** 创建/更新 **GitHub Release**，上传对应平台的 `.exe`、`.msi`、`.dmg`、`.deb`、`.AppImage` 等资源（与截图中 v1.1.5 形式类似）。
+工作流：[`.github/workflows/build.yml`](./.github/workflows/build.yml)。**仅使用 Windows 运行器**（游戏仅支持 Windows），推送符合 `v*` 的标签时编译 **NSIS 安装程序（`.exe`）与 MSI（`.msi`）**，并由 **tauri-action** 创建/更新 **GitHub Release** 并上传附件（形式与 v1.1.5 截图类似）。
 
 **操作步骤：**
 
@@ -121,18 +121,18 @@ src-tauri/target/release/bundle/
 3. 打标签并推送（标签名必须以 `v` 开头）：
 
    ```bash
-   git tag v1.1.7
-   git push origin v1.1.7
+   git tag v1.1.8
+   git push origin v1.1.8
    ```
 
-4. 打开仓库 **Actions**，查看 **Build and Release** 工作流是否全部成功（矩阵含三个平台）。
-5. 打开 **Releases**，即可下载各平台构建产物；Windows 上通常为 NSIS 的 `*_x64-setup.exe` 与 `*_x64_*.msi`。
+4. 打开仓库 **Actions**，等待 **Build and Release** 中唯一的 **windows-latest** 任务成功。
+5. 打开 **Releases**，下载该版本下的 `*_x64-setup.exe` 与 `*_x64_*.msi`。
 
 **发布说明（像截图里带 emoji 的 Changelog）：** 工作流里 `releaseBody` 默认为简短英文。CI 完成后可在 GitHub 上 **Edit release**，把 `README.md` / `README_ZH.md` 里对应版本的更新日志粘贴进去；或直接在 `.github/workflows/build.yml` 里把 `releaseBody` 改成多行 Markdown（YAML 用 `|`）。
 
 **权限：** 工作流已设置 `permissions: contents: write`，以便 `GITHUB_TOKEN` 创建 Release 并上传资源。若组织/仓库关闭了默认 `GITHUB_TOKEN` 写权限，需在 **Settings → Actions → General** 中允许。
 
-**仅想试跑构建：** 可使用 **Actions → Build and Release → Run workflow**；完整「带 Release 页 + 附件」的发布仍以 **推送 `v*` 标签** 为主。
+**仅想试跑构建：** 可使用 **Actions → Build and Release → Run workflow**；要把安装包挂到 **Release** 上，仍以 **推送 `v*` 标签** 为主。
 
 ---
 
@@ -271,6 +271,10 @@ get_tarkov_game_path() -> String
 ---
 
 ## 📊 更新日志
+
+### Version 1.1.8 (2026-03-13)
+
+- **CI / 发布**：GitHub Actions **仅 Windows** 构建（游戏仅 Windows）；**Node 22**（兼容 Vite 7）；Release 附件仅 `.exe` / `.msi`。
 
 ### Version 1.1.7 (2026-03-13)
 
