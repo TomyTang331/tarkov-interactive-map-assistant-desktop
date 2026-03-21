@@ -74,6 +74,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
   const [mapMoveStatus, setMapMoveStatus] = useState<Set<'w' | 'a' | 's' | 'd'>>();
+  const mapMoveStatusRef = useRef(mapMoveStatus);
   const [mapScale, setMapScale] = useState(1);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [drawLines, setDrawLines] = useState<InteractiveMap.iMDrawLine[]>([]);
@@ -369,15 +370,19 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
       drawTempPointsRef.current.length > 0
     ) {
       const _strokeWidth = strokeType === 'draw' ? strokeWidth : eraserWidth;
-      const data = {
+      const data: InteractiveMap.iMDrawLine = {
+        uuid: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         tool: strokeType,
         mapId: mapData.id,
         points: drawTempPointsRef.current,
+        strokeType,
         strokeColor,
         strokeWidth: _strokeWidth,
-        shadowWidth: _strokeWidth,
+        eraserWidth,
+        member: false,
+        updatedAt: Date.now(),
       };
-      setDrawLines((prev) => [...prev, data as any]);
+      setDrawLines((prev) => [...prev, data]);
     }
     // Initialize
     operationInitialStage.current = undefined;
@@ -487,12 +492,16 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   }, []);
 
   useEffect(() => {
+    mapMoveStatusRef.current = mapMoveStatus;
+  }, [mapMoveStatus]);
+
+  useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
       const { target } = e;
       if (target instanceof HTMLElement) {
         if (target.tagName === 'INPUT') return;
       }
-      const _mapMoveStatus = new Set(mapMoveStatus || []);
+      const _mapMoveStatus = new Set(mapMoveStatusRef.current || []);
       if (!e.ctrlKey && e.key === 'w') {
         _mapMoveStatus.add('w');
       } else if (!e.ctrlKey && e.key === 'a') {
@@ -505,7 +514,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
       setMapMoveStatus(_mapMoveStatus);
     };
     const keyup = (e: KeyboardEvent) => {
-      const _mapMoveStatus = new Set(mapMoveStatus || []);
+      const _mapMoveStatus = new Set(mapMoveStatusRef.current || []);
       if (!e.ctrlKey && e.key === 'w') {
         _mapMoveStatus.delete('w');
       } else if (!e.ctrlKey && e.key === 'a') {

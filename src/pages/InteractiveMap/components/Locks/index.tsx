@@ -71,4 +71,4 @@ const Index = React.memo((props: LocksProps & InteractiveMap.UtilProps) => {
 });
 
 Index.displayName = 'Locks';
-export default React.memo(Index);
+export default Index;

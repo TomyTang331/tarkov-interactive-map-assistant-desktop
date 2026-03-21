@@ -74,4 +74,4 @@ const Index = React.memo((props: StationaryWeaponsProps & InteractiveMap.UtilPro
 });
 
 Index.displayName = 'StationaryWeapons';
-export default React.memo(Index);
+export default Index;

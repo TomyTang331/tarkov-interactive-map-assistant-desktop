@@ -10,12 +10,12 @@ import {
 
 import Image from '../Image';
 
-interface ExtractsProps {
+interface LootContainersProps {
   lootContainers: InteractiveMap.LootContainer[];
   show: string[];
 }
 
-const Index = React.memo((props: ExtractsProps & InteractiveMap.UtilProps) => {
+const Index = React.memo((props: LootContainersProps & InteractiveMap.UtilProps) => {
   const {
     lootContainers = [],
     baseMapStatus,
@@ -77,4 +77,4 @@ const Index = React.memo((props: ExtractsProps & InteractiveMap.UtilProps) => {
 });
 
 Index.displayName = 'LootContainers';
-export default React.memo(Index);
+export default Index;

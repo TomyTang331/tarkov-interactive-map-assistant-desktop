@@ -401,11 +401,5 @@ export const mouseClickEvent = (props: MouseClickEvent) => {
 };
 
 export const getLayer = (name: string, layers: InteractiveMap.Layer[]) => {
-  let layer;
-  layers.forEach((_layer) => {
-    if (_layer.name === name) {
-      layer = _layer;
-    }
-  });
-  return layer;
+  return layers.find((layer) => layer.name === name);
 };

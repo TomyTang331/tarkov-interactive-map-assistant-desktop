@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 
 import classNames from 'classnames';
 
-import { listen } from '@tauri-apps/api/event';
-
 import Icon from '@/components/Icon';
 
 import DrawSetting, { DrawSettingProps } from '../DrawSetting';
@@ -172,12 +170,22 @@ const Index = (
   }, []);
 
   useEffect(() => {
-    const unlistenPromise = listen('toggle-pip', () => {
-      handleTogglePiPRef.current?.();
-    });
+    let unlistenFn: (() => void) | null = null;
+
+    (async () => {
+      try {
+        const { listen } = await import('@tauri-apps/api/event');
+        const unlisten = await listen('toggle-pip', () => {
+          handleTogglePiPRef.current?.();
+        });
+        unlistenFn = unlisten;
+      } catch {
+        // Tauri event API unavailable outside desktop build
+      }
+    })();
 
     return () => {
-      unlistenPromise.then((fn) => fn());
+      unlistenFn?.();
     };
   }, []);
 

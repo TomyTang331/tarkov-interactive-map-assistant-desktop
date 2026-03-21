@@ -26,9 +26,10 @@ const Index = (props: RulerProps) => {
   const majorTickLength = 10 * baseScale;
 
   if (rulerPosition) {
-    const ShapeGroup: any[] = [];
+    const ShapeGroup: React.ReactNode[] = [];
     ShapeGroup.push(
       <Rect
+        key="ruler-bg"
         x={0}
         y={0}
         width={length}
@@ -44,7 +45,7 @@ const Index = (props: RulerProps) => {
       const isMajor = i % majorTickEvery === 0;
       const tickLength = isMajor ? majorTickLength : minorTickLength;
       const tickLine = (
-        <Line points={[i, 0, i, tickLength]} stroke="#888888" strokeWidth={1 * baseScale} />
+        <Line key={`tick-${i}`} points={[i, 0, i, tickLength]} stroke="#888888" strokeWidth={1 * baseScale} />
       );
       ShapeGroup.push(tickLine);
     }

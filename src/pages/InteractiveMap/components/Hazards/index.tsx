@@ -120,4 +120,4 @@ const Index = React.memo((props: HazardsProps & InteractiveMap.UtilProps) => {
 });
 
 Index.displayName = 'Hazards';
-export default React.memo(Index);
+export default Index;

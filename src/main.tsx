@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
+import packageJson from 'package.json';
 import { RecoilRoot } from 'recoil';
 import { ErrorBoundary, Message } from 'tilty-ui';
 
@@ -22,7 +23,7 @@ declare global {
   }
 }
 
-window.buildVersion = '1.0.1-OpenSource';
+window.buildVersion = `${packageJson.version}-OpenSource`;
 
 const root = document.getElementById('app');
 

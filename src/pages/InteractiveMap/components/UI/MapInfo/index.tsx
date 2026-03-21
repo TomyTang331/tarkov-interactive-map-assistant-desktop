@@ -39,7 +39,7 @@ const Index = (props: MapInfoProps) => {
 
   const tarkovTime = useMemo(() => {
     return (((realTime + timeDiff) * 7) % (24 * 3600000)) - 5 * 3600000;
-  }, [realTime]);
+  }, [realTime, timeDiff]);
 
   useEffect(() => {
     const machineTime = dayjs().valueOf();

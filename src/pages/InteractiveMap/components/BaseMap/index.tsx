@@ -96,4 +96,4 @@ const Index = React.memo((props: BaseMapProps) => {
 });
 
 Index.displayName = 'BaseMap';
-export default React.memo(Index);
+export default Index;

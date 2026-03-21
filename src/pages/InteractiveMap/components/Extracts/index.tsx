@@ -15,6 +15,12 @@ interface ExtractsProps {
   show: InteractiveMap.Faction[];
 }
 
+const extractColorMap: Record<string, string> = {
+  pmc: '#88ff00',
+  scav: '#ff8800',
+  shared: '#00ccff',
+};
+
 const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
   const {
     extracts = [],
@@ -29,11 +35,6 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
     return (
       <Group>
         {extracts.map((extract) => {
-          const colorMap: any = {
-            pmc: '#88ff00',
-            scav: '#ff8800',
-            shared: '#00ccff',
-          };
           const extractHeight = extract.position.y;
           let active = true;
           if (activeLayer) {
@@ -75,7 +76,7 @@ const Index = (props: ExtractsProps & InteractiveMap.UtilProps) => {
                   fontFamily="JinBuTi"
                   text={displayName}
                   fontSize={12 / mapScale}
-                  fill={colorMap[extract.faction]}
+                  fill={extractColorMap[extract.faction]}
                   width={600 / mapScale}
                   offsetX={300 / mapScale}
                   align="center"

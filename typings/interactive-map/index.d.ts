@@ -241,7 +241,7 @@ declare namespace InteractiveMap {
 
   type MapStatus = 'loaded' | 'loading' | 'failed';
 
-  type StrokeType = 'drag' | 'draw' | 'eraser' | 3 | 'ruler';
+  type StrokeType = 'drag' | 'draw' | 'eraser' | 'ruler';
   type OperationType = -1 | 0 | 1 | 2;
 
   type QuickTools = 'marker' | 'draw' | 'eraser' | 'setting';
