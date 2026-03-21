@@ -110,6 +110,26 @@ src-tauri/target/release/bundle/
 
 > **Note**: The build process may take several minutes, especially for the first build.
 
+### GitHub Release (CI)
+
+Workflow: [`.github/workflows/build.yml`](./.github/workflows/build.yml). It builds **Windows, macOS, and Linux** bundles and attaches them to a **GitHub Release** when you push a version tag.
+
+1. Align versions in `package.json`, `src-tauri/Cargo.toml`, and `src-tauri/tauri.conf.json`.
+2. Commit and push to `main` (or your default branch).
+3. Create and push a tag (must match `v*`, e.g. `v1.1.7`):
+
+   ```bash
+   git tag v1.1.7
+   git push origin v1.1.7
+   ```
+
+4. Open **Actions** → **Build and Release** and wait for all matrix jobs to finish.
+5. Open **Releases**: you should see tag `v1.1.7` with `.exe` / `.msi` (Windows), `.dmg` / `.app` (macOS), `.deb` / `.AppImage` (Linux) as appropriate.
+
+**Release notes (changelog like v1.1.5):** The workflow sets a short default body via `tauri-action`. For a rich Markdown description, either **Edit release** on GitHub after CI completes and paste from `README.md` / `README_ZH.md`, or change `releaseBody` in the workflow (multi-line YAML `|` block).
+
+**Manual run:** **Actions** → **Build and Release** → **Run workflow** (`workflow_dispatch`) also runs the build; with `tauri-action`, release creation is tied to tags—use tag push for a full public Release with assets.
+
 ---
 
 ## 🎨 Custom Icon

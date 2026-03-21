@@ -6,6 +6,10 @@ on:
       - 'v*'
   workflow_dispatch:
 
+# Required so tauri-action can create/update Releases and upload assets
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -36,7 +40,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build frontend
-        run: npx vite build
+        run: npm run build
 
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
@@ -53,6 +57,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.platform }}-build
+          if-no-files-found: warn
           path: |
             src-tauri/target/release/bundle/**/*.exe
             src-tauri/target/release/bundle/**/*.msi

@@ -110,6 +110,30 @@ src-tauri/target/release/bundle/
 
 > **注意**: 构建过程可能需要几分钟时间，首次构建尤其耗时。
 
+### GitHub 自动发布（Release）
+
+工作流：[`.github/workflows/build.yml`](./.github/workflows/build.yml)。在推送符合 `v*` 的版本标签时，会在 **GitHub Actions** 中编译 **Windows / macOS / Linux** 安装包，并由 **tauri-action** 创建/更新 **GitHub Release**，上传对应平台的 `.exe`、`.msi`、`.dmg`、`.deb`、`.AppImage` 等资源（与截图中 v1.1.5 形式类似）。
+
+**操作步骤：**
+
+1. 将 `package.json`、`src-tauri/Cargo.toml`、`src-tauri/tauri.conf.json` 中的版本号改为本次发布版本（三者保持一致）。
+2. 提交并推送到默认分支（如 `main`）。
+3. 打标签并推送（标签名必须以 `v` 开头）：
+
+   ```bash
+   git tag v1.1.7
+   git push origin v1.1.7
+   ```
+
+4. 打开仓库 **Actions**，查看 **Build and Release** 工作流是否全部成功（矩阵含三个平台）。
+5. 打开 **Releases**，即可下载各平台构建产物；Windows 上通常为 NSIS 的 `*_x64-setup.exe` 与 `*_x64_*.msi`。
+
+**发布说明（像截图里带 emoji 的 Changelog）：** 工作流里 `releaseBody` 默认为简短英文。CI 完成后可在 GitHub 上 **Edit release**，把 `README.md` / `README_ZH.md` 里对应版本的更新日志粘贴进去；或直接在 `.github/workflows/build.yml` 里把 `releaseBody` 改成多行 Markdown（YAML 用 `|`）。
+
+**权限：** 工作流已设置 `permissions: contents: write`，以便 `GITHUB_TOKEN` 创建 Release 并上传资源。若组织/仓库关闭了默认 `GITHUB_TOKEN` 写权限，需在 **Settings → Actions → General** 中允许。
+
+**仅想试跑构建：** 可使用 **Actions → Build and Release → Run workflow**；完整「带 Release 页 + 附件」的发布仍以 **推送 `v*` 标签** 为主。
+
 ---
 
 ## 🎨 自定义图标
