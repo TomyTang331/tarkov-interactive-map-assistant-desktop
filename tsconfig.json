@@ -1,4 +1,8 @@
 {
+  "include": [
+    "src",
+    "typings"
+  ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Projects */
@@ -110,6 +114,7 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
