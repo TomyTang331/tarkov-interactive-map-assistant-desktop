@@ -4,7 +4,6 @@ import extractNamesZh from '@/data/extract_names_zh.json';
 
 import { showTooltip } from './components/UI/Tooltip';
 
-/** Extract display names by id (reference: tarkov-tilty-frontend-opensource) */
 const extractNamesMap = extractNamesZh as Record<string, string>;
 export function getExtractDisplayName(id: string, fallback: string): string {
   return extractNamesMap[id] ?? fallback;
@@ -274,6 +273,7 @@ export const calculateHypotenuse = (
 };
 
 export function getTileMapVirtualSize(mapData: {
+  tileMapUnsupported?: boolean;
   tilePath?: string;
   tileSize?: number;
   minZoom?: number;
@@ -283,6 +283,9 @@ export function getTileMapVirtualSize(mapData: {
     tileSize: number;
   };
 }): { width: number; height: number } | null {
+  if (mapData.tileMapUnsupported) {
+    return null;
+  }
   if (mapData.localTileLayers) {
     const { gridCols, gridRows, tileSize } = mapData.localTileLayers;
     return {

@@ -8,7 +8,6 @@ interface BaseMapProps {
   status: 'loaded' | 'loading' | 'failed';
   coordinateRotation?: number;
   resolution: { width: number; height: number };
-  /** Tile-only map without SVG base (e.g. Labs); tile rendering is handled in Canvas */
   tileOnlyUnsupported?: boolean;
 }
 

@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.6
+**Version**: 1.1.7
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -19,7 +19,7 @@ Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop 
 ## ✨ Features
 
 - 🖥️ **Native Desktop App** - Built with Tauri, small installer (~5-10MB)
-- 🗺️ **Real-time Interactive Map** - Smooth map display and interaction (including tile-based maps e.g. Labs)
+- 🗺️ **Real-time Interactive Map** - Smooth map display and interaction (The Lab shows an unsupported notice; other maps full support)
 - 📍 **Auto Coordinate Tracking** - Automatic player location tracking (requires setup)
 - 🔄 **Auto Map Switching** - Smart map switching based on game state (Rust-backed game log watching in desktop)
 - 🎯 **Location Markers** - Mark important locations and loot spots
@@ -248,7 +248,10 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 
 ## 📊 Changelog
 
-See [CHANGELOG.md](./CHANGELOG.md) for detailed release history.
+### Version 1.1.7 (2026-03-13)
+
+- The Lab (`tileMapUnsupported`): only the centered “tile map not supported” message; map markers/overlays hidden (no corner thumbnail).
+- Trimmed redundant comments in Canvas, QuickTools, BaseMap, Ruler, InteractiveMap index, typings.
 
 ### Version 1.1.6 (2026-03-11)
 

@@ -23,16 +23,7 @@
   ],
   "author": "Tarkov.dev",
   "authorLink": "https://tarkov.dev",
-  "tilePath": "https://assets.tarkov.dev/maps/labs_v3/1st/{z}/{x}/{y}.png",
-  "localTileLayers": {
-    "basePath": "/the-lab-map",
-    "layerCount": 4,
-    "gridCols": 2,
-    "gridRows": 2,
-    "tileSize": 175,
-    "flipY": true,
-    "flipX": false
-  },
+  "tileMapUnsupported": true,
   "heightRange": [
     -0.9,
     3
@@ -40,7 +31,6 @@
   "layers": [
     {
       "name": "Second Level",
-      "tilePath": "https://assets.tarkov.dev/maps/labs_v3/2nd/{z}/{x}/{y}.png",
       "show": false,
       "extents": [
         {
@@ -65,7 +55,6 @@
     },
     {
       "name": "Technical",
-      "tilePath": "https://assets.tarkov.dev/maps/labs_v3/technical/{z}/{x}/{y}.png",
       "show": false,
       "extents": [
         {

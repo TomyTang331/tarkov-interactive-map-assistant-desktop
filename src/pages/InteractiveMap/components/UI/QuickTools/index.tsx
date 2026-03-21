@@ -60,7 +60,6 @@ const Index = (
     }
   };
 
-  /** Video Picture-in-Picture: canvas → captureStream → video → requestPictureInPicture */
   const openVideoPiP = async () => {
     const canvasElement = document.querySelector('.im-stage canvas') as HTMLCanvasElement;
     if (!canvasElement || !('captureStream' in canvasElement)) {

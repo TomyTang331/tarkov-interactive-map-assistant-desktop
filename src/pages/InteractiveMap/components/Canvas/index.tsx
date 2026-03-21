@@ -92,7 +92,9 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   const baseMapSrc = mapData.svgPath || '#';
   const [baseMap, baseMapStatus] = useImage(baseMapSrc, 'anonymous');
-  const isTileOnlyMap = !mapData.svgPath && (!!mapData.tilePath || !!mapData.localTileLayers);
+  const isTileOnlyMap =
+    !mapData.svgPath &&
+    (!!mapData.tilePath || !!mapData.localTileLayers || !!mapData.tileMapUnsupported);
   const tileVirtualSize = useMemo(() => getTileMapVirtualSize(mapData), [mapData]);
   const virtualImage = useMemo(
     () =>
@@ -110,7 +112,12 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     effectiveStatus = baseMapStatus;
   }
 
-  const baseMapOrVirtual = isTileOnlyMap && virtualImage ? virtualImage : baseMap;
+  let baseMapOrVirtual: { width: number; height: number } | typeof baseMap;
+  if (isTileOnlyMap && virtualImage) {
+    baseMapOrVirtual = virtualImage;
+  } else {
+    baseMapOrVirtual = baseMap;
+  }
   const baseScale = baseMapOrVirtual
     ? (baseMapOrVirtual.width + baseMapOrVirtual.height) / 1024
     : 1;
@@ -467,25 +474,17 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     real2imagePos,
   ]);
 
-  // Separate useEffect for forceStageRefresh to avoid infinite loop
   useEffect(() => {
-    // Expose method to force stage refresh for PiP initialization
     (window as any).forceStageRefresh = () => {
       if (stageRef.current) {
-        // Force all layers to redraw
-        const layers = stageRef.current.getLayers();
-        layers.forEach((layer) => {
-          layer.draw();
-        });
-        // Then batch draw the stage
+        stageRef.current.getLayers().forEach((layer) => layer.draw());
         stageRef.current.batchDraw();
       }
     };
-
     return () => {
       delete (window as any).forceStageRefresh;
     };
-  }, []); // Empty dependency array - only set up once
+  }, []);
 
   useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
@@ -574,8 +573,8 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           id="im-background"
           x={0}
           y={0}
-          width={baseMapOrVirtual?.width}
-          height={baseMapOrVirtual?.height}
+          width={baseMapOrVirtual?.width ?? width}
+          height={baseMapOrVirtual?.height ?? height}
           fill="#00000028"
         />
         {(() => {
@@ -610,7 +609,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
               <>
                 {layersWithTiles.length > 0 ? (
                   <>
-                    {/* Technical layer (bottom) */}
                     {layersWithTiles
                       .filter((l) => l.name === 'Technical')
                       .map((layer) => (
@@ -621,13 +619,11 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
                           opacity={activeLayer?.name === layer.name ? 1 : tileOpacity}
                         />
                       ))}
-                    {/* 1st (main) layer */}
                     <TileLayer
                       tilePath={mapData.tilePath!}
                       {...tileProps}
                       opacity={activeLayer ? tileOpacity : 1}
                     />
-                    {/* Second Level (top) */}
                     {layersWithTiles
                       .filter((l) => l.name === 'Second Level')
                       .map((layer) => (
@@ -680,7 +676,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           onPlayerLocationChange={handlePlayerLocationChange}
         />
       </Layer>
-      {/* Stroke */}
       <Layer>
         <DrawLines
           {...utils}
@@ -695,7 +690,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           show={['drawLine']}
         />
       </Layer>
-      {/* Tools */}
       <Layer>
         <Group>
           <Ruler {...utils} rulerPosition={rulerPosition} />

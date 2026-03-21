@@ -19,11 +19,11 @@ const Index = (props: RulerProps) => {
     }
   }, [rulerPosition]);
 
-  const rulerHeight = 25 * baseScale; // Ruler bar height
-  const tickDistance = 10 * baseScale; // Tick spacing
-  const majorTickEvery = 50 * baseScale; // Major tick interval
-  const minorTickLength = 5 * baseScale; // Minor tick length
-  const majorTickLength = 10 * baseScale; // Major tick length
+  const rulerHeight = 25 * baseScale;
+  const tickDistance = 10 * baseScale;
+  const majorTickEvery = 50 * baseScale;
+  const minorTickLength = 5 * baseScale;
+  const majorTickLength = 10 * baseScale;
 
   if (rulerPosition) {
     const ShapeGroup: any[] = [];

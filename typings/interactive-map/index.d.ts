@@ -28,7 +28,8 @@ declare namespace InteractiveMap {
     author: string;
     authorLink: string;
     svgPath: string;
-    tilePath: string;
+    tileMapUnsupported?: boolean;
+    tilePath?: string;
     localTileLayers?: {
       basePath: string;
       layerCount: number;
@@ -141,8 +142,8 @@ declare namespace InteractiveMap {
     extents: Extent[];
     name: string;
     show: boolean;
-    svgPath: string;
-    tilePath: string;
+    svgPath?: string;
+    tilePath?: string;
   }
 
   interface Label {

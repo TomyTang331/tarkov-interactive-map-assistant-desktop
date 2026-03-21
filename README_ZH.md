@@ -10,7 +10,7 @@
 
 逃离塔科夫实时交互式地图助手桌面版，基于 Tauri + React 开发，提供原生桌面体验。帮助玩家更好地探索和导航游戏世界。
 
-**版本**: 1.1.6
+**版本**: 1.1.7
 **作者**: Tomy
 **原项目**: 基于 [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -19,7 +19,7 @@
 ## ✨ 功能特性
 
 - 🖥️ **原生桌面应用** - 使用 Tauri 构建，安装包小（~5-10MB）
-- 🗺️ **实时交互式地图** - 流畅的地图显示和交互（含瓦片图，如实验室）
+- 🗺️ **实时交互式地图** - 流畅的地图显示和交互（实验室仅提示不支持；其余地图完整支持）
 - 📍 **自动坐标追踪** - 自动获取玩家位置（需配置）
 - 🔄 **自动地图切换** - 根据游戏状态智能切换地图（桌面版由 Rust 监听游戏日志）
 - 🎯 **位置标记** - 标记重要地点和物资点
@@ -248,7 +248,10 @@ get_tarkov_game_path() -> String
 
 ## 📊 更新日志
 
-查看 [CHANGELOG.md](./CHANGELOG.md) 了解详细的版本发布历史。
+### Version 1.1.7 (2026-03-13)
+
+- 实验室（`tileMapUnsupported`）：仅显示居中「瓦片图暂不支持」文案；不绘制地图标记与叠加层（去除左上角缩略图效果）。
+- 精简 Canvas、QuickTools、BaseMap、Ruler、InteractiveMap 入口、typings 等处冗余注释。
 
 ### Version 1.1.6 (2026-03-11)
 

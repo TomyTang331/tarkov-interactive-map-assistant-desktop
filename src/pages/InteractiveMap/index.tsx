@@ -41,9 +41,8 @@ const Index = () => {
   const [simpleUIMode, setSimpleUIMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const [directoryHandler, setDirectoryHandler] = useState<string>(); // Store path string
+  const [directoryHandler, setDirectoryHandler] = useState<string>();
   const [tarkovGamePathHandler, setTarkovGamePathHandler] = useState<FileSystemDirectoryHandle>();
-  /** Game dir path from Tauri (Rust parses logs and emits events; alternative to tarkovGamePathHandler) */
   const [tarkovGamePathFromRust, setTarkovGamePathFromRust] = useState<string>();
   const [applicationLogsHandler, setApplicationLogsHandler] = useState<FileSystemFileHandle>();
   const applicationPathNameCache = useRef<string>();
@@ -97,7 +96,6 @@ const Index = () => {
 
   const { t } = useI18N(lang);
 
-  // Use requestAnimationFrame to throttle cursor/ruler updates and avoid full-page re-renders
   const cursorPositionNextRef = useRef<InteractiveMap.Position2D | null>(null);
   const cursorPositionRafRef = useRef<number | null>(null);
   const rulerPositionNextRef = useRef<InteractiveMap.Position2D[] | undefined | null>(null);
@@ -449,7 +447,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // Listen for Tauri screenshot-created events instead of polling
     let unlistenPromise: Promise<() => void> | null = null;
 
     (async () => {
@@ -487,7 +484,7 @@ const Index = () => {
           parseRaidInfo(event.payload);
         });
       } catch {
-        // Non-Tauri environment
+        // Tauri event API unavailable outside desktop build
       }
     })();
 
