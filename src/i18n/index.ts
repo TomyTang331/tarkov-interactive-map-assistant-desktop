@@ -6,12 +6,12 @@ export type LangCode = 'zh';
 
 const useI18N = (lang: string) => {
   const i18n = useMemo(() => {
-    if (lang === 'zh') return i18n_zh;
-    else return i18n_zh;
+    return i18n_zh;
   }, [lang]);
 
-  const getTranslation = (obj: any, path: string[]): string | undefined => {
-    return path.reduce((acc, key) => acc?.[key], obj);
+  const getTranslation = (obj: Record<string, unknown>, path: string[]): string | undefined => {
+    const result = path.reduce<unknown>((acc, key) => (acc as Record<string, unknown>)?.[key], obj);
+    return typeof result === 'string' ? result : undefined;
   };
 
   const t = useCallback((identify: string) => {

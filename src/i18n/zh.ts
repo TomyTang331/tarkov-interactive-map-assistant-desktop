@@ -1,5 +1,5 @@
 export default {
-  // 公共词汇
+  // Common
   common: {
     require: '要求',
     unit: '单位',
@@ -17,7 +17,7 @@ export default {
     item: '物品',
   },
 
-  // 杂项
+  // Misc
   others: {
     selectMap: '选择地图',
     surface: '表层',
@@ -26,19 +26,19 @@ export default {
     eraserWidth: '橡皮宽度',
   },
 
-  // 互动地图
+  // Interactive Map
   interactive: {
     title: '互动地图 - 汤米',
     mapLoading: '互动地图载入中...',
   },
 
-  // 联系信息
+  // Contact
   contact: {
     group: '汤米的粉丝群: 571374990',
     email: '联系邮箱: andresromeralito@gmail.com',
   },
 
-  // 地图信息
+  // Map Info
   mapInfo: {
     title: '概览',
     gameTime: '游戏时间:',
@@ -51,36 +51,36 @@ export default {
     raidId: '战局ID',
   },
 
-  // 地图
+  // Map
   map: {
     loading: '地图正在载入中...',
     loadFailed: '地图载入失败',
   },
 
-  // 右键菜单
+  // Context Menu
   contextMenu: {
     markCoordinate: '标记当前坐标',
     addToFavorite: '添加至收藏',
     developing: '开发中...',
   },
 
-  // 测距 & 定位
+  // Ruler
   ruler: {
     distance: '测绘距离:',
   },
 
-  // 玩家位置
+  // Player Location
   playerLocation: {
     self: '你的位置',
     local: '本地',
   },
 
-  // 快速搜索
+  // Quick Search
   quickSearch: {
     placeholder: '粘贴截图名称...',
   },
 
-  // 画中画
+  // Picture-in-Picture
   pip: {
     title: '画中画模式',
     canvasNotFound: '未找到地图画布或当前环境不支持画中画',
@@ -88,7 +88,7 @@ export default {
     failed: '画中画模式启动失败',
   },
 
-  // 地图功能
+  // Markers
   marker: {
     extracts: '撤离点',
     legends: '图例',
@@ -96,7 +96,7 @@ export default {
     others: '其他',
   },
 
-  // 设置
+  // Settings
   setting: {
     title: '高级设置',
     realtimeMarker: '截图目录:',
@@ -106,7 +106,7 @@ export default {
     markerScale: '标点缩放',
   },
 
-  // 登录
+  // Login
   login: {
     title: 'Welcome',
     text: '当前功能需要汤米·领域账户，请登录后继续。',
@@ -122,6 +122,14 @@ export default {
   // Toast
   toast: {
     alert: '您正在使用逃离塔科夫·汤米助手开源版本，请勿删除此条消息',
+    profileLoaded: '载入角色ID',
+    raidLoaded: '载入战局信息',
+    watchingScreenshots: '开始监听截图目录',
+    watchingGameLogs: '开始监听游戏日志目录',
+    watchingLogFile: '开始监听日志文件',
+    invalidGamePath: '所选文件夹不是塔科夫游戏目录，请重新选择！',
+    switchingMap: '正在切换地图，请稍候...',
+    mapSwitched: '地图已切换至',
   },
 
   // EFT Watcher
@@ -141,7 +149,7 @@ export default {
     unsupportMsg: '您的浏览器版本不支援该功能，请使用Chrome或Edge！',
   },
 
-  // 警告和说明
+  // Warning & Instructions
   warning: {
     title: '您正在使用汤米助手开源版本',
     tips1: '请严格遵守使用协议，如有任何疑问请联系汤米。',

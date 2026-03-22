@@ -11,7 +11,7 @@ const Index = () => {
   };
 
   useEffect(() => {
-    console.log('NotFound mounted, current pathname:', window.location.pathname, 'href:', window.location.href);
+    // Safe redirect to home page for invalid routes
     const resizeEvent = () => {
       const doc = document.documentElement;
       doc?.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);

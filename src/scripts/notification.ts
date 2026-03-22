@@ -29,10 +29,9 @@ export const removeNotification = (id: string) => {
 
 export const showNotification = (data: NotificationData) => {
   if (window.Notification && Notification.permission === 'granted') {
-    // eslint-disable-next-line
     new Notification(data.title, {
       body: data.body,
-      icon: 'https://cdn.mahoutsukai.cn/assets/tomy/images/tomy_logo_round.png',
+      icon: '/images/tomy_logo_round_white.png',
     });
   } else {
     toast.info(`${data.title}: ${data.body}`);

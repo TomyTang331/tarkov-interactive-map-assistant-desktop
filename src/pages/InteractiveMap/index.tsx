@@ -28,6 +28,21 @@ import { getLayer } from './utils';
 
 import './style.less';
 
+const LOCATION_MAP: Record<string, string> = {
+  TarkovStreets: '5714dc692459777137212e12',
+  Sandbox: '653e6760052c01c1c805532f',
+  Sandbox_high: '65b8d6f5cdde2479cb2a3125',
+  bigmap: '56f40101d2720b2a4d8b45d6',
+  factory4_day: '55f2d3fd4bdc2d5f408b4567',
+  factory4_night: '59fc81d786f774390775787e',
+  Interchange: '5714dbc024597771384a510d',
+  laboratory: '5b0fc42d86f7744a585f9105',
+  Lighthouse: '5704e4dad2720bb55b8b4567',
+  RezervBase: '5704e5fad2720bc05b8b4567',
+  Shoreline: '5704e554d2720bac5b8b456e',
+  Woods: '5704e3c2d2720bac5b8b4567',
+};
+
 const Index = () => {
   const [mapList, setMapList] = useState<InteractiveMap.Data[]>([]);
   const [activeMapId, setActiveMapId] = useState<string>();
@@ -123,63 +138,16 @@ const Index = () => {
 
   const parseProfileInfo = (log: InteractiveMap.ProfileLogProps) => {
     setRaidInfo(undefined);
-    toast.info(`载入角色ID: ${log.profileId}, 账户ID: ${log.accountId}`);
+    toast.info(`${t('toast.profileLoaded')}: ${log.profileId}`);
   };
 
   const parseRaidInfo = (log: InteractiveMap.RaidLogProps) => {
     setRaidInfo(log);
-    toast.info(`载入战局信息: ${log.shortId}`);
-    switch (log.location) {
-      case 'TarkovStreets':
-        setActiveMapId('5714dc692459777137212e12');
-        setActiveLayer(undefined);
-        break;
-      case 'Sandbox':
-        setActiveMapId('653e6760052c01c1c805532f');
-        setActiveLayer(undefined);
-        break;
-      case 'Sandbox_high':
-        setActiveMapId('65b8d6f5cdde2479cb2a3125');
-        setActiveLayer(undefined);
-        break;
-      case 'bigmap':
-        setActiveMapId('56f40101d2720b2a4d8b45d6');
-        setActiveLayer(undefined);
-        break;
-      case 'factory4_day':
-        setActiveMapId('55f2d3fd4bdc2d5f408b4567');
-        setActiveLayer(undefined);
-        break;
-      case 'factory4_night':
-        setActiveMapId('59fc81d786f774390775787e');
-        setActiveLayer(undefined);
-        break;
-      case 'Interchange':
-        setActiveMapId('5714dbc024597771384a510d');
-        setActiveLayer(undefined);
-        break;
-      case 'laboratory':
-        setActiveMapId('5b0fc42d86f7744a585f9105');
-        setActiveLayer(undefined);
-        break;
-      case 'Lighthouse':
-        setActiveMapId('5704e4dad2720bb55b8b4567');
-        setActiveLayer(undefined);
-        break;
-      case 'RezervBase':
-        setActiveMapId('5704e5fad2720bc05b8b4567');
-        setActiveLayer(undefined);
-        break;
-      case 'Shoreline':
-        setActiveMapId('5704e554d2720bac5b8b456e');
-        setActiveLayer(undefined);
-        break;
-      case 'Woods':
-        setActiveMapId('5704e3c2d2720bac5b8b4567');
-        setActiveLayer(undefined);
-        break;
-      default:
-        break;
+    toast.info(`${t('toast.raidLoaded')}: ${log.shortId}`);
+    const mapId = LOCATION_MAP[log.location];
+    if (mapId) {
+      setActiveMapId(mapId);
+      setActiveLayer(undefined);
     }
   };
 
@@ -205,11 +173,9 @@ const Index = () => {
           .map((log) => parseRaidLine(log))
           .filter((v) => v) as InteractiveMap.RaidLogProps[];
         if (profileLogs.length > 0 && !initial) {
-          console.log('Received new profile logs:', profileLogs);
           parseProfileInfo(profileLogs[profileLogs.length - 1]);
         }
         if (raidLogs.length > 0 && !initial) {
-          console.log('Received new raid logs:', raidLogs);
           parseRaidInfo(raidLogs[raidLogs.length - 1]);
         }
       }
@@ -288,7 +254,7 @@ const Index = () => {
         await invoke('set_screenshot_path', { path: selectedPath }).catch(() => { });
         setDirectoryHandler(selectedPath);
         const folderName = selectedPath.split('\\').pop() || selectedPath;
-        toast.info(`开始监听截图目录: ${folderName}`);
+        toast.info(`${t('toast.watchingScreenshots')}: ${folderName}`);
       } else {
         setDirectoryHandler(undefined);
       }
@@ -323,7 +289,7 @@ const Index = () => {
           await invoke('set_tarkov_game_path', { path: selected });
           setTarkovGamePathFromRust(selected);
           const folderName = selected.split(/[/\\]/).pop() || selected;
-          toast.info(`开始监听游戏日志目录: ${folderName}`);
+          toast.info(`${t('toast.watchingGameLogs')}: ${folderName}`);
         }
       } catch (err) {
         console.error('Tarkov game path (Tauri):', err);
@@ -338,7 +304,7 @@ const Index = () => {
           if (result) {
             setTarkovGamePathHandler(handler);
           } else {
-            message.show({ content: '所选文件夹不是塔科夫游戏目录，请重新选择！' });
+            message.show({ content: t('toast.invalidGamePath') });
           }
         }
       } catch (err) {
@@ -371,7 +337,7 @@ const Index = () => {
 
   const handleMapChange = (mapId: string) => {
     setActiveMapId(mapId);
-    toast.info('正在切换地图，请稍候...');
+    toast.info(t('toast.switchingMap'));
   };
 
   const handleLayerChange = (name: string) => {
@@ -386,7 +352,7 @@ const Index = () => {
       loadMapData(activeMapId).then((data) => {
         if (!cancelled && data) {
           setActiveMap(data);
-          toast.success(`地图已切换至${data.name}`);
+          toast.success(`${t('toast.mapSwitched')} ${data.name}`);
         }
       });
     }
@@ -496,14 +462,12 @@ const Index = () => {
 
   useEffect(() => {
     if (tarkovGamePathHandler) {
-      console.log(`File Watcher: ${tarkovGamePathHandler.name}`);
       resolveTarkovGamePath();
     }
   }, [tarkovGamePathHandler]);
 
   useEffect(() => {
     if (applicationLogsHandler) {
-      console.log(`File Watcher: ${applicationLogsHandler.name}`);
       resolveApplicationLogs(true);
     }
   }, [applicationLogsHandler]);

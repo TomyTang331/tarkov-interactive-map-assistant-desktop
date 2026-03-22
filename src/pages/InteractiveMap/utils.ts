@@ -198,7 +198,6 @@ export const loots: Record<string, LootEntry> = {
 };
 
 export const getIconCDN = (iconName: string) => {
-  // Try SVG first (better transparency), fallback to PNG
   return `/images/map-icons/${icons[iconName]}.svg`;
 };
 
@@ -223,13 +222,7 @@ export const getLoot = (type: string, filter?: InteractiveMap.LootContainer[]) =
     return Object.keys(loots)
       .map((key) => loots[key])
       .filter((loot) => loot.type === type)
-      .filter((loot) => {
-        let result = false;
-        loot.value.forEach((key: string) => {
-          if (mapContainers.includes(key)) result = true;
-        });
-        return result;
-      });
+      .filter((loot) => loot.value.some((v) => mapContainers.includes(v)));
   } else {
     return Object.keys(loots)
       .map((key) => ({ key, ...loots[key] }))
@@ -238,12 +231,8 @@ export const getLoot = (type: string, filter?: InteractiveMap.LootContainer[]) =
 };
 
 export const getLootType = (value: string) => {
-  let type = 'unknown';
-  Object.keys(loots).forEach((key) => {
-    const loot = loots[key];
-    if (loot.value.includes(value)) type = loot.key;
-  });
-  return type;
+  const entry = Object.entries(loots).find(([, loot]) => loot.value.includes(value));
+  return entry ? entry[0] : 'unknown';
 };
 
 export const getSpawnType = (types: string[] = [], normalizedName?: string[]) => {

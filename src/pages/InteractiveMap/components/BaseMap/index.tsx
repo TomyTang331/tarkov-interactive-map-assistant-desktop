@@ -1,11 +1,10 @@
 import React from 'react';
 import { Image, Text } from 'react-konva';
+
 import { useRecoilState } from 'recoil';
 
 import useI18N from '@/i18n';
 import langState from '@/store/lang';
-
-import './style.less';
 
 interface BaseMapProps {
   id: string;

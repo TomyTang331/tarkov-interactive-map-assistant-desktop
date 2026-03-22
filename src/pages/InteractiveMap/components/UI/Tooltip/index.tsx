@@ -14,8 +14,9 @@ interface ShowTooltipProps {
   text: JSX.Element | string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export let showTooltip = (props: ShowTooltipProps) => {
-  console.log(props);
+  // no-op fallback; replaced when component mounts
 };
 
 const Index = (props: TooltipProps) => {

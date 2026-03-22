@@ -9,8 +9,9 @@ import langState from '@/store/lang';
 
 import './style.less';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export let showContextMenu = (props: InteractiveMap.Position2D) => {
-  console.log(props);
+  // no-op fallback; replaced when component mounts
 };
 
 const Index = () => {

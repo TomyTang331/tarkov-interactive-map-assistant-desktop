@@ -210,7 +210,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const handleMouseDown = (e: KonvaEventObject<MouseEvent>) => {
     const stage = e.target.getStage();
     if (stage) {
-      // Initialize
       operationType.current = e.evt.button as InteractiveMap.OperationType;
       if (!operationInitialStage.current) {
         operationInitialStage.current = { x: stage.x(), y: stage.y() };
@@ -432,7 +431,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   const handleContextMenu = (e: KonvaEventObject<PointerEvent>) => {
     e.evt.preventDefault();
-    // showContextMenu({ x: e.evt.clientX, y: e.evt.clientY });
   };
 
   useEffect(() => {

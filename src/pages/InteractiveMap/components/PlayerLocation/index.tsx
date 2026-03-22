@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Group, Path, Text } from 'react-konva';
 
 import dayjs from 'dayjs';
+import { useRecoilState } from 'recoil';
 
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
 import { quaternionToEulerAngles } from '@/utils/tarkov';
 
 import { getIconPath, mouseClickEvent, mouseHoverEvent } from '@/pages/InteractiveMap/utils';
 
 import './style.less';
-
-import { useRecoilState } from 'recoil';
-
-import useI18N from '@/i18n';
-import langState from '@/store/lang';
 
 interface PlayerLocationProps {
   activeMapId?: string;
