@@ -1,5 +1,10 @@
 import { useMemo } from 'react';
 
+import { useRecoilState } from 'recoil';
+
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
+
 import { calculateHypotenuse } from '@/pages/InteractiveMap/utils';
 
 import './style.less';
@@ -11,6 +16,9 @@ interface RulerPositionProps {
 
 const Index = (props: RulerPositionProps) => {
   const { rulerPosition, image2realPos } = props;
+
+  const [lang] = useRecoilState(langState);
+  const { t } = useI18N(lang);
 
   const length = useMemo(() => {
     if (rulerPosition && image2realPos) {
@@ -24,7 +32,7 @@ const Index = (props: RulerPositionProps) => {
   if (rulerPosition) {
     return (
       <div className="im-rulerposition">
-        <span>测绘距离: {length.toFixed(1)} m</span>
+        <span>{t('ruler.distance')} {length.toFixed(1)} m</span>
       </div>
     );
   } else {

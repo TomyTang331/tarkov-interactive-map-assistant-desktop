@@ -44,6 +44,48 @@ export default {
     gameTime: '游戏时间:',
     pmcs: 'PMC数量:',
     raidTime: '战局时间:',
+    noScreenshotDir: '尚未监听截图目录，无法自动获取坐标',
+    noGameDir: '尚未监听游戏目录，无法获取战局信息',
+    serverIP: '服务器IP',
+    gameMode: '游戏模式',
+    raidId: '战局ID',
+  },
+
+  // 地图
+  map: {
+    loading: '地图正在载入中...',
+    loadFailed: '地图载入失败',
+  },
+
+  // 右键菜单
+  contextMenu: {
+    markCoordinate: '标记当前坐标',
+    addToFavorite: '添加至收藏',
+    developing: '开发中...',
+  },
+
+  // 测距 & 定位
+  ruler: {
+    distance: '测绘距离:',
+  },
+
+  // 玩家位置
+  playerLocation: {
+    self: '你的位置',
+    local: '本地',
+  },
+
+  // 快速搜索
+  quickSearch: {
+    placeholder: '粘贴截图名称...',
+  },
+
+  // 画中画
+  pip: {
+    title: '画中画模式',
+    canvasNotFound: '未找到地图画布或当前环境不支持画中画',
+    enabled: '画中画模式已开启',
+    failed: '画中画模式启动失败',
   },
 
   // 地图功能

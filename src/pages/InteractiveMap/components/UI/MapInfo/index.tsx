@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { useInterval } from 'ahooks';
 import classNames from 'classnames';
@@ -82,7 +82,7 @@ const Index = (props: MapInfoProps) => {
       )}
       {self === top && window.showDirectoryPicker && !directoryHandler && (
         <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title warning">尚未监听截图目录，无法自动获取坐标</span>
+          <span className="im-mapinfo-item-title warning">{t('mapInfo.noScreenshotDir')}</span>
         </div>
       )}
       {self === top &&
@@ -90,13 +90,13 @@ const Index = (props: MapInfoProps) => {
         !hasTarkovPath && (
           <div className="im-mapinfo-item">
             <span className="im-mapinfo-item-title warning">
-              尚未监听游戏目录，无法获取战局信息
+              {t('mapInfo.noGameDir')}
             </span>
           </div>
       )}
       {raidInfo?.ip && raidInfo?.port && (
         <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title">服务器IP</span>
+          <span className="im-mapinfo-item-title">{t('mapInfo.serverIP')}</span>
           <span>
             {raidInfo.ip}:{raidInfo.port}
           </span>
@@ -104,7 +104,7 @@ const Index = (props: MapInfoProps) => {
       )}
       {raidInfo?.gameMode && raidInfo?.raidMode && (
         <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title">游戏模式</span>
+          <span className="im-mapinfo-item-title">{t('mapInfo.gameMode')}</span>
           <span>
             {raidInfo.gameMode} ({raidInfo.raidMode})
           </span>
@@ -112,7 +112,7 @@ const Index = (props: MapInfoProps) => {
       )}
       {raidInfo?.shortId && (
         <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title">战局ID</span>
+          <span className="im-mapinfo-item-title">{t('mapInfo.raidId')}</span>
           <span>{raidInfo.shortId}</span>
         </div>
       )}
@@ -120,4 +120,5 @@ const Index = (props: MapInfoProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'MapInfo';
+export default React.memo(Index);

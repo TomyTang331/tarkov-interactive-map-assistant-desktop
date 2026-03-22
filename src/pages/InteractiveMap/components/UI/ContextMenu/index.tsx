@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
+import { useRecoilState } from 'recoil';
 import { message } from 'tilty-ui';
+
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
 
 import './style.less';
 
@@ -15,6 +19,9 @@ const Index = () => {
     y: 0,
   });
   const [show, setShow] = useState(false);
+
+  const [lang] = useRecoilState(langState);
+  const { t } = useI18N(lang);
 
   const contextMenuRef = useRef<HTMLDivElement>(null);
 
@@ -51,11 +58,11 @@ const Index = () => {
       }}
       ref={contextMenuRef}
     >
-      <div className="im-contextmenu-item" onClick={() => message.show({ content: '开发中...' })}>
-        <span>标记当前坐标</span>
+      <div className="im-contextmenu-item" onClick={() => message.show({ content: t('contextMenu.developing') })}>
+        <span>{t('contextMenu.markCoordinate')}</span>
       </div>
-      <div className="im-contextmenu-item" onClick={() => message.show({ content: '开发中...' })}>
-        <span>添加至收藏</span>
+      <div className="im-contextmenu-item" onClick={() => message.show({ content: t('contextMenu.developing') })}>
+        <span>{t('contextMenu.addToFavorite')}</span>
       </div>
     </div>
   );

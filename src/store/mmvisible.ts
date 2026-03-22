@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-const mobileMenuVisibleState = atom<any>({
+const mobileMenuVisibleState = atom<boolean>({
   key: 'mobileMenuVisibleState',
   default: false,
 });

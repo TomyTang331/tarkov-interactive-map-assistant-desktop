@@ -240,9 +240,9 @@ export const mapIndex: MapIndexEntry[] = [
 ];
 
 // Cache for loaded map data
-const mapDataCache = new Map<string, any>();
+const mapDataCache = new Map<string, InteractiveMap.Data>();
 
-export async function loadMapData(id: string): Promise<any | null> {
+export async function loadMapData(id: string): Promise<InteractiveMap.Data | null> {
   // Return from cache if available
   if (mapDataCache.has(id)) {
     return mapDataCache.get(id);

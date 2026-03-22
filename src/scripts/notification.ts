@@ -39,7 +39,11 @@ export const showNotification = (data: NotificationData) => {
   }
 };
 
-setInterval(() => {
+// HMR guard: clear previous interval to prevent duplicates during hot reload
+if ((globalThis as Record<string, unknown>).__notificationIntervalId) {
+  clearInterval((globalThis as Record<string, unknown>).__notificationIntervalId as number);
+}
+(globalThis as Record<string, unknown>).__notificationIntervalId = setInterval(() => {
   for (let i = notificationQueue.length - 1; i >= 0; i--) {
     if (dayjs().diff(dayjs(notificationQueue[i].timer)) > 0) {
       showNotification(notificationQueue[i]);

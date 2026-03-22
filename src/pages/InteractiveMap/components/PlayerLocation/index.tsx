@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Group, Path, Text } from 'react-konva';
 
 import dayjs from 'dayjs';
@@ -8,6 +8,11 @@ import { quaternionToEulerAngles } from '@/utils/tarkov';
 import { getIconPath, mouseClickEvent, mouseHoverEvent } from '@/pages/InteractiveMap/utils';
 
 import './style.less';
+
+import { useRecoilState } from 'recoil';
+
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
 
 interface PlayerLocationProps {
   activeMapId?: string;
@@ -38,6 +43,9 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
     show,
     onPlayerLocationChange,
   } = props;
+
+  const [lang] = useRecoilState(langState);
+  const { t } = useI18N(lang);
 
   const [playerLocations, setPlayerLocations] = useState<{
     [key: string]: iMPlayerLocation;
@@ -95,7 +103,7 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
                     text: (
                       <div className="im-playerlocation-tooltip">
                         <div className="im-playerlocation-tooltip-user">
-                          <span>{location.name || '本地'}</span>
+                          <span>{location.name || t('playerLocation.local')}</span>
                         </div>
                         <div className="im-playerlocation-tooltip-location">
                           <span>
@@ -153,7 +161,7 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
                     x={real2imagePos.x(location.x)}
                     y={real2imagePos.y(location.z)}
                     fontFamily="JinBuTi"
-                    text="你的位置"
+                    text={t('playerLocation.self')}
                     fontSize={12 / mapScale}
                     fill="#00ff00"
                     width={600 / mapScale}
@@ -177,5 +185,6 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
   }
 };
 
-export default Index;
+Index.displayName = 'PlayerLocation';
+export default React.memo(Index);
 

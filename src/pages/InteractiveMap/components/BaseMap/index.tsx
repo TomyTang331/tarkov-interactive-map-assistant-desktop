@@ -1,5 +1,11 @@
 import React from 'react';
 import { Image, Text } from 'react-konva';
+import { useRecoilState } from 'recoil';
+
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
+
+import './style.less';
 
 interface BaseMapProps {
   id: string;
@@ -21,6 +27,9 @@ const Index = React.memo((props: BaseMapProps) => {
     resolution,
     tileOnlyUnsupported,
   } = props;
+
+  const [lang] = useRecoilState(langState);
+  const { t } = useI18N(lang);
 
   if (baseMap && status === 'loaded') {
     if (coordinateRotation === 90) {
@@ -65,7 +74,7 @@ const Index = React.memo((props: BaseMapProps) => {
       <Text
         id={id}
         fontFamily="JinBuTi"
-        text={'地图正在载入中...'}
+        text={t('map.loading')}
         fontSize={24}
         fill="#cccccc"
         width={resolution.width}

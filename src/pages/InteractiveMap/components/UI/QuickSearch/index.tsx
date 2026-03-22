@@ -1,6 +1,10 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
+import { useRecoilState } from 'recoil';
+
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
 
 import './style.less';
 
@@ -13,6 +17,9 @@ const Index = (props: QuickSearchProps) => {
   const { show, onHide } = props;
 
   const [value, setValue] = useState('');
+
+  const [lang] = useRecoilState(langState);
+  const { t } = useI18N(lang);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -56,7 +63,7 @@ const Index = (props: QuickSearchProps) => {
             ref={inputRef}
             value={value}
             onChange={handleValueChange}
-            placeholder="粘贴截图名称..."
+            placeholder={t('quickSearch.placeholder')}
           />
         </div>
       </div>

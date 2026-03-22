@@ -55,7 +55,7 @@ export const drawColorList = [{
   color: '#ff8800',
 }];
 
-export const icons: any = {
+export const icons: Record<string, string> = {
   'container_bank-cash-register': 'container_cash-register',
   'container_bank-safe': 'container_safe',
   'container_buried-barrel-cache': 'container_buried-barrel-cache',
@@ -103,7 +103,14 @@ export const icons: any = {
   switch: 'switch',
 };
 
-export const loots: any = {
+interface LootEntry {
+  key: string;
+  name: string;
+  value: string[];
+  type: string;
+}
+
+export const loots: Record<string, LootEntry> = {
   'cash-register': {
     key: 'cash-register',
     name: '收银机',
