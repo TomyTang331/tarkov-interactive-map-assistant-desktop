@@ -48,9 +48,8 @@ const Index = (props: MapInfoProps) => {
   }, []);
 
   useInterval(() => {
-    const machineTime = dayjs().valueOf();
-    setRealTime(machineTime);
-  }, 1000);
+    setRealTime(dayjs().valueOf());
+  }, show ? 1000 : undefined);
 
   return (
     <div

@@ -192,7 +192,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         const scaleX = stageRef.current.width() / baseMapOrVirtual.width;
         const scaleY = stageRef.current.height() / baseMapOrVirtual.height;
         const _baseScale = scaleX < scaleY ? scaleX : scaleY;
-        const newScale = _baseScale * 3.5; // screenshot location magnification
+        const newScale = _baseScale * 3.25;
         setMapScale(newScale);
         setMapPosition({
           x: stageRef.current.width() / 2 - real2imagePos.x(x) * newScale,

@@ -4,7 +4,7 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::{Path, PathBuf};
-use std::sync::Mutex;
+use std::sync::{Mutex, OnceLock};
 use std::thread;
 use std::time::Duration;
 use tauri::{AppHandle, Emitter, Manager};
@@ -74,10 +74,7 @@ fn start_global_keyboard_listener(app_handle: AppHandle) {
     });
 }
 
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
+
 
 // Read contents of a text file
 #[tauri::command]
@@ -210,9 +207,23 @@ fn split_log_lines(content: &str) -> Vec<String> {
     logs
 }
 
+fn profile_regex() -> &'static Regex {
+    static RE: OnceLock<Regex> = OnceLock::new();
+    RE.get_or_init(|| Regex::new(r"(?i)SelectProfile ProfileId:(.+?) AccountId:(.+)").unwrap())
+}
+
+fn raid_regex() -> &'static Regex {
+    static RE: OnceLock<Regex> = OnceLock::new();
+    RE.get_or_init(|| Regex::new(r"(?i)'Profileid: (.+?), Status: (.+?), RaidMode: (.+?), Ip: (.+?), Port: (.+?), Location: (.+?), Sid: (.+?), GameMode: (.+?), shortId: (.+?)'").unwrap())
+}
+
+fn sid_regex() -> &'static Regex {
+    static RE: OnceLock<Regex> = OnceLock::new();
+    RE.get_or_init(|| Regex::new(r"(.+?)-(.+?)_(.+)").unwrap())
+}
+
 fn parse_profile_line(text: &str) -> Option<ProfileLogEvent> {
-    let re = Regex::new(r"(?i)SelectProfile ProfileId:(.+?) AccountId:(.+)").ok()?;
-    let cap = re.captures(text)?;
+    let cap = profile_regex().captures(text)?;
     Some(ProfileLogEvent {
         profile_id: cap.get(1)?.as_str().to_string(),
         account_id: cap.get(2)?.as_str().trim().to_string(),
@@ -220,11 +231,9 @@ fn parse_profile_line(text: &str) -> Option<ProfileLogEvent> {
 }
 
 fn parse_raid_line(text: &str) -> Option<RaidLogEvent> {
-    let re = Regex::new(r"(?i)'Profileid: (.+?), Status: (.+?), RaidMode: (.+?), Ip: (.+?), Port: (.+?), Location: (.+?), Sid: (.+?), GameMode: (.+?), shortId: (.+?)'").ok()?;
-    let cap = re.captures(text)?;
+    let cap = raid_regex().captures(text)?;
     let sid = cap.get(7)?.as_str().to_string();
-    let real_time = Regex::new(r"(.+?)-(.+?)_(.+)")
-        .ok()?
+    let real_time = sid_regex()
         .captures(&sid)
         .and_then(|c| Some(c.get(3)?.as_str().to_string()));
     Some(RaidLogEvent {
@@ -288,18 +297,11 @@ pub fn run() {
         .manage(app_state)
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
             // When a second instance is launched, focus the existing window
-            let _ = app
-                .get_webview_window("main")
-                .expect("no main window")
-                .set_focus();
-            let _ = app
-                .get_webview_window("main")
-                .expect("no main window")
-                .show();
-            let _ = app
-                .get_webview_window("main")
-                .expect("no main window")
-                .unminimize();
+            if let Some(window) = app.get_webview_window("main") {
+                let _ = window.set_focus();
+                let _ = window.show();
+                let _ = window.unminimize();
+            }
         }))
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
@@ -525,7 +527,6 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            greet,
             read_text_file,
             read_directory,
             path_exists,

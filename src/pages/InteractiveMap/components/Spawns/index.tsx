@@ -79,7 +79,7 @@ const Index = (props: SpawnsProps & InteractiveMap.UtilProps) => {
             spawn.categories,
             bosses[spawn.zoneName]?.map((boss) => boss.normalizedName),
           );
-          if (show.includes(getSpawnType(spawn.categories))) {
+          if (show.includes(getSpawnType(spawn.categories)) || show.includes(spawnType)) {
             return (
               <Group
                 key={`im-spawn-group-${spawn.zoneName}-${spawn.position.x}-${spawn.position.z}`}

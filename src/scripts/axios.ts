@@ -14,7 +14,7 @@ axios.interceptors.response.use(
       }
     } else {
       // eslint-disable-next-line
-      return Promise.reject('404: 接口未找到');
+      return Promise.reject('404: Not Found');
     }
   },
   (err) => {

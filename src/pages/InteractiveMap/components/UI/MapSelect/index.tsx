@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 import { useRecoilState } from 'recoil';
@@ -124,4 +124,5 @@ const Index = (props: MapSelectProps) => {
   );
 };
 
-export default Index;
+Index.displayName = 'MapSelect';
+export default React.memo(Index);

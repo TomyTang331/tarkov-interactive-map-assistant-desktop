@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 import { useRecoilState } from 'recoil';
@@ -74,4 +74,5 @@ const Index = () => {
   );
 };
 
-export default Index;
+Index.displayName = 'Warning';
+export default React.memo(Index);
