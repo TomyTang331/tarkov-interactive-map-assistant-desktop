@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { cssTransition, ToastContainer } from 'react-toastify';
 
 import packageJson from 'package.json';
 import { RecoilRoot } from 'recoil';
@@ -15,6 +15,13 @@ import 'tilty-ui/dist/theme/index.less';
 import 'tilty-ui/dist/style.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/global.less';
+
+// Instant show/hide — no slide animation overhead
+const NoAnimation = cssTransition({
+  enter: 'Toastify--no-animation',
+  exit: 'Toastify--no-animation',
+  collapseDuration: 0,
+});
 
 declare global {
   interface Window {
@@ -37,7 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </BrowserRouter>
           <ToastContainer
             position="bottom-right"
-            autoClose={5000}
+            autoClose={3000}
+            limit={3}
+            transition={NoAnimation}
             newestOnTop
             closeOnClick
             pauseOnFocusLoss

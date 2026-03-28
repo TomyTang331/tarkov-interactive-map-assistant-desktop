@@ -127,7 +127,7 @@ const Index = () => {
           if (applicationPathNameCache.current !== _applicationLogsHandler.name) {
             applicationPathNameCache.current = _applicationLogsHandler.name;
             setApplicationLogsHandler(_applicationLogsHandler);
-            toast.info(`开始监听日志文件: ${_applicationLogsHandler.name}`);
+            toast.info(`${t('toast.watchingLogFile')}: ${_applicationLogsHandler.name}`);
           }
         }
       }

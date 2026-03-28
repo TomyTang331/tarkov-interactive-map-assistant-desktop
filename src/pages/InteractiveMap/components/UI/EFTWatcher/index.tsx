@@ -38,13 +38,6 @@ const Index = (props: EFTWatcherProps) => {
     }
   };
 
-  const handleClickEftWatcherPath = () => {
-    onClickEftWatcherPath();
-  };
-
-  const handleClickTarkovGamePath = () => {
-    onClickTarkovGamePath();
-  };
 
   useEffect(() => {
     if (directoryHandler && hasTarkovPath) {
@@ -81,7 +74,7 @@ const Index = (props: EFTWatcherProps) => {
             <button
               style={{ color: !directoryHandler ? '#ffffff' : '#288828' }}
               className="button button-default"
-              onClick={() => handleClickEftWatcherPath()}
+              onClick={onClickEftWatcherPath}
             >
               {directoryHandler ? t('eftwatcher.disableScrPath') : t('eftwatcher.enableScrPath')}
             </button>
@@ -92,7 +85,7 @@ const Index = (props: EFTWatcherProps) => {
             <button
               style={{ marginTop: 16, color: !hasTarkovPath ? '#ffffff' : '#288828' }}
               className="button button-default"
-              onClick={() => handleClickTarkovGamePath()}
+              onClick={onClickTarkovGamePath}
             >
               {hasTarkovPath
                 ? t('eftwatcher.disableGamePath')

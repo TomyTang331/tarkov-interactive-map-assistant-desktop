@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import classNames from 'classnames';
+import { useRecoilState } from 'recoil';
+
+import useI18N from '@/i18n';
+import langState from '@/store/lang';
 
 import Icon from '@/components/Icon';
 
@@ -32,6 +36,9 @@ const Index = (
     onMapInfoActive,
     onStrokeTypeChange,
   } = props;
+
+  const [lang] = useRecoilState(langState);
+  const { t } = useI18N(lang);
 
   const [strokeType, setStrokeType] = useState<InteractiveMap.StrokeType>('drag');
   const [activeModal, setActiveModal] = useState<InteractiveMap.QuickTools>();
@@ -89,7 +96,7 @@ const Index = (
     (window as any)._pipVideo = video;
     video.addEventListener('leavepictureinpicture', () => {
       setPipActiveRef.current(false);
-      stream.getTracks().forEach((t) => t.stop());
+      stream.getTracks().forEach((track) => track.stop());
       video.srcObject = null;
       (window as any)._pipVideo = null;
     });
@@ -101,7 +108,7 @@ const Index = (
     } finally {
       const video = (window as any)._pipVideo;
       if (video?.srcObject) {
-        (video.srcObject as MediaStream).getTracks().forEach((t) => t.stop());
+        (video.srcObject as MediaStream).getTracks().forEach((track) => track.stop());
         video.srcObject = null;
       }
       (window as any)._pipVideo = null;
@@ -121,17 +128,17 @@ const Index = (
 
       const canvasElement = document.querySelector('.im-stage canvas') as HTMLCanvasElement;
       if (!canvasElement || !('captureStream' in canvasElement)) {
-        toast.error('未找到地图画布或当前环境不支持画中画');
+        toast.error(t('pip.canvasNotFound'));
         return;
       }
 
       await openVideoPiP();
       setPipActive(true);
-      toast.info('画中画模式已开启');
+      toast.info(t('pip.enabled'));
     } catch (error) {
       console.error('PiP error:', error);
       setPipActive(false);
-      toast.error('画中画模式启动失败');
+      toast.error(t('pip.failed'));
     }
   };
   handleTogglePiPRef.current = handleTogglePiP;
@@ -221,7 +228,6 @@ const Index = (
             })}
             onClick={() => handleSelectEraser()}
             onContextMenu={() => setActiveModal('eraser')}
-          // onClick={() => setStrokeType(2)}
           >
             <Icon type="icon-eraser-fill" />
           </div>
@@ -260,7 +266,7 @@ const Index = (
               handleTogglePiP();
             }}
             onMouseDown={(e) => e.stopPropagation()}
-            title="画中画模式"
+            title={t('pip.title')}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
