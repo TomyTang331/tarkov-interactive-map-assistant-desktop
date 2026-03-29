@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { defineConfig } from 'vite';
+// @ts-ignore vite-plugin-eslint types not exported for Vite 8
 import eslintPlugin from 'vite-plugin-eslint';
 
 import react from '@vitejs/plugin-react';
@@ -35,32 +36,38 @@ export default defineConfig({
     outDir: resolve(__dirname, './dist'),
     emptyOutDir: true,
     target: 'esnext',
-    minify: 'esbuild',
-    rollupOptions: {
+    rolldownOptions: {
       output: {
         entryFileNames: '[name]-[hash].js',
         chunkFileNames: '[name]-[hash].js',
         assetFileNames: '[name]-[hash][extname]',
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-konva': ['konva', 'react-konva'],
-          'vendor-ui': ['react-toastify', 'recoil'],
+        manualChunks(id: string) {
+          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/') || id.includes('node_modules/react-router-dom')) {
+            return 'vendor-react';
+          }
+          if (id.includes('node_modules/konva') || id.includes('node_modules/react-konva')) {
+            return 'vendor-konva';
+          }
+          if (id.includes('node_modules/react-toastify') || id.includes('node_modules/recoil')) {
+            return 'vendor-ui';
+          }
+        },
+        minify: {
+          compress: {
+            dropConsole: true,
+            dropDebugger: true,
+          },
         },
       },
     },
-  },
-  esbuild: {
-    drop: ['console', 'debugger'],
   },
   server: {
     host: '0.0.0.0',
     port: 8001,
     strictPort: true,
-    // Tauri expects a consistent dev server URL
     watch: {
       ignored: ['**/src-tauri/**'],
     },
   },
-  // Prevent vite from obscuring rust errors
   envPrefix: ['VITE_', 'TAURI_'],
 });
