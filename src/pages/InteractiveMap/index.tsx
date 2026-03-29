@@ -352,9 +352,8 @@ const Index = () => {
       loadMapData(activeMapId).then((data) => {
         if (!cancelled && data) {
           setActiveMap(data);
-          toast.dismiss('switching-map');
-          toast.success(`${t('toast.mapSwitched')} ${data.name}`);
-          setTimeout(() => toast.dismiss(), 3000);
+          toast.dismiss();
+          toast.success(`${t('toast.mapSwitched')} ${data.name}`, { autoClose: 3000 });
         }
       });
     }

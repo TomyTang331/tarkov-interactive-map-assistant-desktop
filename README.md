@@ -281,6 +281,10 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 - **Optimization**: Screenshot zoom magnification increased from 3x to 3.25x.
 - **Code Quality**: Translated remaining hardcoded Chinese strings to i18n.
 - **Code Quality**: All comments converted to English; redundant comments removed.
+- **Upgrade**: Vite 7.3 → 8.0 (Rolldown engine), build speed improved ~42%.
+- **Upgrade**: `@vitejs/plugin-react` v5 → v6 (Oxc-based, no Babel).
+- **Fix**: Toast notifications: dismiss all on map switch, success toast auto-closes after 3s.
+- **Fix**: Removed broken custom toast animation; use near-instant CSS animation instead.
 
 ### Version 1.1.8 (2026-03-13)
 
