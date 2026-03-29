@@ -10,7 +10,7 @@
 
 逃离塔科夫实时交互式地图助手桌面版，基于 Tauri + React 开发，提供原生桌面体验。帮助玩家更好地探索和导航游戏世界。
 
-**版本**: 1.1.8
+**版本**: 1.1.9
 **作者**: Tomy
 **原项目**: 基于 [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -121,8 +121,8 @@ src-tauri/target/release/bundle/
 3. 打标签并推送（标签名必须以 `v` 开头）：
 
    ```bash
-   git tag v1.1.8
-   git push origin v1.1.8
+   git tag v1.1.9
+   git push origin v1.1.9
    ```
 
 4. 打开仓库 **Actions**，等待 **Build and Release** 中唯一的 **windows-latest** 任务成功。
@@ -271,6 +271,20 @@ get_tarkov_game_path() -> String
 ---
 
 ## 📊 更新日志
+
+### Version 1.1.9 (2026-03-29)
+
+- **性能优化**：禁用 Toast 滑入/滑出动画，改为即时显示/隐藏，降低 DOM 开销。
+- **性能优化**：Toast 最多同时显示 3 条，自动关闭时间缩短至 3 秒。
+- **性能优化**：Rust 正则表达式通过 `OnceLock` 预编译，避免每行日志重复编译。
+- **性能优化**：MapInfo 面板隐藏时暂停秒级定时器，减少不必要的重渲染。
+- **性能优化**：MapSelect、Warning 组件添加 `React.memo`。
+- **优化改进**：修复 Spawns 组件中重复调用 `getSpawnType()` 的问题。
+- **优化改进**：移除无用的 `greet` Tauri 命令。
+- **优化改进**：单实例处理中缓存窗口查找，避免重复查找。
+- **优化改进**：截图定位放大倍数从 3x 调整为 3.25x。
+- **代码质量**：将残余硬编码中文字符串替换为 i18n 国际化调用。
+- **代码质量**：所有注释统一为英文，移除冗余注释。
 
 ### Version 1.1.8 (2026-03-13)
 

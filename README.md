@@ -10,7 +10,7 @@
 
 Escape from Tarkov Interactive Map Assistant Desktop Edition - A native desktop application built with Tauri + React for real-time interactive map assistance to help players navigate the game world.
 
-**Version**: 1.1.8
+**Version**: 1.1.9
 **Author**: Tomy
 **Original Project**: Based on [tarkov-tilty-frontend-opensource](https://github.com/tiltysola/tarkov-tilty-frontend-opensource)
 
@@ -119,8 +119,8 @@ Workflow: [`.github/workflows/build.yml`](./.github/workflows/build.yml). It run
 3. Create and push a tag (must match `v*`, e.g. `v1.1.8`):
 
    ```bash
-   git tag v1.1.8
-   git push origin v1.1.8
+   git tag v1.1.9
+   git push origin v1.1.9
    ```
 
 4. Open **Actions** → **Build and Release** and wait for the single **windows-latest** job to finish.
@@ -267,6 +267,20 @@ Special thanks to [@tiltysola](https://github.com/tiltysola) for creating the [o
 ---
 
 ## 📊 Changelog
+
+### Version 1.1.9 (2026-03-29)
+
+- **Performance**: Disabled toast slide animations; instant show/hide for lower DOM overhead.
+- **Performance**: Toast limit set to 3, autoClose reduced to 3 seconds.
+- **Performance**: Rust regex precompiled with `OnceLock` (avoids recompilation per log line).
+- **Performance**: MapInfo timer pauses when panel is hidden.
+- **Performance**: Added `React.memo` to MapSelect and Warning components.
+- **Optimization**: Fixed duplicate `getSpawnType()` call in Spawns component.
+- **Optimization**: Removed dead `greet` Tauri command.
+- **Optimization**: Cached window lookup in single-instance handler.
+- **Optimization**: Screenshot zoom magnification increased from 3x to 3.25x.
+- **Code Quality**: Translated remaining hardcoded Chinese strings to i18n.
+- **Code Quality**: All comments converted to English; redundant comments removed.
 
 ### Version 1.1.8 (2026-03-13)
 

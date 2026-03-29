@@ -1,4 +1,4 @@
-// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+
 
 use regex::Regex;
 use serde::{Deserialize, Serialize};
@@ -76,13 +76,11 @@ fn start_global_keyboard_listener(app_handle: AppHandle) {
 
 
 
-// Read contents of a text file
 #[tauri::command]
 fn read_text_file(path: String) -> Result<String, String> {
     fs::read_to_string(&path).map_err(|e| format!("Failed to read file {}: {}", path, e))
 }
 
-// Read directory contents
 #[tauri::command]
 fn read_directory(path: String) -> Result<Vec<String>, String> {
     let entries =
@@ -100,19 +98,16 @@ fn read_directory(path: String) -> Result<Vec<String>, String> {
     Ok(files)
 }
 
-// Check if a path exists
 #[tauri::command]
 fn path_exists(path: String) -> bool {
     PathBuf::from(path).exists()
 }
 
-// Minimize window (not hide to tray)
 #[tauri::command]
 fn minimize_window(window: tauri::Window) -> Result<(), String> {
     window.minimize().map_err(|e| e.to_string())
 }
 
-// Set screenshot directory path
 #[tauri::command]
 fn set_screenshot_path(state: tauri::State<AppState>, path: String) -> Result<String, String> {
     let mut screenshot_path = state.screenshot_path.lock().unwrap();
@@ -120,7 +115,6 @@ fn set_screenshot_path(state: tauri::State<AppState>, path: String) -> Result<St
     Ok(format!("Screenshot path set to: {}", path))
 }
 
-// Get current screenshot directory path
 #[tauri::command]
 fn get_screenshot_path(state: tauri::State<AppState>) -> String {
     let screenshot_path = state.screenshot_path.lock().unwrap();
@@ -250,7 +244,6 @@ fn parse_raid_line(text: &str) -> Option<RaidLogEvent> {
     })
 }
 
-// Function to delete all PNG files in the screenshot directory
 fn cleanup_screenshot_pngs(screenshot_path: &str) {
     if screenshot_path.is_empty() {
         return;
@@ -381,32 +374,28 @@ pub fn run() {
                     }
                 });
 
-                // Block all refresh keyboard shortcuts using JavaScript
+                // Block refresh shortcuts (F5, Ctrl+F5, Ctrl+R, Shift+Ctrl+R)
                 let _ = window.eval(
                     r#"
                     window.addEventListener('keydown', function(e) {
-                        // Block F5 (refresh)
                         if (e.key === 'F5') {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
                         }
 
-                        // Block Ctrl+F5 (hard refresh - already blocked by F5 check but explicit)
                         if (e.ctrlKey && e.key === 'F5') {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
                         }
 
-                        // Block Shift+Ctrl+R (reload with cache override)
                         if (e.shiftKey && e.ctrlKey && e.key === 'R') {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
                         }
                         
-                        // Block Ctrl+R (normal reload)
                         if (e.ctrlKey && !e.shiftKey && e.key === 'r') {
                             e.preventDefault();
                             e.stopPropagation();

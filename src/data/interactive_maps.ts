@@ -1,5 +1,4 @@
-// Auto-generated map index - lightweight metadata only
-// Full map data is loaded on-demand via loadMapData()
+
 
 export interface MapIndexEntry {
   id: string;
@@ -239,11 +238,9 @@ export const mapIndex: MapIndexEntry[] = [
   },
 ];
 
-// Cache for loaded map data
 const mapDataCache = new Map<string, InteractiveMap.Data>();
 
 export async function loadMapData(id: string): Promise<InteractiveMap.Data | null> {
-  // Return from cache if available
   if (mapDataCache.has(id)) {
     return mapDataCache.get(id);
   }
@@ -252,7 +249,6 @@ export async function loadMapData(id: string): Promise<InteractiveMap.Data | nul
   if (!entry) return null;
 
   try {
-    // Dynamic import for code-splitting
     const module = await import(`./maps/${entry.filename}.json`);
     const data = module.default;
     mapDataCache.set(id, data);
@@ -263,14 +259,12 @@ export async function loadMapData(id: string): Promise<InteractiveMap.Data | nul
   }
 }
 
-// Preload a specific map (non-blocking)
 export function preloadMapData(id: string): void {
   if (!mapDataCache.has(id)) {
     loadMapData(id);
   }
 }
 
-// Clear cache for a specific map (for memory management)
 export function clearMapDataCache(id?: string): void {
   if (id) {
     mapDataCache.delete(id);
@@ -279,6 +273,4 @@ export function clearMapDataCache(id?: string): void {
   }
 }
 
-// For backward compatibility - returns the index list
-// (components that only need metadata can use this)
 export default mapIndex;

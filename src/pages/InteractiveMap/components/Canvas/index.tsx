@@ -192,7 +192,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         const scaleX = stageRef.current.width() / baseMapOrVirtual.width;
         const scaleY = stageRef.current.height() / baseMapOrVirtual.height;
         const _baseScale = scaleX < scaleY ? scaleX : scaleY;
-        const newScale = _baseScale * 3.25;
+        const newScale = _baseScale * 3.5;
         setMapScale(newScale);
         setMapPosition({
           x: stageRef.current.width() / 2 - real2imagePos.x(x) * newScale,
@@ -225,7 +225,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           pageY: e.evt.pageY,
         },
       ];
-      // Initialize
       if (e.evt.button === 2) operationContext.current = true;
       if (strokeType === 'draw' || strokeType === 'eraser') {
         const startPoints = [operationInitialVal.current[0].x, operationInitialVal.current[0].y];
@@ -241,7 +240,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     e.evt.preventDefault();
     const stage = e.target.getStage();
     if (stage) {
-      // Initialize
       if (e.evt.touches.length > touchTouches.current) {
         touchTouches.current = e.evt.touches.length;
       }
@@ -262,7 +260,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         });
       }
       operationInitialVal.current = _operationInitialVal;
-      // Initialize
       if (strokeType === 'ruler') setRulerPosition(undefined);
     }
     updateCursorPosition();
@@ -383,7 +380,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
       };
       setDrawLines((prev) => [...prev, data]);
     }
-    // Initialize
     operationInitialStage.current = undefined;
     operationInitialScale.current = 0;
     operationInitialVal.current = [{ x: 0, y: 0, pageX: 0, pageY: 0 }];
@@ -391,17 +387,14 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     operationContext.current = false;
     drawTempPointsRef.current = [];
     setDrawTempPoints([]);
-    // Initialize
   };
 
   const handleTouchEnd = (e: KonvaEventObject<TouchEvent>) => {
     if (e.evt.touches.length === 0) {
-      // Initialize
       operationInitialStage.current = undefined;
       operationInitialScale.current = 0;
       operationInitialVal.current = [{ x: 0, y: 0, pageX: 0, pageY: 0 }];
       touchTouches.current = 0;
-      // Initialize
     }
   };
 
