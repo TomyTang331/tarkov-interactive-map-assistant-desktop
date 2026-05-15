@@ -147,60 +147,46 @@ minimize_window() -> Result<(), String>
 
 ## 📊 更新日志
 
-### Version 1.2.0 (2026-05-15)
+### v1.2.0 (2026-05-15)
 
-- 🧹 **精简**：移除游戏目录选择、日志监听、自动切图功能（截图目录可自动检测）
-- 🧹 **精简**：移除手动定位/搜索、笔刷模式、橡皮模式、测距模式及相关工具栏按钮
-- 🧹 **精简**：移除重复地图条目（夜间工厂、中心区 21+）
-- 🧹 **精简**：移除页面标题
-- 🧹 **精简**：移除所有非错误通知（仅保留 PiP 失败等错误提示）
-- ⚡ **优化**：切换地图时不再闪烁（保留上一次 scale/position 直到新地图加载完成）
-- ⚡ **优化**：切换地图时自动重置层级选择为表层
-- 🐛 **修复**：截图目录默认路径改为 `Documents\Escape from Tarkov\Screenshots`，启动时自动检测
-- 🐛 **修复**：tsconfig.json TS 6.0 弃用警告（moduleResolution、baseUrl、esModuleInterop）
-- 🌐 **翻译**：地图层级名称中文化（如 "2nd Floor"→"2楼"）
-- 🌐 **翻译**：288 个地图地点标签中文化，修正 4 个不符合社区标准的翻译
-- 🌐 **翻译**：系统托盘菜单中文化（显示/隐藏/退出）
-- 🌐 **翻译**：补充 `others.surface` 缺失的 i18n key
-- 🧹 **清理**：移除 `tarkov_game_path` 相关 Rust 命令、日志解析函数、游戏日志监听线程
-- 🧹 **清理**：移除 `regex` crate 依赖、废弃类型（`DrawProps`、`iMDrawLine`、`StrokeType` 等）
-- 🧹 **清理**：移除不再使用的工具函数（`drawColorList`、`tarkovGamePathResolve`、`transformMapId`）
-- 🧹 **清理**：移除约 20 个不再使用的 i18n key
+**精简**
+- 🧹 移除游戏目录选择、application.log 日志监听、基于日志的自动地图切换
+- 🧹 移除手动定位/搜索、笔刷模式、橡皮模式、测距模式及对应工具栏按钮
+- 🧹 移除重复地图条目（夜间工厂、中心区 21+），地图列表从 12 张精简为 10 张
+- 🧹 移除页面标题
+- 🧹 移除所有非错误 toast 通知，仅保留 PiP 失败等错误提示
 
-### Version 1.1.9 (2026-03-29)
+**优化**
+- ⚡ 截图目录默认 `Documents\Escape from Tarkov\Screenshots`，启动自动检测无需手动选择
+- ⚡ 切换地图不再闪烁（useLayoutEffect 消除闪烁帧）
+- ⚡ 切换地图自动重置层级为表层
+- ⚡ 实验室地图始终居中显示"瓦片图不支持"
 
-- **性能优化**：禁用 Toast 滑入/滑出动画，改为即时显示/隐藏，降低 DOM 开销。
-- **性能优化**：Toast 最多同时显示 3 条，自动关闭时间缩短至 3 秒。
-- **性能优化**：Rust 正则表达式通过 `OnceLock` 预编译，避免每行日志重复编译。
-- **性能优化**：MapInfo 面板隐藏时暂停秒级定时器，减少不必要的重渲染。
-- **性能优化**：MapSelect、Warning 组件添加 `React.memo`。
-- **优化改进**：修复 Spawns 组件中重复调用 `getSpawnType()` 的问题。
-- **优化改进**：移除无用的 `greet` Tauri 命令。
-- **优化改进**：单实例处理中缓存窗口查找，避免重复查找。
-- **优化改进**：截图定位放大倍数从 3x 调整为 3.25x。
-- **代码质量**：将残余硬编码中文字符串替换为 i18n 国际化调用。
-- **代码质量**：所有注释统一为英文，移除冗余注释。
-- **升级**：Vite 7.3 → 8.0（Rolldown 引擎），构建速度提升约 42%。
-- **升级**：`@vitejs/plugin-react` v5 → v6（基于 Oxc，无需 Babel）。
-- **修复**：通知栏：切换地图时关闭所有通知，成功通知 3 秒后自动消失。
-- **修复**：移除损坏的自定义 Toast 动画，改用近乎即时的 CSS 动画。
+**修复**
+- 🐛 tsconfig.json TS 6.0 弃用警告（moduleResolution→bundler、移除 baseUrl、esModuleInterop→true）
+- 🐛 package.json 导入路径兼容 bundler 模块解析
+- 🐛 托盘菜单中文化（显示/隐藏/退出）
 
-### Version 1.1.8 (2026-03-13)
+**翻译**
+- 🌐 地图层级名称中文化（如 "2nd Floor"→"2楼"、"Underground"→"地下"）
+- 🌐 288 个地图地点标签中文化
+- 🌐 修正 4 个不符合社区标准的翻译（Crackhouse→毒品房、Skeleton→骨架、Grand Chalet→红色豪宅、Power Station→发电站）
+- 🌐 补充 `others.surface: '表层'` 缺失的 i18n key
 
-- **CI / 发布**：GitHub Actions **仅 Windows** 构建（游戏仅 Windows）；**Node 22**（兼容 Vite 7）；Release 附件仅 `.exe` / `.msi`。
+**Rust 后端清理**
+- 🧹 移除 `tarkov_game_path` 相关命令、`ProfileLogEvent`/`RaidLogEvent` 结构体
+- 🧹 移除日志解析函数（resolve_application_log_path、split_log_lines、parse_profile_line 等）
+- 🧹 移除 `regex` crate 依赖、游戏日志监听后台线程
 
-### Version 1.1.7 (2026-03-13)
+**前端清理**
+- 🧹 移除 6 个废弃组件目录（QuickSearch、DrawSetting、EraserSetting、RulerPosition、DrawLines、Ruler）
+- 🧹 移除废弃类型（DrawProps、iMDrawLine、StrokeType、OperationType）
+- 🧹 移除废弃函数（drawColorList、tarkovGamePathResolve、transformMapId、readFileContent）
+- 🧹 移除约 20 个不再使用的 i18n key
 
-- 实验室（`tileMapUnsupported`）：仅显示居中「瓦片图暂不支持」文案；不绘制地图标记与叠加层（去除左上角缩略图效果）。
-- 精简 Canvas、QuickTools、BaseMap、Ruler、InteractiveMap 入口、typings 等处冗余注释。
-
-### Version 1.1.6 (2026-03-11)
-
-- 实验室地图：瓦片加载（`TileLayer` + 本地瓦片 `src/assets/the-lab-map`），无 SVG 时使用虚拟画布尺寸。
-- 游戏日志监听：Tauri 对话框选择游戏目录，Rust 解析 application 日志并发送 `profile-log` / `raid-log`，前端更新战局信息与自动切图。
-- PMC/Scav 撤离点标签使用 `extract_names_zh.json` 中文名。
-- M 键在窗口有焦点（前端 keydown）或失焦（rdev 事件）时均可切换画中画。
-- ESLint 修复（Canvas、BaseMap、MapInfo、QuickTools）；代码注释改为英文。
+**构建**
+- 🔧 添加 `beforeBuildCommand`，打包目标改为仅 NSIS (.exe)
+- 🔧 版本号统一升级至 1.2.0（package.json、Cargo.toml、tauri.conf.json、package-lock.json）
 
 ---
 
