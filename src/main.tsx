@@ -2,11 +2,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import packageJson from 'package.json';
 import { RecoilRoot } from 'recoil';
 import { ErrorBoundary, Message } from 'tilty-ui';
 
 import Router from '@/router';
+
+import packageJson from '../package.json';
 
 import '@/scripts/axios';
 import 'tilty-ui/dist/theme/global.less';

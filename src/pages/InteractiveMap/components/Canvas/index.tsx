@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Layer, Rect, Stage } from 'react-konva';
 
 import { useInterval } from 'ahooks';
@@ -371,7 +371,7 @@ const Index = (props: CanvasProps) => {
     e.evt.preventDefault();
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (stageRef.current) {
       if (baseMapOrVirtual && effectiveStatus === 'loaded') {
         const scaleX = stageRef.current.width() / baseMapOrVirtual.width;
@@ -384,6 +384,10 @@ const Index = (props: CanvasProps) => {
         });
         setCursorPosition({ x: 0, y: 0 });
         mapInitializedRef.current = true;
+      } else if (isTileOnlyMap && !tileVirtualSize) {
+        setMapScale(1);
+        setMapPosition({ x: 0, y: 0 });
+        setCursorPosition({ x: 0, y: 0 });
       } else if (!mapInitializedRef.current) {
         setMapScale(1);
         setMapPosition({
@@ -393,7 +397,7 @@ const Index = (props: CanvasProps) => {
         setCursorPosition({ x: 0, y: 0 });
       }
     }
-  }, [baseMapOrVirtual, effectiveStatus, resolution]);
+  }, [baseMapOrVirtual, effectiveStatus, isTileOnlyMap, tileVirtualSize, resolution]);
 
   useEffect(() => {
     onCursorPositionChange?.(cursorPosition);
