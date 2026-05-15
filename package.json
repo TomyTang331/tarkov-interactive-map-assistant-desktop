@@ -1,6 +1,6 @@
 {
   "name": "tarkov-interactive-map-assistant-desktop",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "逃离塔科夫·交互式地图助手 - 桌面版",
   "homepage": "https://github.com/TomyTang331/tarkov-interactive-map-assistant-desktop",
   "author": "Tomy",
@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@tauri-apps/api": "~2.10",
-    "@tauri-apps/plugin-dialog": "~2.6",
-    "@tauri-apps/plugin-fs": "^2",
+    "@tauri-apps/api": "~2.11",
+    "@tauri-apps/plugin-dialog": "~2.7",
+    "@tauri-apps/plugin-fs": "^2.5",
     "@tauri-apps/plugin-opener": "^2",
     "ahooks": "^3.8.0",
     "axios": "^0.27.2",

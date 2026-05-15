@@ -73,6 +73,9 @@ const Index = (props: PlayerLocationProps & InteractiveMap.UtilProps) => {
         });
       }
     };
+    return () => {
+      delete (window as any).interactUpdateLocation;
+    };
   }, [activeMapId, onPlayerLocationChange]);
 
   if (baseMapStatus === 'loaded' && playerLocations && show.length > 0) {

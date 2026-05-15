@@ -12,23 +12,16 @@ import './style.less';
 
 interface MapInfoProps {
   mapData: InteractiveMap.Data;
-  raidInfo?: InteractiveMap.RaidLogProps;
   directoryHandler?: string;
-  tarkovGamePathHandler?: FileSystemDirectoryHandle;
-  tarkovGamePathFromRust?: string;
   show: boolean;
 }
 
 const Index = (props: MapInfoProps) => {
   const {
     mapData,
-    raidInfo,
     directoryHandler,
-    tarkovGamePathHandler,
-    tarkovGamePathFromRust,
     show,
   } = props;
-  const hasTarkovPath = tarkovGamePathHandler || tarkovGamePathFromRust;
 
   const [realTime, setRealTime] = useState(0);
   const [timeDiff, setTimeDiff] = useState(0);
@@ -82,37 +75,6 @@ const Index = (props: MapInfoProps) => {
       {self === top && window.showDirectoryPicker && !directoryHandler && (
         <div className="im-mapinfo-item">
           <span className="im-mapinfo-item-title warning">{t('mapInfo.noScreenshotDir')}</span>
-        </div>
-      )}
-      {self === top &&
-        (window.showDirectoryPicker || (window as any).__TAURI__) &&
-        !hasTarkovPath && (
-          <div className="im-mapinfo-item">
-            <span className="im-mapinfo-item-title warning">
-              {t('mapInfo.noGameDir')}
-            </span>
-          </div>
-      )}
-      {raidInfo?.ip && raidInfo?.port && (
-        <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title">{t('mapInfo.serverIP')}</span>
-          <span>
-            {raidInfo.ip}:{raidInfo.port}
-          </span>
-        </div>
-      )}
-      {raidInfo?.gameMode && raidInfo?.raidMode && (
-        <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title">{t('mapInfo.gameMode')}</span>
-          <span>
-            {raidInfo.gameMode} ({raidInfo.raidMode})
-          </span>
-        </div>
-      )}
-      {raidInfo?.shortId && (
-        <div className="im-mapinfo-item">
-          <span className="im-mapinfo-item-title">{t('mapInfo.raidId')}</span>
-          <span>{raidInfo.shortId}</span>
         </div>
       )}
     </div>

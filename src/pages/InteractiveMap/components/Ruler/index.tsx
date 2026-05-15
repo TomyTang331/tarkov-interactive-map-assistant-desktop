@@ -25,9 +25,10 @@ const Index = (props: RulerProps) => {
   const minorTickLength = 5 * baseScale;
   const majorTickLength = 10 * baseScale;
 
-  if (rulerPosition) {
-    const ShapeGroup: React.ReactNode[] = [];
-    ShapeGroup.push(
+  const shapeGroup = useMemo(() => {
+    if (!rulerPosition) return null;
+    const group: React.ReactNode[] = [];
+    group.push(
       <Rect
         key="ruler-bg"
         x={0}
@@ -44,11 +45,17 @@ const Index = (props: RulerProps) => {
     for (let i = 0; i <= length; i += tickDistance) {
       const isMajor = i % majorTickEvery === 0;
       const tickLength = isMajor ? majorTickLength : minorTickLength;
-      const tickLine = (
-        <Line key={`tick-${i}`} points={[i, 0, i, tickLength]} stroke="#888888" strokeWidth={1 * baseScale} />
+      group.push(
+        <Line key={`tick-${i}`} points={[i, 0, i, tickLength]} stroke="#888888" strokeWidth={1 * baseScale} />,
       );
-      ShapeGroup.push(tickLine);
     }
+    return group;
+  }, [
+    length, rulerHeight, tickDistance, majorTickEvery, minorTickLength, majorTickLength, baseScale,
+    rulerPosition,
+  ]);
+
+  if (shapeGroup) {
     return (
       <Group>
         <Group
@@ -63,7 +70,7 @@ const Index = (props: RulerProps) => {
             Math.PI
           }
         >
-          {ShapeGroup}
+          {shapeGroup}
         </Group>
         <Group>
           <Circle

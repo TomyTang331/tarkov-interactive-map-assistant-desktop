@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useRecoilState } from 'recoil';
 
+import layerNamesZh from '@/data/layer_names_zh.json';
 import useI18N from '@/i18n';
 import langState from '@/store/lang';
 
@@ -27,6 +28,10 @@ const Index = (props: MapSelectProps) => {
   const [lang] = useRecoilState(langState);
 
   const { t } = useI18N(lang);
+
+  const layerNameMap = layerNamesZh as Record<string, string>;
+
+  const getLayerDisplayName = (name: string) => layerNameMap[name] || name;
 
   const handleMapSelect = () => {
     setLayerSelectActive(false);
@@ -84,7 +89,7 @@ const Index = (props: MapSelectProps) => {
       {activeMap.layers && (
         <div className="im-mapselect-layer">
           <div className="im-mapselect-layer-surface" onClick={handleLayerSelect}>
-            <span>{activeLayer || t('others.surface')}</span>
+            <span>{activeLayer ? getLayerDisplayName(activeLayer) : t('others.surface')}</span>
             <span className="im-mapselect-base-surface-arrow">
               {layerSelectActive ? (
                 <Icon type="icon-arrow-drop-up-fill" />
@@ -114,7 +119,7 @@ const Index = (props: MapSelectProps) => {
                 })}
                 onClick={() => handleLayerChange(layer.name)}
               >
-                <span>{layer.name}</span>
+                <span>{getLayerDisplayName(layer.name)}</span>
               </div>
             ))}
           </div>

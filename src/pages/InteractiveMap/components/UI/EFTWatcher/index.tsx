@@ -10,21 +10,14 @@ import './style.less';
 
 interface EFTWatcherProps {
   directoryHandler?: string;
-  tarkovGamePathHandler?: FileSystemDirectoryHandle;
-  tarkovGamePathFromRust?: string;
   onClickEftWatcherPath: () => void;
-  onClickTarkovGamePath: () => void;
 }
 
 const Index = (props: EFTWatcherProps) => {
   const {
     directoryHandler,
-    tarkovGamePathHandler,
-    tarkovGamePathFromRust,
     onClickEftWatcherPath,
-    onClickTarkovGamePath,
   } = props;
-  const hasTarkovPath = tarkovGamePathHandler || tarkovGamePathFromRust;
 
   const [show, setShow] = useState(false);
 
@@ -40,10 +33,10 @@ const Index = (props: EFTWatcherProps) => {
 
 
   useEffect(() => {
-    if (directoryHandler && hasTarkovPath) {
+    if (directoryHandler) {
       setShow(false);
     }
-  }, [directoryHandler, hasTarkovPath]);
+  }, [directoryHandler]);
 
   useEffect(() => {
     if (self === top) {
@@ -80,17 +73,6 @@ const Index = (props: EFTWatcherProps) => {
             </button>
           ) : (
             <button className="button button-default">{t('eftwatcher.unsupport')}</button>
-          )}
-          {(window.showDirectoryPicker || (window as any).__TAURI__) && (
-            <button
-              style={{ marginTop: 16, color: !hasTarkovPath ? '#ffffff' : '#288828' }}
-              className="button button-default"
-              onClick={onClickTarkovGamePath}
-            >
-              {hasTarkovPath
-                ? t('eftwatcher.disableGamePath')
-                : t('eftwatcher.enableGamePath')}
-            </button>
           )}
           <button
             style={{ marginTop: 16 }}

@@ -185,65 +185,10 @@ declare namespace InteractiveMap {
     real2imagePos: ImageTransformProps;
   }
 
-  interface DrawProps {
-    strokeType: StrokeType;
-    strokeColor: string;
-    strokeWidth: number;
-    eraserWidth: number;
-  }
-
-  interface iMDrawLine extends DrawProps {
-    uuid: string;
-    mapId: string;
-    tool: string;
-    points: number[];
-    name?: string;
-    member: boolean;
-    updatedAt: number;
-  }
-
-  interface RaidLogProps {
-    profileId: string;
-    status: string;
-    raidMode: string;
-    ip: string;
-    port: string;
-    location: string;
-    sid: string;
-    gameMode: string;
-    shortId: string;
-    realTime: string | null;
-  }
-
-  interface ProfileLogProps {
-    profileId: string;
-    accountId: string;
-  }
-
-  interface UserConfirmedLogProps {
-    type: string;
-    eventId: string;
-    profileid: string;
-    profileToken: string;
-    status: string;
-    ip: string;
-    port: number;
-    sid: string;
-    version: string;
-    location: string;
-    raidMode: string;
-    mode: string;
-    shortId: string;
-    additional_info: any[];
-  }
-
   type Faction = 'pmc' | 'scav' | 'shared';
 
   type MapStatus = 'loaded' | 'loading' | 'failed';
 
-  type StrokeType = 'drag' | 'draw' | 'eraser' | 'ruler';
-  type OperationType = -1 | 0 | 1 | 2;
-
-  type QuickTools = 'marker' | 'draw' | 'eraser' | 'setting';
+  type QuickTools = 'marker' | 'setting';
   type AdditionFunc = 'tradertimer';
 }

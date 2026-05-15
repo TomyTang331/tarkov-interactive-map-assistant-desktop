@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Group, Layer, Rect, Stage } from 'react-konva';
+import { Layer, Rect, Stage } from 'react-konva';
 
 import { useInterval } from 'ahooks';
 import { KonvaEventObject } from 'konva/lib/Node';
@@ -14,7 +14,6 @@ import {
 } from '@/pages/InteractiveMap/utils';
 
 import BaseMap from '../BaseMap';
-import DrawLines from '../DrawLines';
 import Extracts from '../Extracts';
 import Hazards from '../Hazards';
 import Image from '../Image';
@@ -23,7 +22,6 @@ import LocalTileLayers from '../LocalTileLayers';
 import Locks from '../Locks';
 import LootContainers from '../LootContainers';
 import PlayerLocation from '../PlayerLocation';
-import Ruler from '../Ruler';
 import Spawns from '../Spawns';
 import StationaryWeapons from '../StationaryWeapons';
 import TileLayer from '../TileLayer';
@@ -45,11 +43,10 @@ interface CanvasProps {
   height: number;
   resolution: { width: number; height: number };
   onCursorPositionChange?: (cursorPosition: InteractiveMap.Position2D) => void;
-  onRulerPositionChange?: (rulerPosition: InteractiveMap.Position2D[] | undefined) => void;
   callbackUtils?: (utils: InteractiveMap.UtilProps) => void;
 }
 
-const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
+const Index = (props: CanvasProps) => {
   const {
     mapData,
     activeLayer,
@@ -62,13 +59,8 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     locationScale,
     width,
     height,
-    strokeType,
-    strokeColor,
-    strokeWidth,
-    eraserWidth,
     resolution,
     onCursorPositionChange,
-    onRulerPositionChange,
     callbackUtils,
   } = props;
 
@@ -77,14 +69,10 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const mapMoveStatusRef = useRef(mapMoveStatus);
   const [mapScale, setMapScale] = useState(1);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [drawLines, setDrawLines] = useState<InteractiveMap.iMDrawLine[]>([]);
-  const [drawTempPoints, setDrawTempPoints] = useState<number[]>([]);
-  const [rulerPosition, setRulerPosition] = useState<InteractiveMap.Position2D[]>();
 
   const stageRef = useRef<StageType>(null);
-  const drawTempPointsRef = useRef<number[]>([]);
-  const drawTempPointsRafRef = useRef<number | null>(null);
-  const operationType = useRef<InteractiveMap.OperationType>(-1);
+  const mapInitializedRef = useRef(false);
+  const operationType = useRef(-1);
   const operationContext = useRef(false);
   const operationInitialStage = useRef<InteractiveMap.Position2D>();
   const operationInitialScale = useRef(0);
@@ -210,7 +198,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   const handleMouseDown = (e: KonvaEventObject<MouseEvent>) => {
     const stage = e.target.getStage();
     if (stage) {
-      operationType.current = e.evt.button as InteractiveMap.OperationType;
+      operationType.current = e.evt.button;
       if (!operationInitialStage.current) {
         operationInitialStage.current = { x: stage.x(), y: stage.y() };
       }
@@ -226,13 +214,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         },
       ];
       if (e.evt.button === 2) operationContext.current = true;
-      if (strokeType === 'draw' || strokeType === 'eraser') {
-        const startPoints = [operationInitialVal.current[0].x, operationInitialVal.current[0].y];
-        drawTempPointsRef.current = startPoints;
-        setDrawTempPoints(startPoints);
-      } else if (strokeType === 'ruler' && e.evt.button === 0) {
-        setRulerPosition(undefined);
-      }
     }
   };
 
@@ -260,7 +241,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         });
       }
       operationInitialVal.current = _operationInitialVal;
-      if (strokeType === 'ruler') setRulerPosition(undefined);
     }
     updateCursorPosition();
   };
@@ -274,7 +254,7 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           pageX: e.evt.pageX,
           pageY: e.evt.pageY,
         };
-        if (strokeType === 'drag' || [1, 2].includes(operationType.current)) {
+        if ([1, 2].includes(operationType.current)) {
           setMapPosition({
             x:
               operationInitialStage.current.x +
@@ -283,16 +263,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
               operationInitialStage.current.y +
               (final.pageY - operationInitialVal.current[0].pageY),
           });
-        } else if (strokeType === 'draw' || strokeType === 'eraser') {
-          drawTempPointsRef.current = [...drawTempPointsRef.current, final.x, final.y];
-          if (drawTempPointsRafRef.current == null) {
-            drawTempPointsRafRef.current = requestAnimationFrame(() => {
-              drawTempPointsRafRef.current = null;
-              setDrawTempPoints(drawTempPointsRef.current);
-            });
-          }
-        } else if (strokeType === 'ruler') {
-          setRulerPosition([operationInitialVal.current[0], final]);
         }
       }
     }
@@ -317,18 +287,14 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
         });
       }
       if (touchTouches.current === 1) {
-        if (strokeType === 'drag') {
-          setMapPosition({
-            x:
-              operationInitialStage.current.x +
-              (finals[0].pageX - operationInitialVal.current[0].pageX),
-            y:
-              operationInitialStage.current.y +
-              (finals[0].pageY - operationInitialVal.current[0].pageY),
-          });
-        } else if (strokeType === 'ruler') {
-          setRulerPosition([operationInitialVal.current[0], finals[0]]);
-        }
+        setMapPosition({
+          x:
+            operationInitialStage.current.x +
+            (finals[0].pageX - operationInitialVal.current[0].pageX),
+          y:
+            operationInitialStage.current.y +
+            (finals[0].pageY - operationInitialVal.current[0].pageY),
+        });
       } else if (touchTouches.current === 2) {
         const initialHypotenuse = calculateHypotenuse(
           operationInitialVal.current[0],
@@ -361,32 +327,11 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
 
   const handleMouseUp = (e: KonvaEventObject<MouseEvent>) => {
     if (operationContext.current) showContextMenu({ x: e.evt.clientX, y: e.evt.clientY });
-    if (
-      (strokeType === 'draw' || strokeType === 'eraser') &&
-      drawTempPointsRef.current.length > 0
-    ) {
-      const _strokeWidth = strokeType === 'draw' ? strokeWidth : eraserWidth;
-      const data: InteractiveMap.iMDrawLine = {
-        uuid: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-        tool: strokeType,
-        mapId: mapData.id,
-        points: drawTempPointsRef.current,
-        strokeType,
-        strokeColor,
-        strokeWidth: _strokeWidth,
-        eraserWidth,
-        member: false,
-        updatedAt: Date.now(),
-      };
-      setDrawLines((prev) => [...prev, data]);
-    }
     operationInitialStage.current = undefined;
     operationInitialScale.current = 0;
     operationInitialVal.current = [{ x: 0, y: 0, pageX: 0, pageY: 0 }];
     operationType.current = -1;
     operationContext.current = false;
-    drawTempPointsRef.current = [];
-    setDrawTempPoints([]);
   };
 
   const handleTouchEnd = (e: KonvaEventObject<TouchEvent>) => {
@@ -438,14 +383,14 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           y: (stageRef.current.height() - baseMapOrVirtual.height * newScale) / 2,
         });
         setCursorPosition({ x: 0, y: 0 });
-      } else {
+        mapInitializedRef.current = true;
+      } else if (!mapInitializedRef.current) {
         setMapScale(1);
         setMapPosition({
           x: (stageRef.current.width() - width) / 2,
           y: (stageRef.current.height() - height) / 2,
         });
         setCursorPosition({ x: 0, y: 0 });
-        setRulerPosition(undefined);
       }
     }
   }, [baseMapOrVirtual, effectiveStatus, resolution]);
@@ -453,10 +398,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
   useEffect(() => {
     onCursorPositionChange?.(cursorPosition);
   }, [cursorPosition]);
-
-  useEffect(() => {
-    onRulerPositionChange?.(rulerPosition);
-  }, [rulerPosition]);
 
   useEffect(() => {
     callbackUtils?.(utils);
@@ -522,30 +463,21 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
     return () => {
       window.removeEventListener('keydown', keydown);
       window.removeEventListener('keyup', keyup);
-      if (drawTempPointsRafRef.current != null) {
-        cancelAnimationFrame(drawTempPointsRafRef.current);
-      }
     };
   }, []);
 
   useInterval(
     () => {
-      const _mapPosition = { ...mapPosition };
       const step = 20;
-      if (mapMoveStatus?.has('w')) {
-        _mapPosition.y -= step;
-      }
-      if (mapMoveStatus?.has('a')) {
-        _mapPosition.x -= step;
-      }
-      if (mapMoveStatus?.has('s')) {
-        _mapPosition.y += step;
-      }
-      if (mapMoveStatus?.has('d')) {
-        _mapPosition.x += step;
-      }
       if (mapMoveStatus && mapMoveStatus.size > 0) {
-        setMapPosition(_mapPosition);
+        setMapPosition((prev) => {
+          const next = { ...prev };
+          if (mapMoveStatus.has('w')) next.y -= step;
+          if (mapMoveStatus.has('a')) next.x -= step;
+          if (mapMoveStatus.has('s')) next.y += step;
+          if (mapMoveStatus.has('d')) next.x += step;
+          return next;
+        });
       }
     },
     mapMoveStatus && mapMoveStatus.size > 0 ? 1000 / 60 : undefined,
@@ -675,25 +607,6 @@ const Index = (props: CanvasProps & InteractiveMap.DrawProps) => {
           show={['playerLocation']}
           onPlayerLocationChange={handlePlayerLocationChange}
         />
-      </Layer>
-      <Layer>
-        <DrawLines
-          {...utils}
-          cursorPosition={cursorPosition}
-          drawLines={drawLines}
-          strokeType={strokeType}
-          strokeColor={strokeColor}
-          strokeWidth={strokeWidth}
-          eraserWidth={eraserWidth}
-          activeMapId={mapData.id}
-          drawTempPoints={drawTempPoints}
-          show={['drawLine']}
-        />
-      </Layer>
-      <Layer>
-        <Group>
-          <Ruler {...utils} rulerPosition={rulerPosition} />
-        </Group>
       </Layer>
     </Stage>
   );

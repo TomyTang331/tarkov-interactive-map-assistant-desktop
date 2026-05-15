@@ -9,22 +9,43 @@ interface ImageProps {
 
 type OmitImageConfig = Omit<ImageConfig, 'image'>;
 
-// Global image cache — identical URLs share one HTMLImageElement across all instances
+// LRU image cache — capped at 200 entries to bound memory
+const CACHE_MAX = 200;
 const imageCache = new Map<string, HTMLImageElement>();
 const imageLoadingPromises = new Map<string, Promise<HTMLImageElement>>();
+const imageAccessOrder: string[] = [];
+
+function touchCacheEntry(src: string) {
+  const idx = imageAccessOrder.indexOf(src);
+  if (idx !== -1) imageAccessOrder.splice(idx, 1);
+  imageAccessOrder.push(src);
+}
+
+function evictCache() {
+  while (imageCache.size >= CACHE_MAX) {
+    const oldest = imageAccessOrder.shift();
+    if (oldest) {
+      imageCache.delete(oldest);
+      imageLoadingPromises.delete(oldest);
+    }
+  }
+}
 
 interface ImageState { image: HTMLImageElement | undefined; status: string }
 
 function useCachedImage(src: string): [HTMLImageElement | undefined, string] {
   const [state, setState] = useState<ImageState>(() => {
     const cached = imageCache.get(src);
-    return cached
-      ? { image: cached, status: 'loaded' }
-      : { image: undefined, status: 'loading' };
+    if (cached) {
+      touchCacheEntry(src);
+      return { image: cached, status: 'loaded' };
+    }
+    return { image: undefined, status: 'loading' };
   });
 
   useEffect(() => {
     if (imageCache.has(src)) {
+      touchCacheEntry(src);
       setState({ image: imageCache.get(src), status: 'loaded' });
       return;
     }
@@ -36,7 +57,9 @@ function useCachedImage(src: string): [HTMLImageElement | undefined, string] {
         const img = new window.Image();
         img.crossOrigin = 'anonymous';
         img.onload = () => {
+          evictCache();
           imageCache.set(src, img);
+          touchCacheEntry(src);
           imageLoadingPromises.delete(src);
           resolve(img);
         };

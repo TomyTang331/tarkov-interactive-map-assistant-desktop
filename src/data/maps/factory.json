@@ -1,8 +1,6 @@
 {
   "key": "factory",
-  "altMaps": [
-    "night-factory"
-  ],
+  "altMaps": [],
   "projection": "interactive",
   "tileSize": 256,
   "minZoom": 1,

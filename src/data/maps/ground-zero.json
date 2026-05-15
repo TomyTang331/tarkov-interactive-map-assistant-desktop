@@ -1,8 +1,6 @@
 {
   "key": "ground-zero",
-  "altMaps": [
-    "ground-zero-21"
-  ],
+  "altMaps": [],
   "projection": "interactive",
   "tileSize": 256,
   "minZoom": 1,

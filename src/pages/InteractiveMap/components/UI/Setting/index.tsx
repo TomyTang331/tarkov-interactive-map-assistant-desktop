@@ -9,10 +9,8 @@ import './style.less';
 
 export interface SettingProps {
   directoryHandler?: string;
-  tarkovGamePathHandler?: FileSystemDirectoryHandle;
   locationScale: boolean;
   onClickEftWatcherPath: () => void;
-  onClickTarkovGamePathPath: () => void;
   onLocationScaleChange: (b: boolean) => void;
 }
 
@@ -20,10 +18,8 @@ const Index = (props: SettingProps) => {
   const {
     locationScale,
     directoryHandler,
-    tarkovGamePathHandler,
     onLocationScaleChange,
     onClickEftWatcherPath,
-    onClickTarkovGamePathPath,
   } = props;
 
   const [lang] = useRecoilState(langState);
@@ -32,10 +28,6 @@ const Index = (props: SettingProps) => {
 
   const handleClickEftWatcherPath = () => {
     onClickEftWatcherPath();
-  };
-
-  const handleClickTarkovGamePathPath = () => {
-    onClickTarkovGamePathPath();
   };
 
   const handleToggleLocationScale = () => {
@@ -57,17 +49,6 @@ const Index = (props: SettingProps) => {
             {directoryHandler
               ? `${t('setting.realtimeMarker')} ${directoryHandler.split('\\').pop() || directoryHandler}`
               : t('setting.enableMarker')}
-          </button>
-        )}
-        {self === top && (
-          <button
-            className="im-quicktools-modal-setting-button"
-            style={{ color: !tarkovGamePathHandler ? '#ffffff' : '#288828' }}
-            onClick={handleClickTarkovGamePathPath}
-          >
-            {tarkovGamePathHandler
-              ? `${t('setting.tarkovGamePath')} ${tarkovGamePathHandler?.name}`
-              : t('setting.enableTarkovGamePath')}
           </button>
         )}
         <button

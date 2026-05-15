@@ -1,15 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
 
-import { useInterval, useLocalStorageState } from 'ahooks';
+import { useLocalStorageState } from 'ahooks';
 import classNames from 'classnames';
 import { useRecoilState } from 'recoil';
-import { message } from 'tilty-ui';
 import { UAParser } from 'ua-parser-js';
 
-import dataImap, { loadMapData } from '@/data/interactive_maps';
+import dataImap, { clearMapDataCache, loadMapData } from '@/data/interactive_maps';
 import langState from '@/store/lang';
-import { tarkovGamePathResolve } from '@/utils/tarkov';
 
 import useI18N from '../../i18n';
 import Canvas from './components/Canvas';
@@ -18,30 +15,12 @@ import Coordinate from './components/UI/Coordinate';
 import EFTWatcher from './components/UI/EFTWatcher';
 import MapInfo from './components/UI/MapInfo';
 import MapSelect from './components/UI/MapSelect';
-import QuickSearch from './components/UI/QuickSearch';
 import QuickTools from './components/UI/QuickTools';
-import RulerPosition from './components/UI/RulerPosition';
-import Title from './components/UI/Title';
 import Tooltip from './components/UI/Tooltip';
 import Warning from './components/UI/Warning';
 import { getLayer } from './utils';
 
 import './style.less';
-
-const LOCATION_MAP: Record<string, string> = {
-  TarkovStreets: '5714dc692459777137212e12',
-  Sandbox: '653e6760052c01c1c805532f',
-  Sandbox_high: '65b8d6f5cdde2479cb2a3125',
-  bigmap: '56f40101d2720b2a4d8b45d6',
-  factory4_day: '55f2d3fd4bdc2d5f408b4567',
-  factory4_night: '59fc81d786f774390775787e',
-  Interchange: '5714dbc024597771384a510d',
-  laboratory: '5b0fc42d86f7744a585f9105',
-  Lighthouse: '5704e4dad2720bb55b8b4567',
-  RezervBase: '5704e5fad2720bc05b8b4567',
-  Shoreline: '5704e554d2720bac5b8b456e',
-  Woods: '5704e3c2d2720bac5b8b4567',
-};
 
 const Index = () => {
   const [mapList, setMapList] = useState<InteractiveMap.Data[]>([]);
@@ -51,20 +30,12 @@ const Index = () => {
   const [utils, setUtils] = useState<InteractiveMap.UtilProps>();
 
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [rulerPosition, setRulerPosition] = useState<InteractiveMap.Position2D[]>();
   const [resolution, setResolution] = useState({ width: 0, height: 0 });
   const [simpleUIMode, setSimpleUIMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const [directoryHandler, setDirectoryHandler] = useState<string>();
-  const [tarkovGamePathHandler, setTarkovGamePathHandler] = useState<FileSystemDirectoryHandle>();
-  const [tarkovGamePathFromRust, setTarkovGamePathFromRust] = useState<string>();
-  const [applicationLogsHandler, setApplicationLogsHandler] = useState<FileSystemFileHandle>();
-  const applicationPathNameCache = useRef<string>();
-  const applicationModifiedGmt = useRef(0);
-  const applicationCacheLineNo = useRef(0);
-
-  const [raidInfo, setRaidInfo] = useState<InteractiveMap.RaidLogProps>();
+  const prevMapIdRef = useRef<string>();
 
   const [extracts, setExtracts] = useLocalStorageState<InteractiveMap.Faction[]>('im-extracts', {
     defaultValue: ['pmc', 'scav', 'shared'],
@@ -94,94 +65,12 @@ const Index = () => {
     defaultValue: true,
   });
 
-  const [strokeType, setStrokeType] = useState<InteractiveMap.StrokeType>('drag');
-  const [strokeColor, setStrokeColor] = useLocalStorageState<string>('im-strokeColor', {
-    defaultValue: '#9a8866',
-  });
-  const [strokeWidth, setStrokeWidth] = useLocalStorageState<number>('im-strokeWidth', {
-    defaultValue: 1,
-  });
-  const [eraserWidth, setEraserWidth] = useLocalStorageState<number>('im-eraserWidth', {
-    defaultValue: 5,
-  });
-
-  const [quickSearchShow, setQuickSearchShow] = useState(false);
-
   const [lang] = useRecoilState(langState);
 
   const { t } = useI18N(lang);
 
   const cursorPositionNextRef = useRef<InteractiveMap.Position2D | null>(null);
   const cursorPositionRafRef = useRef<number | null>(null);
-  const rulerPositionNextRef = useRef<InteractiveMap.Position2D[] | undefined | null>(null);
-  const rulerPositionRafRef = useRef<number | null>(null);
-
-  const resolveTarkovGamePath = async () => {
-    const { resolveGameRootPath, resolveLogPath, resolveLogFile } = tarkovGamePathResolve;
-    if (tarkovGamePathHandler) {
-      const gameRootPathHandle = await resolveGameRootPath(tarkovGamePathHandler);
-      const logPathHandle = await resolveLogPath(gameRootPathHandle || tarkovGamePathHandler);
-      if (logPathHandle) {
-        const _applicationLogsHandler = await resolveLogFile(logPathHandle, 'application');
-        if (_applicationLogsHandler) {
-          if (applicationPathNameCache.current !== _applicationLogsHandler.name) {
-            applicationPathNameCache.current = _applicationLogsHandler.name;
-            setApplicationLogsHandler(_applicationLogsHandler);
-            toast.info(`${t('toast.watchingLogFile')}: ${_applicationLogsHandler.name}`);
-          }
-        }
-      }
-    } else {
-      setApplicationLogsHandler(undefined);
-    }
-  };
-
-  const parseProfileInfo = (log: InteractiveMap.ProfileLogProps) => {
-    setRaidInfo(undefined);
-    toast.info(`${t('toast.profileLoaded')}: ${log.profileId}`);
-  };
-
-  const parseRaidInfo = (log: InteractiveMap.RaidLogProps) => {
-    setRaidInfo(log);
-    toast.info(`${t('toast.raidLoaded')}: ${log.shortId}`);
-    const mapId = LOCATION_MAP[log.location];
-    if (mapId) {
-      setActiveMapId(mapId);
-      setActiveLayer(undefined);
-    }
-  };
-
-  const resolveApplicationLogs = async (initial = false) => {
-    const { getLogFileMeta, parseLogFile, parseLine, parseProfileLine, parseRaidLine } =
-      tarkovGamePathResolve;
-    if (initial) {
-      applicationModifiedGmt.current = 0;
-      applicationCacheLineNo.current = 0;
-    }
-    if (applicationLogsHandler) {
-      const metadata = await getLogFileMeta(applicationLogsHandler);
-      if (metadata.lastModified > applicationModifiedGmt.current) {
-        applicationModifiedGmt.current = metadata.lastModified;
-        const logFile = await parseLogFile(applicationLogsHandler);
-        const logs = parseLine(logFile);
-        const newLogs = logs.splice(applicationCacheLineNo.current);
-        applicationCacheLineNo.current += newLogs.length;
-        const profileLogs = newLogs
-          .map((log) => parseProfileLine(log))
-          .filter((v) => v) as InteractiveMap.ProfileLogProps[];
-        const raidLogs = newLogs
-          .map((log) => parseRaidLine(log))
-          .filter((v) => v) as InteractiveMap.RaidLogProps[];
-        if (profileLogs.length > 0 && !initial) {
-          parseProfileInfo(profileLogs[profileLogs.length - 1]);
-        }
-        if (raidLogs.length > 0 && !initial) {
-          parseRaidInfo(raidLogs[raidLogs.length - 1]);
-        }
-      }
-    }
-  };
-
 
   const handleCursorPositionChange = (_cursorPosition: InteractiveMap.Position2D) => {
     cursorPositionNextRef.current = _cursorPosition;
@@ -191,16 +80,6 @@ const Index = () => {
         if (cursorPositionNextRef.current) {
           setCursorPosition(cursorPositionNextRef.current);
         }
-      });
-    }
-  };
-
-  const handleRulerPositionChange = (_rulerPosition: InteractiveMap.Position2D[] | undefined) => {
-    rulerPositionNextRef.current = _rulerPosition;
-    if (rulerPositionRafRef.current == null) {
-      rulerPositionRafRef.current = requestAnimationFrame(() => {
-        rulerPositionRafRef.current = null;
-        setRulerPosition(rulerPositionNextRef.current || undefined);
       });
     }
   };
@@ -241,9 +120,9 @@ const Index = () => {
     try {
       const { open } = await import('@tauri-apps/plugin-dialog');
       const { invoke } = await import('@tauri-apps/api/core');
-      const { documentDir } = await import('@tauri-apps/api/path');
+      const { documentDir, join } = await import('@tauri-apps/api/path');
 
-      const defaultPath = await documentDir();
+      const defaultPath = await join(await documentDir(), 'Escape from Tarkov', 'Screenshots');
       const selectedPath = await open({
         directory: true,
         multiple: false,
@@ -253,8 +132,6 @@ const Index = () => {
       if (selectedPath && typeof selectedPath === 'string') {
         await invoke('set_screenshot_path', { path: selectedPath }).catch(() => { });
         setDirectoryHandler(selectedPath);
-        const folderName = selectedPath.split('\\').pop() || selectedPath;
-        toast.info(`${t('toast.watchingScreenshots')}: ${folderName}`);
       } else {
         setDirectoryHandler(undefined);
       }
@@ -263,81 +140,13 @@ const Index = () => {
     }
   };
 
-  const handleClickTarkovGamePath = async () => {
-    const hasPath = tarkovGamePathFromRust || tarkovGamePathHandler;
-    if (hasPath) {
-      setTarkovGamePathHandler(undefined);
-      setTarkovGamePathFromRust(undefined);
-      setApplicationLogsHandler(undefined);
-      try {
-        const { invoke } = await import('@tauri-apps/api/core');
-        await invoke('set_tarkov_game_path', { path: '' });
-      } catch {
-        // When not in the Tauri environment, the "invoke" function does not exist. Just ignore it.
-      }
-      return;
-    }
-    const isTauri = typeof (window as any).__TAURI__ !== 'undefined';
-    if (isTauri) {
-      try {
-        const { open } = await import('@tauri-apps/plugin-dialog');
-        const { invoke } = await import('@tauri-apps/api/core');
-        const { documentDir } = await import('@tauri-apps/api/path');
-        const defaultPath = await documentDir();
-        const selected = await open({ directory: true, multiple: false, defaultPath });
-        if (selected && typeof selected === 'string') {
-          await invoke('set_tarkov_game_path', { path: selected });
-          setTarkovGamePathFromRust(selected);
-          const folderName = selected.split(/[/\\]/).pop() || selected;
-          toast.info(`${t('toast.watchingGameLogs')}: ${folderName}`);
-        }
-      } catch (err) {
-        console.error('Tarkov game path (Tauri):', err);
-      }
-      return;
-    }
-    if (window.showDirectoryPicker) {
-      try {
-        const handler = await window.showDirectoryPicker();
-        if (handler) {
-          const result = await tarkovGamePathResolve.checkPath(handler);
-          if (result) {
-            setTarkovGamePathHandler(handler);
-          } else {
-            message.show({ content: t('toast.invalidGamePath') });
-          }
-        }
-      } catch (err) {
-        setTarkovGamePathHandler(undefined);
-      }
-    } else {
-      message.show({ content: t('eftwatcher.unsupportMsg') });
-    }
-  };
-
   const handleLocationScaleChange = (_b: boolean) => {
     setLocationScale(_b);
   };
 
-  const handleStrokeTypeChange = (_strokeType: InteractiveMap.StrokeType) => {
-    setStrokeType(_strokeType);
-  };
-
-  const handleStrokeColorChange = (_color: string) => {
-    setStrokeColor(_color);
-  };
-
-  const handleStrokeWidthChange = (_width: number) => {
-    setStrokeWidth(_width);
-  };
-
-  const handleEraserWidthChange = (_width: number) => {
-    setEraserWidth(_width);
-  };
-
   const handleMapChange = (mapId: string) => {
     setActiveMapId(mapId);
-    toast.info(t('toast.switchingMap'), { toastId: 'switching-map', autoClose: false });
+    setActiveLayer(undefined);
   };
 
   const handleLayerChange = (name: string) => {
@@ -352,8 +161,10 @@ const Index = () => {
       loadMapData(activeMapId).then((data) => {
         if (!cancelled && data) {
           setActiveMap(data);
-          toast.dismiss();
-          toast.success(`${t('toast.mapSwitched')} ${data.name}`, { autoClose: 3000 });
+          if (prevMapIdRef.current && prevMapIdRef.current !== activeMapId) {
+            clearMapDataCache(prevMapIdRef.current);
+          }
+          prevMapIdRef.current = activeMapId;
         }
       });
     }
@@ -372,12 +183,32 @@ const Index = () => {
     setMapList(dataImap as any);
   }, []);
 
+  // Auto-detect the default Tarkov screenshot directory
+  useEffect(() => {
+    const isTauri = typeof (window as any).__TAURI__ !== 'undefined';
+    if (!isTauri) return;
+
+    (async () => {
+      try {
+        const { invoke } = await import('@tauri-apps/api/core');
+        const { documentDir, join } = await import('@tauri-apps/api/path');
+
+        const defaultPath = await join(await documentDir(), 'Escape from Tarkov', 'Screenshots');
+        const exists: boolean = await invoke('path_exists', { path: defaultPath });
+
+        if (exists) {
+          await invoke('set_screenshot_path', { path: defaultPath });
+          setDirectoryHandler(defaultPath);
+        }
+      } catch {
+        // Directory picker remains available for manual selection
+      }
+    })();
+  }, []);
+
   useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === 'q') {
-        e.preventDefault();
-        setQuickSearchShow(true);
-      } else if (e.ctrlKey && e.key === 'g') {
+      if (e.ctrlKey && e.key === 'g') {
         e.preventDefault();
         setSimpleUIMode((prev) => !prev);
       }
@@ -407,9 +238,6 @@ const Index = () => {
       if (cursorPositionRafRef.current != null) {
         cancelAnimationFrame(cursorPositionRafRef.current);
       }
-      if (rulerPositionRafRef.current != null) {
-        cancelAnimationFrame(rulerPositionRafRef.current);
-      }
     };
   }, []);
 
@@ -437,54 +265,6 @@ const Index = () => {
     };
   }, []);
 
-  useEffect(() => {
-    let unlistenProfile: Promise<() => void> | null = null;
-    let unlistenRaid: Promise<() => void> | null = null;
-
-    (async () => {
-      try {
-        const { listen } = await import('@tauri-apps/api/event');
-        unlistenProfile = listen<InteractiveMap.ProfileLogProps>('profile-log', (event) => {
-          parseProfileInfo(event.payload);
-        });
-        unlistenRaid = listen<InteractiveMap.RaidLogProps>('raid-log', (event) => {
-          parseRaidInfo(event.payload);
-        });
-      } catch {
-        // Tauri event API unavailable outside desktop build
-      }
-    })();
-
-    return () => {
-      unlistenProfile?.then((u) => u());
-      unlistenRaid?.then((u) => u());
-    };
-  }, []);
-
-  useEffect(() => {
-    if (tarkovGamePathHandler) {
-      resolveTarkovGamePath();
-    }
-  }, [tarkovGamePathHandler]);
-
-  useEffect(() => {
-    if (applicationLogsHandler) {
-      resolveApplicationLogs(true);
-    }
-  }, [applicationLogsHandler]);
-
-  useInterval(() => {
-    if (applicationLogsHandler) {
-      resolveApplicationLogs();
-    }
-  }, 2000);
-
-  useInterval(() => {
-    if (tarkovGamePathHandler) {
-      resolveTarkovGamePath();
-    }
-  }, 10000);
-
   return (
     <div
       className={classNames({
@@ -506,19 +286,13 @@ const Index = () => {
             markerHazards={hazards}
             markerStationaryWeapons={stationaryWeapons}
             locationScale={locationScale}
-            strokeType={strokeType}
-            strokeColor={strokeColor}
-            strokeWidth={strokeWidth}
-            eraserWidth={eraserWidth}
             resolution={resolution}
             onCursorPositionChange={handleCursorPositionChange}
-            onRulerPositionChange={handleRulerPositionChange}
             callbackUtils={handleCallbackUtils}
           />
           <div className="im-header">
             <div className="im-header-left">
               <div className="im-header-left-1">
-                <Title />
                 {resolution.width > 750 && (
                   <MapSelect
                     mapList={mapList}
@@ -533,10 +307,7 @@ const Index = () => {
                 <div className="im-header-left-2">
                   <MapInfo
                     mapData={activeMap}
-                    raidInfo={raidInfo}
                     directoryHandler={directoryHandler}
-                    tarkovGamePathHandler={tarkovGamePathHandler}
-                    tarkovGamePathFromRust={tarkovGamePathFromRust}
                     show={mapInfoActive}
                   />
                 </div>
@@ -553,27 +324,17 @@ const Index = () => {
                   stationaryWeapons={stationaryWeapons}
                   mapInfoActive={mapInfoActive}
                   lootContainers={activeMap.lootContainers}
-                  strokeColor={strokeColor}
-                  strokeWidth={strokeWidth}
-                  eraserWidth={eraserWidth}
                   directoryHandler={directoryHandler}
-                  tarkovGamePathHandler={tarkovGamePathHandler}
                   locationScale={locationScale}
                   resolution={resolution}
                   isMobile={isMobile}
-                  setQuickSearchShow={setQuickSearchShow}
-                  onStrokeTypeChange={handleStrokeTypeChange}
                   onExtractsChange={handleExtractsChange}
                   onLocksChange={handleLocksChange}
                   onLootKeysChange={handleLootKeysChange}
                   onSpawnsChange={handleSpawnsChange}
                   onHazardsChange={handleHazardsChange}
                   onStationaryWeaponsChange={handleStationaryWeaponsChange}
-                  onStrokeColorChange={handleStrokeColorChange}
-                  onStrokeWidthChange={handleStrokeWidthChange}
-                  onEraserWidthChange={handleEraserWidthChange}
                   onClickEftWatcherPath={handleClickEftWatcherPath}
-                  onClickTarkovGamePathPath={handleClickTarkovGamePath}
                   onLocationScaleChange={handleLocationScaleChange}
                   onMapInfoActive={handleMapInfoActive}
                 />
@@ -593,14 +354,12 @@ const Index = () => {
                 )}
               </div>
               <div className="im-footer-right">
-                <RulerPosition {...utils} rulerPosition={rulerPosition} />
                 {resolution.width <= 1280 && <Coordinate {...utils} position={cursorPosition} />}
               </div>
             </div>
           </div>
           <Tooltip {...resolution} />
           <ContextMenu />
-          <QuickSearch show={quickSearchShow} onHide={() => setQuickSearchShow(false)} />
           <Warning />
         </div>
       ) : (
@@ -609,17 +368,12 @@ const Index = () => {
           <span>{t('interactive.mapLoading')}</span>
         </div>
       )}
-      {/* EFTWatcher stays outside the activeMap conditional so it never remounts on map switch */}
       <EFTWatcher
         directoryHandler={directoryHandler}
-        tarkovGamePathHandler={tarkovGamePathHandler}
-        tarkovGamePathFromRust={tarkovGamePathFromRust}
         onClickEftWatcherPath={handleClickEftWatcherPath}
-        onClickTarkovGamePath={handleClickTarkovGamePath}
       />
     </div>
   );
 };
 
 export default Index;
-

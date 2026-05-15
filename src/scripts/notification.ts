@@ -14,9 +14,14 @@ interface NotificationTimer extends NotificationData {
 
 const notificationQueue: NotificationTimer[] = [];
 
+const MAX_QUEUE_SIZE = 50;
+
 export const pushNotification = (data: NotificationTimer) => {
   removeNotification(data.id);
   notificationQueue.push(data);
+  while (notificationQueue.length > MAX_QUEUE_SIZE) {
+    notificationQueue.shift();
+  }
 };
 
 export const removeNotification = (id: string) => {

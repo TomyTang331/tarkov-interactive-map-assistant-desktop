@@ -1,10 +1,14 @@
 import React from 'react';
 import { Group, Text } from 'react-konva';
 
+import labelNamesZh from '@/data/label_names_zh.json';
+
 interface LabelsProps {
   labels: InteractiveMap.Label[];
   show: boolean;
 }
+
+const labelNameMap = labelNamesZh as Record<string, string>;
 
 const Index = (props: LabelsProps & InteractiveMap.UtilProps) => {
   const { labels = [], baseMapStatus, baseScale, heightRange, real2imagePos, show } = props;
@@ -17,6 +21,7 @@ const Index = (props: LabelsProps & InteractiveMap.UtilProps) => {
           if (labelHeight < heightRange[0] || labelHeight > heightRange[1]) {
             opacity = 0.1;
           }
+          const displayText = labelNameMap[label.text] || label.text;
           return (
             <Text
               key={`im-label-text-${label.text}-${label.position[0]}-${label.position[1]}`}
@@ -24,7 +29,7 @@ const Index = (props: LabelsProps & InteractiveMap.UtilProps) => {
               x={real2imagePos.x(label.position[0])}
               y={real2imagePos.y(label.position[1])}
               fontFamily="JinBuTi"
-              text={label.text}
+              text={displayText}
               fontSize={((label.size || 60) * baseScale) / 12}
               fill="#cccccc"
               width={600}

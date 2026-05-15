@@ -17,44 +17,6 @@ interface MouseClickEvent {
   real2imagePos: InteractiveMap.ImageTransformProps;
 }
 
-export const drawColorList = [{
-  color: '#9a8866',
-}, {
-  color: '#000000',
-}, {
-  color: '#ffffff',
-}, {
-  color: '#8888ff',
-}, {
-  color: '#88ff88',
-}, {
-  color: '#ff8888',
-}, {
-  color: '#888800',
-}, {
-  color: '#880088',
-}, {
-  color: '#008888',
-}, {
-  color: '#000088',
-}, {
-  color: '#008800',
-}, {
-  color: '#880000',
-}, {
-  color: '#0088ff',
-}, {
-  color: '#00ff88',
-}, {
-  color: '#8800ff',
-}, {
-  color: '#88ff00',
-}, {
-  color: '#ff0088',
-}, {
-  color: '#ff8800',
-}];
-
 export const icons: Record<string, string> = {
   'container_bank-cash-register': 'container_cash-register',
   'container_bank-safe': 'container_safe',
@@ -255,13 +217,6 @@ export const getSpawnType = (types: string[] = [], normalizedName?: string[]) =>
   }
 };
 
-export const transformMapId = (mapId: string) => {
-  let _mapId = mapId;
-  if (_mapId === '59fc81d786f774390775787e') _mapId = '55f2d3fd4bdc2d5f408b4567'; // Factory
-  if (_mapId === '653e6760052c01c1c805532f') _mapId = '65b8d6f5cdde2479cb2a3125'; // Ground Zero
-  return _mapId;
-};
-
 export const calculateHypotenuse = (
   p1: InteractiveMap.Position2D, p2: InteractiveMap.Position2D,
 ) => {
@@ -349,7 +304,7 @@ export const mouseHoverEvent = {
   onMouseOver: () => {
     const stage = document.querySelector('.im-stage') as HTMLCanvasElement;
     if (stage) {
-      stage.style.cursor = 'url(\'/images/cursors/cursor.png\'), pointer';
+      stage.style.cursor = 'pointer';
     }
   },
   onMouseLeave: () => {
